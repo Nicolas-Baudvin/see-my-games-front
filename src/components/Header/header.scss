@@ -1,0 +1,48 @@
+.header {
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+
+    &-nav {
+        &__ul {
+            display: flex;
+
+            &--item {
+                margin: 0 2em;
+                font-size: 1.8em;
+                list-style-type: none;
+                text-transform: uppercase;
+                margin-top: 1em;
+                font-family: 'Mukta', sans-serif;
+                color: white;
+                text-decoration: none;
+                padding: .5em;
+                transition: .3s;
+
+                &:hover {
+                    transition: .3s;
+                    text-decoration: underline;
+                    color: #15c0ec;
+                    background: rgba(230, 230, 230, .2);
+                    border-radius: 15px;
+                }
+            }
+        }
+    }
+}
+
+.selected {
+    text-decoration: underline;
+    color: #15c0ec;
+    background: rgba(230, 230, 230, .2);
+    border-radius: 15px;
+}
+
+.logo {
+    margin: 0 0 0 2em;
+    width: 160px;
+
+    img {
+        height: 160px;
+    }
+}
