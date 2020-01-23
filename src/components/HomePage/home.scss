@@ -1,0 +1,138 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    &-button {
+        width: 500px;
+        align-self: flex-start;
+        background: rgb(183, 233, 233);
+        background: linear-gradient(177deg, rgba(183, 233, 233, 1) 0%, rgba(21, 192, 236, 1) 100%);
+        padding: .5em;
+        font-size: 3em;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 15px;
+        color: white;
+        margin: 4em 0 0 3em;
+        font-weight: bold;
+        box-shadow: 0 0 50px black;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            box-shadow: 0 0 30px black;
+            transform: translate(0, 2px);
+            transition: .3s;
+        }
+
+        a {
+            color: white;
+        }
+
+    }
+
+    &-title {
+        align-self: center;
+        font-size: 15em;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+
+        &-aside {
+            align-self: center;
+            font-size: 5em;
+            text-transform: uppercase;
+            font-weight: bold;
+            background: #171717;
+            padding: .2em .3em;
+            border-radius: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            width: max-content;
+            // position: relative;
+            // left: 15em;
+        }
+    }
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-text {
+    margin-top: .1em;
+    padding: .2em;
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {
+    .homepage {
+        &-title {
+            font-size: 13em;
+
+            &-aside {
+                margin-right: 5em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1366px) and (min-width: 768px) {
+    .homepage {
+        &-title {
+            font-size: 10em;
+
+            &-aside {
+                margin-right: 4em;
+            }
+        }
+
+        &-button {
+            font-size: 2em;
+            width: 300px;
+            margin-top: 10em;
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .homepage {
+        &-title {
+            font-size: 8em;
+
+            &-aside {
+                margin-right: 2em;
+            }
+        }
+
+        &-button {
+            font-size: 2em;
+            width: 300px;
+            margin-top: 9em;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 360px) {
+    .homepage {
+        align-self: center;
+        &-title {
+            font-size: 5em;
+            width: max-content;
+            &-aside {
+                font-size: 2.5em;
+                margin-right: 3em;
+            }
+        }
+
+        &-button {
+            font-size: 2em;
+            width: 300px;
+            margin-top: 2em;
+            margin-left: 0;
+            align-self: center;
+
+        }
+    }
+}
