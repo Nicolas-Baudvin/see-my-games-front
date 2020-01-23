@@ -40,7 +40,7 @@
         text-align: center;
 
         &-aside {
-            align-self: center;
+            align-self: flex-end;
             font-size: 5em;
             text-transform: uppercase;
             font-weight: bold;
@@ -50,8 +50,7 @@
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             width: max-content;
-            // position: relative;
-            // left: 15em;
+            margin-right: 10em;
         }
     }
 }
@@ -75,6 +74,12 @@
                 margin-right: 5em;
             }
         }
+
+        &-button {
+            margin-top: 3em;
+            align-self: center;
+            margin-left: 0;
+        }
     }
 }
 
@@ -91,7 +96,9 @@
         &-button {
             font-size: 2em;
             width: 300px;
-            margin-top: 10em;
+            margin-top: 7em;
+            align-self: center;
+            margin-left: 0;
         }
     }
 }
@@ -117,9 +124,11 @@
 @media only screen and (max-width: 767px) and (min-width: 360px) {
     .homepage {
         align-self: center;
+
         &-title {
             font-size: 5em;
             width: max-content;
+
             &-aside {
                 font-size: 2.5em;
                 margin-right: 3em;
