@@ -26,6 +26,16 @@
                     text-decoration: underline;
                     color: #15c0ec;
                     background: rgba(230, 230, 230, .2);
+
+                    .header-tooltip {
+                        display: inline;
+                        position: absolute;
+                        color: white;
+                        background: #171717;
+                        padding: .5em;
+                        text-transform: capitalize;
+                        font-size: .7em;
+                    }
                 }
             }
         }
@@ -44,12 +54,36 @@
     border-radius: 15px;
 }
 
+.header-tooltip {
+    display: none;
+}
+
 .logo {
     margin: 0 0 0 2em;
     width: 160px;
 
+    &-tooltip {
+        display: none;
+    }
+
+    &:hover {
+        .logo-tooltip {
+            display: inline;
+            position: absolute;
+            color: white;
+            background: #171717;
+            padding: .5em;
+        }
+    }
+
     img {
+        transition: .5s;
         height: 160px;
+
+        &:hover {
+            transform: scale(1.2);
+            transition: .5s;
+        }
     }
 }
 
@@ -130,17 +164,11 @@
         margin: 0 0 0 1em;
         width: max-content;
         height: max-content;
+        transition: .3s;
 
         img {
             width: 90px;
             height: 90px;
-        }
-
-        &:hover {
-            &::before {
-                content: "Retour page d'accueil";
-                color: white;
-            }
         }
     }
 
