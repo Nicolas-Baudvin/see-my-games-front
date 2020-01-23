@@ -25,6 +25,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/no-unescaped-entities": "off",
     "react/state-in-constructor": "off",
+    "quotes": "off",
 
     "prefer-destructuring": "off",
     "react/jsx-wrap-multilines": "off",
