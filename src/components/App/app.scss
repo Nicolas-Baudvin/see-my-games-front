@@ -1,0 +1,32 @@
+/**
+ * Import
+ */
+@import 'src/styles/vars';
+
+html {
+  height: 100%;
+  body {
+      min-height: 100%;
+      margin: 0;
+  }
+}
+
+#root {
+  min-height: 100vh !important;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.background {
+  background-image: url('/src/assets/background.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  color: white;
+}
