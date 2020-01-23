@@ -17,6 +17,8 @@
                 color: white;
                 text-decoration: none;
                 padding: .5em;
+                background: rgba(230, 230, 230, 0);
+                border-radius: 15px;
                 transition: .3s;
 
                 &:hover {
@@ -24,11 +26,15 @@
                     text-decoration: underline;
                     color: #15c0ec;
                     background: rgba(230, 230, 230, .2);
-                    border-radius: 15px;
                 }
             }
         }
     }
+}
+
+.responsive {
+    display: none;
+    margin: 2.2em 1em 0 0;
 }
 
 .selected {
@@ -45,4 +51,131 @@
     img {
         height: 160px;
     }
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {
+    .header {
+
+        &-nav {
+            &__ul {
+
+                &--item {
+                    margin: 0 1.5em;
+                    font-size: 1.5em;
+
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1366px) and (min-width: 768px) {
+    .header {
+
+        &-nav {
+            &__ul {
+
+                &--item {
+                    margin: 0 1em;
+                    font-size: 1.2em;
+
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .header {
+
+        &-nav {
+            &__ul {
+
+                &--item {
+                    margin: 0 1em;
+                    font-size: 1.2em;
+
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 360px) {
+
+    .menu-pushable {
+        position: absolute;
+        top: 0;
+    }
+
+    .responsive {
+        display: flex;
+        margin: 2.2em 1em 0 0;
+
+        &-icon {
+            cursor: pointer;
+        }
+
+        &-menu {
+            display: none;
+        }
+    }
+
+    .visible {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo {
+        margin: 0 0 0 1em;
+        width: max-content;
+        height: max-content;
+
+        img {
+            width: 90px;
+            height: 90px;
+        }
+
+        &:hover {
+            &::before {
+                content: "Retour page d'accueil";
+                color: white;
+            }
+        }
+    }
+
+    .header {
+
+        &-nav {
+            display: none;
+
+            &__ul {
+                width: max-content;
+                padding: 0;
+
+                &--item {
+                    margin: 0 .8em;
+                    font-size: 1em;
+
+                }
+            }
+        }
+    }
+}
+
+.ui.inverted.menu .item {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidemenu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidemenu-title {
+    font-size: 1.2em;
+    text-transform: capitalize;
+    margin-top: .5em;
 }
