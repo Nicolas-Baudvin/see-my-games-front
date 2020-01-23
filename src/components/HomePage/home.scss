@@ -18,6 +18,7 @@
         font-weight: bold;
         box-shadow: 0 0 50px black;
         cursor: pointer;
+        align-self: center;
         transition: 0.3s;
 
         &:hover {
@@ -63,6 +64,17 @@
 .title-text {
     margin-top: .1em;
     padding: .2em;
+}
+
+.button-tooltip {
+    display: none;
+    position: absolute;
+    z-index: 5000;
+    color: white;
+    background: #171717;
+    padding: .5em;
+    font-size: 1em;
+    width: max-content;
 }
 
 @media only screen and (max-width: 1920px) and (min-width: 1080px) {
