@@ -1,6 +1,133 @@
-footer {
-    height: 400px;
+.footer {
+    height: 40%;
     background: #EFEFEF;
     display: flex;
     justify-content: space-around;
+
+    &-block {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2em;
+        height: 100%;
+        width: 33%;
+
+        &__nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &__nav-list {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+
+            &--item {
+                list-style-type: none;
+                margin-top: 1em;
+                text-align: center;
+                transition: .3s;
+
+                &:hover {
+                    transition: .3s;
+                }
+
+                a {
+                    color: black;
+                    font-size: 1.5em;
+                    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+                    &:hover {
+                        color: #15c0ec;
+                        text-decoration: underline;
+                        transition: .3s;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.social {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 5em;
+
+    &-title {
+        text-align: center;
+        align-self: center;
+    }
+
+    &-icon {
+        &-facebook {
+            color: #2335d9;
+            cursor: pointer;
+        }
+
+        &-twitter {
+            color: #19b7f2;
+            cursor: pointer;
+        }
+
+        &-linkedin {
+            color: #1580fc;
+            cursor: pointer;
+        }
+    }
+}
+
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    align-self: center;
+
+    &-title {
+        align-self: center;
+        text-align: center;
+        font-size: 1.5em;
+    }
+}
+
+.copyright {
+    align-self: center;
+    margin-top: 3em;
+}
+
+.account-nav {
+    margin-top: 5em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.first {
+    font-weight: bold;
+}
+
+// 1080p
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {
+
+}
+
+@media only screen and (max-width: 1366px) and (min-width: 768px) {
+    
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    
+}
+
+@media only screen and (max-width: 767px) and (min-width: 360px) {
+    .footer {
+        display: flex;
+        flex-direction: column;
+        &-block {
+            width: 100%;
+            align-self: center;
+        }
+    }
 }
