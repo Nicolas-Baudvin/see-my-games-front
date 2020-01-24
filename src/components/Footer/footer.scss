@@ -28,14 +28,11 @@
                 text-align: center;
                 transition: .3s;
 
-                &:hover {
-                    transition: .3s;
-                }
-
                 a {
                     color: black;
                     font-size: 1.5em;
                     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                    transition: .3s;
 
                     &:hover {
                         color: #15c0ec;
@@ -109,22 +106,17 @@
 
 // 1080p
 
-@media only screen and (max-width: 1920px) and (min-width: 1080px) {
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {}
 
-}
+@media only screen and (max-width: 1366px) and (min-width: 768px) {}
 
-@media only screen and (max-width: 1366px) and (min-width: 768px) {
-    
-}
-
-@media only screen and (max-width: 1024px) and (min-width: 768px) {
-    
-}
+@media only screen and (max-width: 1024px) and (min-width: 768px) {}
 
 @media only screen and (max-width: 767px) and (min-width: 360px) {
     .footer {
         display: flex;
         flex-direction: column;
+
         &-block {
             width: 100%;
             align-self: center;

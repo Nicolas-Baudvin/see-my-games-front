@@ -2,7 +2,7 @@ import React from 'react';
 import './footer.scss';
 import { sitePlanNav, aproposNav, legalsNav } from 'src/data/navs';
 import { Link } from 'react-router-dom';
-import { Icon, Input } from 'semantic-ui-react';
+import { Icon, Input, Popup } from 'semantic-ui-react';
 
 export default () => {
   return (
@@ -13,9 +13,23 @@ export default () => {
             {
               sitePlanNav.map((item) => {
                 if (item.title === "Plan du site") {
-                  return <li key={item.title} className="footer-block__nav-list--item first"><Link to={item.path}>{item.title}</Link></li>;
+                  return <li key={item.title} className="footer-block__nav-list--item first">
+                    <Popup
+                      trigger={<Link target="_blank" to={item.path}>{item.title}</Link>}
+                      content={`Page ${item.title} (Nouvel onglet)`}
+                      position="right center"
+                      inverted
+                    />
+                  </li>;
                 }
-                return <li key={item.title} className="footer-block__nav-list--item"><Link to={item.path}>{item.title}</Link></li>;
+                return <li key={item.title} className="footer-block__nav-list--item">
+                  <Popup
+                    trigger={<Link target="_blank" to={item.path}>{item.title}</Link>}
+                    content={`Page ${item.title} (Nouvel onglet)`}
+                    position="right center"
+                    inverted
+                  />
+                </li>;
               })
             }
           </ul>
@@ -43,9 +57,23 @@ export default () => {
             {
               aproposNav.map((item) => {
                 if (item.title === "Assitance") {
-                  return <li key={item.title} className="footer-block__nav-list--item first"><Link to={item.path}>{item.title}</Link></li>;
+                  return <li key={item.title} className="footer-block__nav-list--item first">
+                    <Popup
+                      trigger={<Link target="_blank" to={item.path}>{item.title}</Link>}
+                      content={`Page ${item.title} (Nouvel onglet)`}
+                      position="right center"
+                      inverted
+                    />
+                  </li>;
                 }
-                return <li key={item.title} className="footer-block__nav-list--item"><Link to={item.path}>{item.title}</Link></li>;
+                return <li key={item.title} className="footer-block__nav-list--item">
+                  <Popup
+                    trigger={<Link target="_blank" to={item.path}>{item.title}</Link>}
+                    content={`Page ${item.title} (Nouvel onglet)`}
+                    position="right center"
+                    inverted
+                  />
+                </li>;
               })
             }
 
@@ -54,9 +82,21 @@ export default () => {
         <div className="social">
           <h3 className="social-title">Suivez nous</h3>
           <div className="social-icons">
-            <Icon className="social-icon-facebook" name="facebook" size="big" />
-            <Icon className="social-icon-twitter" name="twitter" size="big" />
-            <Icon className="social-icon-linkedin" name="linkedin" size="big" />
+            <Popup
+              trigger={<a href="#" target="_blank"><Icon className="social-icon-facebook" name="facebook" size="big" /></a>}
+              content="Redirection vers la page Facebook du site (Nouvel onglet)"
+              inverted
+            />
+            <Popup
+              trigger={<a href="#" target="_blank"><Icon className="social-icon-twitter" name="twitter" size="big" /></a>}
+              content="Redirection vers la page Twitter du site (Nouvel onglet)"
+              inverted
+            />
+            <Popup
+              trigger={<a href="#" target="_blank"><Icon className="social-icon-linkedin" name="linkedin" size="big" /></a>}
+              content="Redirection vers la page Linkedin du site (Nouvel onglet)"
+              inverted
+            />
           </div>
 
         </div>
@@ -67,15 +107,36 @@ export default () => {
             {
               legalsNav.map((item) => {
                 if (item.title === "Mentions légales") {
-                  return <li key={item.title} className="footer-block__nav-list--item first"><Link to={item.path}>{item.title}</Link></li>;
+                  return <li key={item.title} className="footer-block__nav-list--item first">
+                    <Popup
+                      trigger={<Link target="_blank" to={item.path}>{item.title}</Link>}
+                      content={`Page ${item.title} (Nouvel onglet)`}
+                      position="right center"
+                      inverted
+                    />
+                  </li>;
                 }
-                return <li key={item.title} className="footer-block__nav-list--item"><Link to={item.path}>{item.title}</Link></li>;
+                return <li key={item.title} className="footer-block__nav-list--item">
+                  <Popup
+                    trigger={<Link target="_blank" to={item.path}>{item.title}</Link>}
+                    content={`Page ${item.title} (Nouvel onglet)`}
+                    position="right center"
+                    inverted
+                  />
+                </li>;
               })
             }
           </ul>
           <nav className="footer-block__nav account-nav">
             <ul className="footer-block__nav-list">
-              <li className="footer-block__nav-list--item bold"><Link to="mon-compte">Mon compte</Link></li>
+              <li className="footer-block__nav-list--item first">
+                <Popup
+                  trigger={<Link target="_blank" to="mon-compte/">Mon compte</Link>}
+                  content="Page Mon Compte (Nouvel onglet)"
+                  position="right center"
+                  inverted
+                />
+              </li>;
             </ul>
           </nav>
         </nav>
