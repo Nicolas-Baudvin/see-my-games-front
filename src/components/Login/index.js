@@ -18,7 +18,7 @@ const Login = ({ visible }) => {
 
       <Modal.Content image className="modal-left">
         <Image
-        className="modal-left-img"
+          className="modal-left-img"
           src="/src/assets/connexion-inscription-background.jpeg"
         />
         <h1 className="modal-left-title">vos jeux à portée de main</h1>
