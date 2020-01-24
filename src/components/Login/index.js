@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -9,6 +9,10 @@ import './login.scss';
 
 
 const Login = ({ visible }) => {
+  const dispatch = useDispatch();
+  const [usernameValue, setUsername] = useState('');
+  const [passValue, setPass] = useState('');
+
   return (
     <Modal open={visible} dimmer="blurring" className="modal">
 
@@ -36,6 +40,8 @@ const Login = ({ visible }) => {
             >
               <span className="labels">Votre Pseudonyme</span>
               <Input
+                value={usernameValue}
+                onChange={(e) => setUsername(e.target.value)}
                 size="large"
                 className="modal-right-input__username"
                 id="username"
@@ -55,6 +61,8 @@ const Login = ({ visible }) => {
             >
               <span className="labels">Votre mot de passe</span>
               <Input
+                value={passValue}
+                onChange={(e) => setPass(e.target.value)}
                 size="large"
                 className="modal-right-input__pass"
                 id="pass"
@@ -67,11 +75,13 @@ const Login = ({ visible }) => {
             </label>
           </Form.Field>
 
+          <p className="modal-right-aside">Tu n'as pas encore de compte ?  <Link className="modal-right-aside__link" to="/inscription/"> Inscris toi !</Link></p>
+          <p className="modal-right-aside">Tu as perdu ton mot de passe ?<Link className="modal-right-aside__link" to="/mot-de-passe-oublie/"> Récupère le ici </Link></p>
+
           <Button className="modal-right-button" size="huge" type="submit">Envoyer</Button>
+          <Link className="back-link" to="/"><Button className="modal-right-button--back" size="huge" type="submit">Retour</Button></Link>
 
         </Form>
-
-        <p className="modal-right-aside">Tu n'as pas encore de compte ?  <Link className="modal-right-aside__link" to="/inscription/"> Inscris toi !</Link></p>
       </Modal.Content>
 
     </Modal>

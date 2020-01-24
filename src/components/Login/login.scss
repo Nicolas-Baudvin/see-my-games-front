@@ -23,6 +23,13 @@
     margin-left: 1em;
 }
 
+.back-link {
+    color: white;
+    &:hover{
+        color: white;
+    }
+}
+
 .modal {
 
     &-right {
@@ -33,18 +40,48 @@
             background: linear-gradient(177deg, rgba(183, 233, 233, 1) 0%, rgba(21, 192, 236, 1) 100%) !important;
             color: white !important;
             margin-top: 1em !important;
-            box-shadow: 0 0 30px grey !important;
+            box-shadow: 0 0 25px grey !important;
             transition: .3s !important;
+
+            &--back {
+                width: 100%;
+                background: rgb(233, 197, 183) !important;
+                background: linear-gradient(177deg, rgba(233, 197, 183, 1) 0%, rgba(236, 21, 61, 1) 100%) !important;
+                color: white !important;
+                margin-top: 1em !important;
+                box-shadow: 0 0 25px grey !important;
+                transition: .3s !important;
+
+                &:hover {
+                    box-shadow: 0 0 20px grey !important;
+                    transform: translate(0, 2px) !important;
+                    transition: .3s !important;
+                }
+
+                &:active {
+                    box-shadow: 0 0 10px grey !important;
+                    transform: translate(0, 4px) !important;
+                    transition: .3s !important;
+                }
+
+                &:focus {
+                    box-shadow: 0 0 10px grey !important;
+                    transform: translate(0, 4px) !important;
+                }
+            }
+
             &:hover {
                 box-shadow: 0 0 20px grey !important;
                 transform: translate(0, 2px) !important;
                 transition: .3s !important;
             }
+
             &:active {
                 box-shadow: 0 0 10px grey !important;
                 transform: translate(0, 4px) !important;
                 transition: .3s !important;
             }
+
             &:focus {
                 box-shadow: 0 0 10px grey !important;
                 transform: translate(0, 4px) !important;
@@ -55,15 +92,16 @@
             display: flex;
             flex-direction: row;
             align-self: center;
-            height: 13%;
             width: max-content;
             align-items: flex-end;
-            justify-content: space-between;
+            margin: 0 !important;
+            text-align: center;
 
             &__link {
                 padding-left: .4em;
                 color: #22dede;
                 transition: .3s;
+
                 &:hover {
                     text-decoration: underline;
                     color: #22dede;
@@ -75,8 +113,8 @@
         &-logo {
             align-self: center;
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             margin-top: .5em;
         }
 
