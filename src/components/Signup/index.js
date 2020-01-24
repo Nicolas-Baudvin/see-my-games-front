@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Button, Modal, Image, Input, Form
 } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
 import './signup.scss';
+import { signUp } from 'src/store/User/actions';
 
 const Signup = ({ visible }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,48 @@ const Signup = ({ visible }) => {
   const [passValue, setPass] = useState('');
   const [passConfValue, setPassconf] = useState('');
   const [emailValue, setEmail] = useState('');
+
+  const [emailError, setEmailError] = useState('');
+  const [passError, setPassError] = useState('');
+  const [passConfError, setPassConfError] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [globalError, setGlobalError] = useState('');
+
+  const hideErrors = () => {
+    setGlobalError('');
+    setUsernameError('');
+    setPassConfError('');
+    setPassError('');
+    setEmailError('');
+  };
+
+  const handleFormSubmit = () => {
+    const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    console.log('submit');
+    if (usernameValue && passValue && passConfValue && emailValue) {
+      if (passValue.length >= 6) {
+        if (emailReg.test(emailValue)) {
+          if (passValue === passConfValue) {
+            dispatch(signUp(usernameValue, passValue, passConfValue, emailValue));
+            hideErrors();
+          }
+          else {
+            setPassError("Les mots de passes sont différents");
+            setPassConfError("Les mots de passes sont différents");
+          }
+        }
+        else {
+          setEmailError("L'email envoyé est invalide.");
+        }
+      }
+      else {
+        setUsernameError("Le mot de passe doit contenir 6 caractères minimums");
+      }
+    }
+    else {
+      setGlobalError("Tous les champs sont obligatoires");
+    }
+  };
 
   return (
     <Modal className="modal" open={visible} dimmer="blurring" className="modal">
@@ -41,6 +84,7 @@ const Signup = ({ visible }) => {
             >
               <span className="labels">Votre Pseudonyme</span>
               <Input
+                type="text"
                 value={usernameValue}
                 onChange={(e) => setUsername(e.target.value)}
                 size="large"
@@ -51,7 +95,7 @@ const Signup = ({ visible }) => {
                 iconPosition="left"
                 placeholder="Votre pseudonyme"
               />
-              <span className="modal-errors"></span> {/* TODO: Tooltip for error message */}
+              <span className="modal-errors"> {usernameError} </span> {/* TODO: Tooltip for error message */}
             </label>
           </Form.Field>
 
@@ -62,6 +106,7 @@ const Signup = ({ visible }) => {
             >
               <span className="labels">Votre Email</span>
               <Input
+                type="email"
                 value={emailValue}
                 onChange={(e) => setEmail(e.target.value)}
                 size="large"
@@ -72,7 +117,7 @@ const Signup = ({ visible }) => {
                 iconPosition="left"
                 placeholder="Votre email"
               />
-              <span className="modal-errors"></span> {/* TODO: Tooltip for error message */}
+              <span className="modal-errors"> {emailError} </span> {/* TODO: Tooltip for error message */}
             </label>
           </Form.Field>
 
@@ -83,6 +128,7 @@ const Signup = ({ visible }) => {
             >
               <span className="labels">Votre mot de passe</span>
               <Input
+                type="password"
                 value={passValue}
                 onChange={(e) => setPass(e.target.value)}
                 size="large"
@@ -93,7 +139,7 @@ const Signup = ({ visible }) => {
                 iconPosition="left"
                 placeholder="Votre mot de passe"
               />
-              <span className="modal-errors"></span> {/* TODO: Tooltip for error message */}
+              <span className="modal-errors">{passError}</span> {/* TODO: Tooltip for error message */}
             </label>
           </Form.Field>
 
@@ -104,6 +150,7 @@ const Signup = ({ visible }) => {
             >
               <span className="labels">Confirmez votre mot de passe</span>
               <Input
+                type="password"
                 value={passConfValue}
                 onChange={(e) => setPassconf(e.target.value)}
                 size="large"
@@ -114,13 +161,13 @@ const Signup = ({ visible }) => {
                 iconPosition="left"
                 placeholder="Tapez de nouveau votre mot de passe"
               />
-              <span className="modal-errors"></span> {/* TODO: Tooltip for error message */}
+              <span className="modal-errors"> {passConfError} </span> {/* TODO: Tooltip for error message */}
             </label>
           </Form.Field>
-
+          <span className="modal-errors"> {globalError} </span>
           <p className="modal-right-aside">Tu as déjà un compte ?  <Link className="modal-right-aside__link" to="/connexion/"> Connecte toi !</Link></p>
 
-          <Button className="modal-right-button" size="huge" type="submit">Envoyer</Button>
+          <Button onClick={handleFormSubmit} className="modal-right-button" size="huge" type="submit">Envoyer</Button>
           <Link className="back-link" to="/"><Button className="modal-right-button--back" size="huge" type="submit">Retour</Button></Link>
 
         </Form>
@@ -128,6 +175,10 @@ const Signup = ({ visible }) => {
 
     </Modal>
   );
+};
+
+Signup.propTypes = {
+  visible: PropTypes.bool.isRequired,
 };
 
 export default Signup;
