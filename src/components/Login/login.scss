@@ -25,15 +25,22 @@
 
 .back-link {
     color: white;
-    &:hover{
+
+    &:hover {
         color: white;
     }
 }
 
+.ui.modal.transition.visible.active.modal {
+    height: max-content !important;
+}
+
 .modal {
 
-    &-right {
+    height: max-content !important;
 
+    &-right {
+        padding: 1em !important;
         &-button {
             width: 100%;
             background: rgb(183, 233, 233) !important;
@@ -143,6 +150,13 @@
     }
 
     &-left {
+
+        &-img {
+            height: 740px; // à modifier
+            object-fit: cover;
+            object-position: center;
+        }
+
         &-title {
             text-transform: uppercase;
             font-weight: bold;

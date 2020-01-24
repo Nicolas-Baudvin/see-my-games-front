@@ -18,7 +18,7 @@ const Login = ({ visible }) => {
 
       <Modal.Content image className="modal-left">
         <Image
-          wrapped
+        className="modal-left-img"
           src="/src/assets/connexion-inscription-background.jpeg"
         />
         <h1 className="modal-left-title">vos jeux à portée de main</h1>
@@ -27,7 +27,7 @@ const Login = ({ visible }) => {
         <p className="modal-left-text"> Ou ajoutez les à la mains</p>
       </Modal.Content>
       <Modal.Content image className="modal-right">
-        <img alt="logo du site see my games" src="/src/assets/logo-smg.png" wrapped className="modal-right-logo" />
+        <img alt="logo du site see my games" src="/src/assets/logo-smg.png" className="modal-right-logo" />
         <h1 className="modal-right-title">See My Games</h1>
         <small className="modal-right-small">Se connecter</small>
 
