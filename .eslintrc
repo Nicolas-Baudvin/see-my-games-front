@@ -26,6 +26,8 @@
     "react/no-unescaped-entities": "off",
     "react/state-in-constructor": "off",
     "quotes": "off",
+    "react/jsx-fragments": "off",
+    "jsx-a11y/control-has-associated-label": "off",
 
     "prefer-destructuring": "off",
     "react/jsx-wrap-multilines": "off",
