@@ -27,7 +27,12 @@
     "react/state-in-constructor": "off",
     "quotes": "off",
     "react/jsx-fragments": "off",
-    "jsx-a11y/control-has-associated-label": "off",
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": [ 2, {
+      "required": {
+          "some": [ "nesting", "id" ]
+      }
+    }],
 
     "prefer-destructuring": "off",
     "react/jsx-wrap-multilines": "off",
