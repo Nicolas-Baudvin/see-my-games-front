@@ -1,0 +1,140 @@
+.visible.transition {
+    display: flex !important;
+}
+
+.ui.modal>.image.content {
+    flex-direction: column;
+    display: flex;
+    padding: 0;
+}
+
+.input-group {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:nth-child(2) {
+        margin-top: 2em !important;
+    }
+}
+
+.labels {
+    margin-left: 1em;
+}
+
+.modal {
+
+    &-right {
+
+        &-button {
+            width: 100%;
+            background: rgb(183, 233, 233) !important;
+            background: linear-gradient(177deg, rgba(183, 233, 233, 1) 0%, rgba(21, 192, 236, 1) 100%) !important;
+            color: white !important;
+            margin-top: 1em !important;
+            box-shadow: 0 0 30px grey !important;
+            transition: .3s !important;
+            &:hover {
+                box-shadow: 0 0 20px grey !important;
+                transform: translate(0, 2px) !important;
+                transition: .3s !important;
+            }
+            &:active {
+                box-shadow: 0 0 10px grey !important;
+                transform: translate(0, 4px) !important;
+                transition: .3s !important;
+            }
+            &:focus {
+                box-shadow: 0 0 10px grey !important;
+                transform: translate(0, 4px) !important;
+            }
+        }
+
+        &-aside {
+            display: flex;
+            flex-direction: row;
+            align-self: center;
+            height: 13%;
+            width: max-content;
+            align-items: flex-end;
+            justify-content: space-between;
+
+            &__link {
+                padding-left: .4em;
+                color: #22dede;
+                transition: .3s;
+                &:hover {
+                    text-decoration: underline;
+                    color: #22dede;
+                    transition: .3s;
+                }
+            }
+        }
+
+        &-logo {
+            align-self: center;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-top: .5em;
+        }
+
+        &-title {
+            color: #7d0f14;
+            text-align: center;
+            margin-top: .2em;
+            text-transform: uppercase;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 0;
+        }
+
+        &-small {
+            color: #8f8f8f;
+            font-style: italic;
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        &-form {
+            width: 70%;
+            align-self: center;
+            margin-top: 2em;
+        }
+    }
+
+    &-left {
+        &-title {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 2em;
+            position: absolute;
+            color: white;
+            align-self: center;
+            margin-top: 2em;
+        }
+
+        &-text {
+            color: white;
+            font-size: 1em;
+            position: absolute;
+            margin-top: 1em;
+
+            &:nth-child(4) {
+                top: 14.75em;
+                margin-left: 1.8em;
+            }
+
+            &:nth-child(5) {
+                top: 16em;
+                margin-left: 1.8em;
+            }
+
+            &:nth-child(3) {
+                top: 13.5em;
+                margin-left: 1.8em;
+            }
+        }
+    }
+}
