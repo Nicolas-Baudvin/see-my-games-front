@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ClassNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { headerNav } from 'src/data/navs';
 import {
   Icon, Menu, Sidebar,
@@ -8,6 +8,8 @@ import {
 import './header.scss';
 
 export default () => {
+  const { pathname } = useLocation();
+
   const [nav, setNav] = useState(headerNav);
   const [navSelected, setSelected] = useState('');
   const [isConnected, setConnected] = useState(false); // temporaire
@@ -77,6 +79,18 @@ export default () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const newNav = nav.filter((item) => {
+        if (item.isSelected) {
+          item.isSelected = false;
+        }
+        return item;
+      });
+      setNav(newNav);
+    }
+  }, [pathname]);
 
   return (
     <header className="header">
