@@ -99,7 +99,7 @@ export default () => {
         <span className="logo-tooltip">Retour page d'acceuil</span>
       </Link>
       <div className="responsive">
-        <Icon onClick={() => setVisible(!visible)} className="responsive-icon" name="bars" size="big" color="" />
+        <Icon onClick={() => setVisible(!visible)} className="responsive-icon" name="bars" size="big" />
       </div>
       <Sidebar
         as={Menu}
