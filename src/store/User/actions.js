@@ -4,11 +4,11 @@ export const DISCONNECT = "action-user/";
 export const CONNECT_TO_STEAM = "action-user/";
 export const LINK_STEAM_ACCOUNT = "action-user/";
 
-export const login = (username, pass) => ({
+export const login = (username, password) => ({
   type: LOGIN,
   data: {
     username,
-    pass
+    password
   }
 });
 export const signUp = (username, password, confPassword, email) => ({
