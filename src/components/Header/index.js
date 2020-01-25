@@ -5,6 +5,7 @@ import { headerNav } from 'src/data/navs';
 import {
   Icon, Menu, Sidebar,
 } from 'semantic-ui-react';
+import { useSelector } from 'react-redux';
 import './header.scss';
 
 export default () => {
@@ -12,8 +13,8 @@ export default () => {
 
   const [nav, setNav] = useState(headerNav);
   const [navSelected, setSelected] = useState('');
-  const [isConnected, setConnected] = useState(false); // temporaire
   const [visible, setVisible] = useState(false);
+  const { isConnected } = useSelector((state) => state.user);
 
   const handleLinkClick = (name) => (e) => {
     const newNav = nav.filter((item) => {
@@ -38,6 +39,7 @@ export default () => {
   const followCursor = (target) => (e) => {
     const tooltip = document.querySelector('.logo-tooltip');
     const headerTltip = document.querySelectorAll('.header-tooltip');
+    console.log(headerTltip);
     switch (target) {
       case "logo": {
         tooltip.style.left = `${e.pageX + 5}px`;
@@ -64,14 +66,14 @@ export default () => {
         headerTltip[3].style.top = `${e.pageY + 5}px`;
         break;
       }
-      case "mes jeux": {
-        headerTltip[4].style.left = `${e.pageX + 5}px`;
-        headerTltip[4].style.top = `${e.pageY + 5}px`;
+      case "mon compte": {
+        headerTltip[2].style.left = `${e.pageX + 5}px`;
+        headerTltip[2].style.top = `${e.pageY + 5}px`;
         break;
       }
-      case "mon compte": {
-        headerTltip[5].style.left = `${e.pageX + 5}px`;
-        headerTltip[5].style.top = `${e.pageY + 5}px`;
+      case "mes jeux": {
+        headerTltip[3].style.left = `${e.pageX + 5}px`;
+        headerTltip[3].style.top = `${e.pageY + 5}px`;
         break;
       }
       default: {
