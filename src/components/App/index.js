@@ -1,10 +1,11 @@
 /**
  * Imports de dépendances
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
- Link, BrowserRouter as Router, Switch, Route 
+  BrowserRouter as Router, Switch, Route, Redirect
 } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 /**
  * Imports locaux
@@ -23,6 +24,11 @@ import Signup from '../Signup';
  * Code
  */
 const App = () => {
+
+  const { isConnected } = useSelector((state) => state.user);
+  useEffect(() => {
+
+  }, []);
   return <Router>
     <div id="app">
       <div className="background">
@@ -32,10 +38,20 @@ const App = () => {
             <HomePage />
           </Route>
           <Route exact path="/connexion/">
-            <Login visible />
+            {
+              isConnected && <Redirect from="/connexion/" to="/" />
+            }
+            {
+              !isConnected && <Login visible />
+            }
           </Route>
           <Route exact path="/inscription/">
-            <Signup visible />
+            {
+              isConnected && <Redirect from="/inscription/" to="/" />
+            }
+            {
+              !isConnected && <Signup visible />
+            }
           </Route>
         </Switch>
       </div>
