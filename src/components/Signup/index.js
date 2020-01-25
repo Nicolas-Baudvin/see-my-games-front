@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Button, Modal, Image, Input, Form
@@ -10,6 +10,7 @@ import { signUp } from 'src/store/User/actions';
 
 const Signup = ({ visible }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [usernameValue, setUsername] = useState('');
   const [passValue, setPass] = useState('');
   const [passConfValue, setPassconf] = useState('');
@@ -21,6 +22,8 @@ const Signup = ({ visible }) => {
   const [usernameError, setUsernameError] = useState('');
   const [globalError, setGlobalError] = useState('');
 
+  const { signupMessage, signupError } = useSelector((state) => state.user);
+
   const hideErrors = () => {
     setGlobalError('');
     setUsernameError('');
@@ -28,7 +31,6 @@ const Signup = ({ visible }) => {
     setPassError('');
     setEmailError('');
   };
-
   const handleFormSubmit = () => {
     const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     console.log('submit');
@@ -55,6 +57,11 @@ const Signup = ({ visible }) => {
     else {
       setGlobalError("Tous les champs sont obligatoires");
     }
+  };
+
+  const goToConnection = (e) => {
+    e.preventDefault();
+    history.push('/connexion/');
   };
 
   return (
@@ -162,6 +169,12 @@ const Signup = ({ visible }) => {
                 placeholder="Tapez de nouveau votre mot de passe"
               />
               <span className="modal-errors"> {passConfError} </span> {/* TODO: Tooltip for error message */}
+              {
+                signupMessage && <span className="modal-success"> {signupMessage} <a onClick={goToConnection} href="#">Connecte toi</a> </span>
+              }
+              {
+                signupError && <span className="modal-errors"> {signupError} </span>
+              }
             </label>
           </Form.Field>
           <span className="modal-errors"> {globalError} </span>
