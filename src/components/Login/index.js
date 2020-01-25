@@ -6,12 +6,18 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import './login.scss';
+import { login } from '../../store/User/actions';
 
 
 const Login = ({ visible }) => {
   const dispatch = useDispatch();
   const [usernameValue, setUsername] = useState('');
   const [passValue, setPass] = useState('');
+  const { loginError, loginMessage } = useSelector((state) => state.user);
+
+  const handleSubmitForm = () => {
+    dispatch(login(usernameValue, passValue));
+  };
 
   return (
     <Modal open={visible} dimmer="blurring" className="modal">
@@ -31,7 +37,7 @@ const Login = ({ visible }) => {
         <h1 className="modal-right-title">See My Games</h1>
         <small className="modal-right-small">Se connecter</small>
 
-        <Form className="modal-right-form">
+        <Form onSubmit={handleSubmitForm} className="modal-right-form">
 
           <Form.Field className="input-group">
             <label
@@ -61,6 +67,7 @@ const Login = ({ visible }) => {
             >
               <span className="labels">Votre mot de passe</span>
               <Input
+                type="password"
                 value={passValue}
                 onChange={(e) => setPass(e.target.value)}
                 size="large"
@@ -74,6 +81,13 @@ const Login = ({ visible }) => {
               <span className="modal-errors"></span> {/* TODO: Tooltip for error message */}
             </label>
           </Form.Field>
+
+          {
+            loginMessage && <span className="modal-success"> {loginMessage} </span>
+          }
+          {
+            loginError && <span className="modal-errors"> {loginError} </span>
+          }
 
           <p className="modal-right-aside">Tu n'as pas encore de compte ?  <Link className="modal-right-aside__link" to="/inscription/"> Inscris toi !</Link></p>
           <p className="modal-right-aside">Tu as perdu ton mot de passe ?<Link className="modal-right-aside__link" to="/mot-de-passe-oublie/"> Récupère le ici </Link></p>
