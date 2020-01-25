@@ -15,10 +15,11 @@ import Footer from 'src/components/Footer/';
 import Header from 'src/components/Header/';
 import HomePage from 'src/components/HomePage/';
 import Login from '../Login';
+import Signup from '../Signup';
+import Account from '../Account';
 // Données
 // Styles et assets
 import './app.scss';
-import Signup from '../Signup';
 
 /**
  * Code
@@ -26,6 +27,7 @@ import Signup from '../Signup';
 const App = () => {
 
   const { isConnected } = useSelector((state) => state.user);
+  console.log(isConnected)
   useEffect(() => {
 
   }, []);
@@ -51,6 +53,14 @@ const App = () => {
             }
             {
               !isConnected && <Signup visible />
+            }
+          </Route>
+          <Route exact path="/mon-compte/">
+            {
+              !isConnected && <Redirect from="/mon-compte/" to="/" />
+            }
+            {
+              isConnected && <Account />
             }
           </Route>
         </Switch>

@@ -39,7 +39,6 @@ export default () => {
   const followCursor = (target) => (e) => {
     const tooltip = document.querySelector('.logo-tooltip');
     const headerTltip = document.querySelectorAll('.header-tooltip');
-    console.log(headerTltip);
     switch (target) {
       case "logo": {
         tooltip.style.left = `${e.pageX + 5}px`;
