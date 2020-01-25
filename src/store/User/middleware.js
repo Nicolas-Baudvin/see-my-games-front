@@ -18,7 +18,8 @@ export default (store) => (next) => (action) => {
           console.log(res);
           action.userData = {
             username: res.data.username,
-            id: res.data.userId
+            id: res.data.userId,
+            email: res.data.email
           };
           localStorage.setItem('secure_token', res.data.token); // TODO: Préférer mettre le token dans un cookie httpOnly
           localStorage.setItem('user_data', res.data.username);
