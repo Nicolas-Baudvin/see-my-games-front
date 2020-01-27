@@ -24,3 +24,24 @@ export const legalsNav = [
   { title: "Mentions légales", isSelected: false, path: "mentions-legales/" },
   { title: "Informations légales", isSelected: false, path: "informations-legales/" },
 ];
+
+export const accountMenu = [
+  {
+    title: "Mon Compte", view: "account", isSelected: true, icon: "user"
+  },
+  {
+    title: "Changer de mot passe", view: "pass", isSelected: false, icon: "key"
+  },
+  {
+    title: "Données privées", view: "privacy", isSelected: false, icon: "eye"
+  },
+  {
+    title: "Changer d'Email", view: "email", isSelected: false, icon: "at"
+  },
+  {
+    title: "Mes articles", view: "posts", isSelected: false, icon: "newspaper"
+  },
+  {
+    title: "Supprimer mon compte", view: "delete", isSelected: false, icon: "delete"
+  },
+];
