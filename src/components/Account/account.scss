@@ -17,6 +17,7 @@
         &:nth-child(2) {
             width: 60%;
             text-align: center;
+            background-color: white;
         }
     }
 
@@ -93,6 +94,7 @@
         border-radius: 2px;
 
         &-edit {
+            color: white;
             height: 60px;
             width: 60px;
             position: absolute;
@@ -153,4 +155,144 @@
     color: black;
     transition: .2s;
     font-weight: bold;
+}
+
+.accountData {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+
+
+    &-input {
+    }
+
+    &-title {
+        color: black;
+        text-transform: uppercase;
+    }
+
+    &-label {
+        width: max-content;
+        font-size: 1.5em !important;
+        padding-left: 1em;
+    }
+
+    &-form {
+        width: 80%;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        margin: 2em 2em 0 2em;
+        padding-bottom: 2em;
+        &-btn {
+            width: 20%;
+            align-self: flex-end;
+            margin-top: 1em !important;
+            color: white !important;
+        }
+    }
+
+    &-input-group {
+        width: 40%;
+        align-self: center;
+    }
+
+    &-confirm {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.avatar-input {
+    display: none;
+    &-container {
+        width: 30%;
+        position: relative;
+    }
+}
+
+.file-label {
+    padding: 1em .5em;
+    border-radius: 5px;
+    margin: 2em;
+    display: flex;
+    position: relative;
+    background: #2785ff;
+    color: white !important;
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+        background-color: #0364e4;
+        font-weight: bold !important;
+        transition: .3s
+    }
+}
+
+.input-avatar-icon {
+    position: absolute;
+    color: white !important;
+    left: 1em;
+    top: .6em;
+    z-index: 100;
+}
+
+.input-avatar-iconRight {
+    position: absolute;
+    color: white !important;
+    right: .5em;
+    top: .6em;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+}
+
+.actions {
+    display: flex;
+    align-items: flex-end !important;
+    justify-content: space-around;
+    .ui.button {
+        width: 200px !important;
+        margin: .5em 0;
+    }
+}
+
+.content {
+    align-self: center;
+    text-align: center;
+    font-size: 1.3em !important;
+}
+
+.steam {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &-btn {
+        cursor: pointer;
+        transition: .2s;
+        border-radius: 7px;
+        &:hover {
+            box-shadow: 0 0 4px black;
+            transition: .2s;
+        }
+    }
+    &-title {
+        color: black;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        &-desc {
+            position: absolute;
+            top: 12em;
+            left: 0;
+        }
+    }
+    &-icon {
+        align-self: center;
+    }
+    &-header {
+        position: relative;
+        width: max-content;
+        align-self: center;
+        margin-bottom: 2em;
+    }
 }
