@@ -1,14 +1,15 @@
 import {
-  CONNECT_TO_STEAM, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, DISCONNECT
+  IMPORT_GAMES, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, DISCONNECT, GET_GAMES
 } from "./actions";
 
-const userData = localStorage.getItem('user_data');
+const userData = JSON.parse(localStorage.getItem('user_data')) || localStorage.getItem('user_data');
 const token = localStorage.getItem('secure_token');
 
 const initalState = {
   signupError: '',
   signupMessage: '',
   isConnected: userData && token ? true : false,
+  isConnectedToSteam: typeof userData.steam_id !== 'undefined' || false,
   loginError: '',
   loginMessage: '',
   userData: userData ? userData : '',
@@ -16,9 +17,14 @@ const initalState = {
 
 export default (state = initalState, action) => {
   switch (action.type) {
+    case GET_GAMES: {
+      break;
+    }
     case LINK_STEAM_ACCOUNT: {
       return {
         ...state,
+        steamSuccess: action.message,
+        connectedToSteam: true,
       };
     }
     case DISCONNECT: {
@@ -51,7 +57,7 @@ export default (state = initalState, action) => {
         signupMessage: action.success
       };
     }
-    case CONNECT_TO_STEAM: {
+    case IMPORT_GAMES: {
       return {
         ...state,
       };
