@@ -20,13 +20,13 @@
 - [x] Page Connexion
 - [x] Page Inscription
 - [x] Inscription
-- [ ] Connexion
-- [ ] Page Mon compte
-- [ ] Gérer les erreurs serveurs Connexion / Inscription
-- [ ] Connection à Steam
+- [x] Connexion
+- [x] Connection à Steam
+- [x] Gérer les erreurs serveurs Connexion / Inscription
+- [ ] Page Mon compte => Work in Progress
+- [ ] Enregistrer les jeux
 - [ ] Page Jeux
 - [ ] Page Articles
 - [ ] Page Jeu
 - [ ] Page de Chat / Forum
 - [ ] Amélirorer l'UX
-- [ ] Enregistrer les jeux
