@@ -24,7 +24,7 @@
 - [x] Connection à Steam
 - [x] Gérer les erreurs serveurs Connexion / Inscription
 - [ ] Page Mon compte => Work in Progress
-- [ ] Enregistrer les jeux
+- [ ] Enregistrer des jeux à la main
 - [ ] Page Jeux
 - [ ] Page Articles
 - [ ] Page Jeu
