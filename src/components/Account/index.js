@@ -4,12 +4,12 @@ import { Icon, Button } from 'semantic-ui-react';
 import ClassNames from 'classnames';
 import { accountMenu } from 'src/data/navs';
 import './account.scss';
+import Account from './account';
 
 export default () => {
   const { userData } = useSelector((state) => state.user);
   const [nav, setNav] = useState(accountMenu);
   const [view, setView] = useState('account');
-  console.log(userData);
 
   const changeView = (viewName) => (e) => {
     if (view !== viewName) {
@@ -33,11 +33,11 @@ export default () => {
       <div className="account-block">
 
         <div className="account-avatar">
-          <img className="account-avatar-img" src="/src/assets/default-avatar.png" alt="Votre avatar" />
+          <img className="account-avatar-img" src={userData.steam_avatarfull ? userData.steam_avatarfull : "/src/assets/default-avatar.png"} alt="Votre avatar" />
           <div className="account-avatar-edit">
             <Icon className="account-avatar-icon" name="photo" size="big" />
           </div>
-          <h2 className="account-avatar-title">Bonjour, {userData}</h2>
+          <h2 className="account-avatar-title">Bonjour, {userData.username}</h2>
           <Button className="account-btn" color="teal" animated="vertical">
             <Button.Content hidden>Edit</Button.Content>
             <Button.Content visible>
@@ -60,9 +60,26 @@ export default () => {
           }
         </div>
       </div>
-
       <div className="account-block">
-        my account
+
+        {
+          view === "account" && <Account userData={userData} />
+        }
+        {
+          view === "pass"
+        }
+        {
+          view === "privacy"
+        }
+        {
+          view === "email"
+        }
+        {
+          view === "posts"
+        }
+        {
+          view === "delete"
+        }
       </div>
 
     </div>
