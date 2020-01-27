@@ -39,6 +39,7 @@
         font-weight: bold;
         margin: 0;
         text-align: center;
+        color: white;
 
         &-aside {
             align-self: flex-end;
@@ -52,6 +53,7 @@
             display: flex;
             width: max-content;
             margin-right: 10em;
+            color: white;
         }
     }
 }
