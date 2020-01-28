@@ -8,7 +8,7 @@ import { updatePassword } from 'src/store/User/actions';
 
 const Password = () => {
   const dispatch = useDispatch();
-  const { emailPassSent } = useSelector((state) => state.user);
+  const { emailPassSent, passChangeError } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [passValue, setPass] = useState('');
   const [confPassValue, setConfPass] = useState('');
@@ -66,6 +66,9 @@ const Password = () => {
         <Button content="Envoyer" primary className="passchange-form-btn" />
         {
           emailPassSent && <div className="success"> {emailPassSent} </div>
+        }
+        {
+          passChangeError && <div className="errors"> {passChangeError} </div>
         }
       </Form>
       <Confirm

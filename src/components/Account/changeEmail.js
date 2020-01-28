@@ -6,7 +6,7 @@ import { updateEmail } from '../../store/User/actions';
 
 const Email = () => {
   const dispatch = useDispatch();
-  const { emailSent } = useSelector((state) => state.user);
+  const { emailSent, updateEmailError } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [emailValue, setEmailValue] = useState('');
   const [confEmailValue, setConfEmail] = useState('');
@@ -45,7 +45,7 @@ const Email = () => {
             value={emailValue}
             className="emailchange-input"
             type="password"
-            placeholder="Nouveau mot de passe"
+            placeholder="Nouvel l'email"
           />
           {
             emailError && <div className="errors"> {emailError} </div>
@@ -59,7 +59,7 @@ const Email = () => {
             value={confEmailValue}
             className="emailchange-input"
             type="password"
-            placeholder="Confirmer mot de passe"
+            placeholder="Confirmer l'email"
           />
           {
             confEmailError && <div className="errors"> {confEmailError} </div>
@@ -69,6 +69,9 @@ const Email = () => {
         <Button content="Envoyer" primary className="emailchange-form-btn" />
         {
           emailSent && <div className="success"> {emailSent} </div>
+        }
+        {
+          updateEmailError && <div className="errors"> {updateEmailError} </div>
         }
       </Form>
       <Confirm

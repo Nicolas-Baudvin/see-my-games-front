@@ -6,6 +6,7 @@ import { deleteAccount } from '../../store/User/actions';
 
 const Delete = () => {
   const dispatch = useDispatch();
+  const { deleteAccountError } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const handleConfirm = () => {
     dispatch(deleteAccount());
@@ -19,6 +20,9 @@ const Delete = () => {
         <h2 className="delete-title">Supprimer mon compte</h2>
       </div>
       <Button className="delete-deletebtn" onClick={() => setOpen(true)} color="red" content="Supprimer mon compte" />
+      {
+        deleteAccountError && <div className="errors"> {deleteAccountError} </div>
+      }
       <Confirm
         className="accountData-confirm"
         content="Voulez vous vraiment suppprimer votre compte ? cette action est irréversible !"
