@@ -127,6 +127,7 @@ export default (store) => (next) => (action) => {
         })
         .catch((err) => {
           console.log(err.response);
+          action.error = err.response.data.message;
         });
       break;
     }
