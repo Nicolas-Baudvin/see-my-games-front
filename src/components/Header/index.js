@@ -178,7 +178,7 @@ export default () => {
               }
 
               if (item.title === "déconnexion") {
-                return isConnected && <Icon onClick={disconnectUser} name="log out" size="huge" className="disconnect-icon" />;
+                return isConnected && <Icon key={item.title} onClick={disconnectUser} name="log out" size="huge" className="disconnect-icon" />;
               }
 
               if (item.title === "mon compte" || item.title === "mes jeux") {
