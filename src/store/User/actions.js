@@ -4,6 +4,10 @@ export const DISCONNECT = "action-user/DISCONNECT";
 export const IMPORT_GAMES = "action-user/IMPORT_GAMES";
 export const LINK_STEAM_ACCOUNT = "action-user/LINK_STEAM_ACCOUNT";
 export const GET_GAMES = "action-user/GET_GAMES";
+export const UPDATE_PROFIL = "action-user/UPDATE_PROFIL";
+export const UPDATE_PASSWORD = "action-user/UPDATE_PASSWORD";
+export const UPDATE_EMAIL = "action-user/UPDATE_EMAIL";
+export const DELETE_ACCOUNT = "action-user/DELETE_ACCOUNT";
 
 export const login = (username, password) => ({
   type: LOGIN,
@@ -33,4 +37,21 @@ export const linkSteamAccount = (data) => ({
 });
 export const getGames = () => ({
   type: GET_GAMES
+});
+export const updateProfil = (newUsername) => ({
+  type: UPDATE_PROFIL,
+  newUsername
+});
+export const updatePassword = (password, confPassword) => ({
+  type: UPDATE_PASSWORD,
+  password,
+  confPassword
+});
+export const updateEmail = (email, confEmail) => ({
+  type: UPDATE_EMAIL,
+  email,
+  confEmail
+});
+export const deleteAccount = () => ({
+  type: DELETE_ACCOUNT,
 });

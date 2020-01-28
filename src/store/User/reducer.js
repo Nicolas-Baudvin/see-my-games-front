@@ -1,5 +1,14 @@
 import {
-  IMPORT_GAMES, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, DISCONNECT, GET_GAMES
+  IMPORT_GAMES,
+  LOGIN,
+  SIGNUP,
+  LINK_STEAM_ACCOUNT,
+  DISCONNECT,
+  GET_GAMES,
+  UPDATE_PASSWORD,
+  DELETE_ACCOUNT,
+  UPDATE_EMAIL,
+  UPDATE_PROFIL
 } from "./actions";
 
 const userData = JSON.parse(localStorage.getItem('user_data')) || localStorage.getItem('user_data');
@@ -9,16 +18,47 @@ const initalState = {
   signupError: '',
   signupMessage: '',
   isConnected: userData && token ? true : false,
-  isConnectedToSteam: typeof userData.steam_id !== 'undefined' || false,
+  isConnectedToSteam: userData ? userData.hasOwnProperty("steam_id") : false,
   loginError: '',
   loginMessage: '',
   userData: userData ? userData : '',
+  usernameChanged: '',
+  emailPassSent: '',
+  emailSent: '',
 };
 
 export default (state = initalState, action) => {
   switch (action.type) {
+    case UPDATE_PASSWORD: {
+      return {
+        ...state,
+        emailPassSent: action.success,
+      };
+    }
+    case DELETE_ACCOUNT: {
+      return {
+        ...state,
+        isConnected: '',
+        isConnectedToSteam: '',
+        userData: '',
+      };
+    }
+    case UPDATE_EMAIL: {
+      return {
+        ...state,
+      };
+    }
+    case UPDATE_PROFIL: {
+      return {
+        ...state,
+        usernameChanged: action.success,
+        userData: action.user
+      };
+    }
     case GET_GAMES: {
-      break;
+      return {
+        ...state,
+      };
     }
     case LINK_STEAM_ACCOUNT: {
       return {
@@ -28,8 +68,12 @@ export default (state = initalState, action) => {
       };
     }
     case DISCONNECT: {
+      localStorage.clear();
       return {
         ...state,
+        isConnected: '',
+        isConnectedToSteam: '',
+        userData: '',
       };
     }
     case LOGIN: {

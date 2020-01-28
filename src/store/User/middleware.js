@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, GET_GAMES
+  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, GET_GAMES, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD
 } from './actions';
 
 export default (store) => (next) => (action) => {
@@ -8,6 +8,128 @@ export default (store) => (next) => (action) => {
   const API_LINK = "http://localhost:5000/api";
 
   switch (action.type) {
+    case UPDATE_PASSWORD: {
+      const { password, confPassword } = action;
+      const { userData } = state.user;
+      const token = localStorage.getItem('secure_token');
+      console.log(userData);
+
+      axios({
+        method: 'post',
+        url: `${API_LINK}/auth/change-password/`,
+        data: {
+          password,
+          confPassword,
+          userId: userData._id
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          action.success = res.data.message;
+          next(action);
+        })
+        .catch((err) => {
+          console.log(err.response);
+          action.error = err.response.data.message;
+        });
+
+
+      break;
+    }
+    case DELETE_ACCOUNT: {
+      const { userData } = state.user;
+
+      axios({
+        method: 'delete',
+        url: `${API_LINK}/auth/delete/`,
+        data: {
+          userId: userData._id,
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          action.success = res.data.message;
+          localStorage.clear();
+          next(action);
+        })
+        .catch((err) => {
+          console.log(err);
+          action.error = err.response.data.message;
+          next(action);
+        });
+
+      break;
+    }
+    case UPDATE_EMAIL: {
+      const { email, confEmail } = action;
+      const { userData } = state.user;
+      const token = localStorage.getItem('secure_token');
+      console.log(userData);
+
+      axios({
+        method: 'post',
+        url: `${API_LINK}/auth/change-email/`,
+        data: {
+          email,
+          confEmail,
+          userId: userData._id
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          action.success = res.data.message;
+          next(action);
+        })
+        .catch((err) => {
+          console.log(err.response);
+          action.error = err.response.data.message;
+        });
+      break;
+    }
+    case UPDATE_PROFIL: {
+      const { newUsername } = action;
+      const { userData } = state.user;
+      const token = localStorage.getItem('secure_token');
+      axios({
+        method: 'post',
+        url: `${API_LINK}/auth/update/`,
+        data: {
+          newUsername,
+          id: userData._id
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem('user_data', JSON.stringify(res.data.user));
+          action.success = res.data.message;
+          action.user = res.data.user;
+          next(action);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+      break;
+    }
     case GET_GAMES: {
       next(action);
       break;
