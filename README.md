@@ -31,17 +31,39 @@
   - [x] Changement d'Email
   - [x] Changement de pseudo
   - [x] Suppression du compte
+  - [x] Remplacer l'avatar par celui de steam si ce dernier est vide
   - [ ] Données privées
   - [ ] Récapitulatif des articles écrit par l'utilisateur
   - [ ] Oublie de mot de passe
-  - [ ] Gestions d'erreurs serveurs
+  - [x] Gestions d'erreurs serveurs
+    - [x] Mot de passe
+    - [x] Email
+    - [x] Suppression de compte
+  - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Enregistrer des jeux à la main
+  - [ ] Suppression
+  - [ ] Modification
+  - [ ] Lecture
 - [ ] Page Jeux
 - [ ] Page Articles
 - [ ] Page Jeu
-- [ ] Page de Chat / Forum
+  - [ ] Vidéos
+  - [ ] Screenshots
+  - [ ] Categories
+  - [ ] Configurations
+  - [ ] Prix
+  - [ ] Temps de jeu
+  - [ ] Page Steam
+  - [ ] Description complète du jeu
+- [ ] Page de Chat
+  - [ ] Affichage des utilisateurs connectés
+  - [ ] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
+  - [ ] Possibilité d'écrire un message privé
+  - [ ] Mise à disposition de plusieurs Channels
 
 ----- V2 -----
 
 - [ ] Amélirorer l'UX
-- [ ] ...
+- [ ] Système de liste de souhait (wishlist)
+- [ ] Système de liste d'amis (notemment pour le chat)
+- [ ] 
