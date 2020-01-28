@@ -163,8 +163,7 @@
     padding: 2em;
 
 
-    &-input {
-    }
+    &-input {}
 
     &-title {
         color: black;
@@ -184,6 +183,7 @@
         flex-direction: column;
         margin: 2em 2em 0 2em;
         padding-bottom: 2em;
+
         &-btn {
             width: 20%;
             align-self: flex-end;
@@ -205,6 +205,7 @@
 
 .avatar-input {
     display: none;
+
     &-container {
         width: 30%;
         position: relative;
@@ -221,6 +222,7 @@
     color: white !important;
     cursor: pointer;
     transition: .3s;
+
     &:hover {
         background-color: #0364e4;
         font-weight: bold !important;
@@ -250,6 +252,7 @@
     display: flex;
     align-items: flex-end !important;
     justify-content: space-around;
+
     .ui.button {
         width: 200px !important;
         margin: .5em 0;
@@ -266,33 +269,101 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+
     &-btn {
         cursor: pointer;
         transition: .2s;
         border-radius: 7px;
+
         &:hover {
             box-shadow: 0 0 4px black;
             transition: .2s;
         }
     }
+
     &-title {
         color: black;
         text-transform: uppercase;
         display: flex;
         flex-direction: column;
+
         &-desc {
             position: absolute;
             top: 12em;
             left: 0;
         }
     }
+
     &-icon {
         align-self: center;
     }
+
     &-header {
         position: relative;
         width: max-content;
         align-self: center;
         margin-bottom: 2em;
     }
+}
+
+.success-message {
+    color: green;
+}
+
+.passchange,
+.emailchange,
+.delete {
+    display: flex;
+    flex-direction: column;
+
+    &-desc {
+        align-self: flex-start;
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        width: 30%;
+        margin-top: 3em !important;
+
+        &-btn {
+            margin-top: 2em !important;
+        }
+    }
+
+    &-input {
+        align-self: center;
+        width: 100%;
+    }
+
+    &-header {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2em;
+    }
+
+    &-icon {
+        align-self: center;
+    }
+
+    &-label {
+        text-align: left;
+        margin-top: 3em;
+    }
+
+    &-inputgroup {
+        margin-top: 2em !important;
+        display: flex;
+        flex-direction: column;
+    }
+    &-deletebtn {
+        width: max-content;
+        align-self: center;
+        margin-top: 10em !important;
+    }
+}
+
+.errors {
+    color: red;
 }

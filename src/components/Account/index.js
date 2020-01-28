@@ -5,6 +5,9 @@ import ClassNames from 'classnames';
 import { accountMenu } from 'src/data/navs';
 import './account.scss';
 import Account from './account';
+import Password from './changePass';
+import Email from './changeEmail';
+import Delete from './delete';
 
 export default () => {
   const { userData } = useSelector((state) => state.user);
@@ -63,22 +66,22 @@ export default () => {
       <div className="account-block">
 
         {
-          view === "account" && <Account userData={userData} />
+          view === "account" && <Account />
         }
         {
-          view === "pass"
+          view === "pass" && <Password />
         }
         {
           view === "privacy"
         }
         {
-          view === "email"
+          view === "email" && <Email />
         }
         {
           view === "posts"
         }
         {
-          view === "delete"
+          view === "delete" && <Delete />
         }
       </div>
 
