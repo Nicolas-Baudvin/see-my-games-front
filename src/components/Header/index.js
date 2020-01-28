@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import ClassNames from 'classnames';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { headerNav } from 'src/data/navs';
 import {
   Icon, Menu, Sidebar,
 } from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import './header.scss';
+import { disconnect } from '../../store/User/actions';
 
 export default () => {
   const { pathname } = useLocation();
-
+  const dispatch = useDispatch();
   const [nav, setNav] = useState(headerNav);
   const [navSelected, setSelected] = useState('');
   const [visible, setVisible] = useState(false);
@@ -81,6 +82,10 @@ export default () => {
     }
   };
 
+  const disconnectUser = () => {
+    dispatch(disconnect());
+  };
+
   useEffect(() => {
     if (pathname === "/") {
       const newNav = nav.filter((item) => {
@@ -128,6 +133,13 @@ export default () => {
               </Menu.Item>;
             }
 
+            if (item.title === "déconnexion") {
+              return isConnected && <Menu.Item onClick={disconnectUser} key={item.title} as="div">
+                <Icon name="log out" size="huge" />
+                <h3 className="sidemenu-title">{item.title}</h3>
+              </Menu.Item>;
+            }
+
             if (item.title === "mon compte" || item.title === "mes jeux") {
               return isConnected && <Menu.Item key={item.title} as="div">
                 <Link to={item.path} className="sidemenu-item">
@@ -163,6 +175,10 @@ export default () => {
                   {item.title}
                   <span className="header-tooltip">Page {item.title}</span>
                 </Link>;
+              }
+
+              if (item.title === "déconnexion") {
+                return isConnected && <Icon onClick={disconnectUser} name="log out" size="huge" className="disconnect-icon" />;
               }
 
               if (item.title === "mon compte" || item.title === "mes jeux") {
