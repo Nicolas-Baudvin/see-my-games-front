@@ -34,6 +34,7 @@
   - [ ] Données privées
   - [ ] Récapitulatif des articles écrit par l'utilisateur
   - [ ] Oublie de mot de passe
+  - [ ] Gestions d'erreurs serveurs
 - [ ] Enregistrer des jeux à la main
 - [ ] Page Jeux
 - [ ] Page Articles
