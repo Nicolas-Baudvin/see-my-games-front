@@ -5,6 +5,7 @@ export const headerNav = [
   { title: "mes jeux", isSelected: false, path: "/mes-jeux/" },
   { title: "connexion", isSelected: false, path: "/connexion/" },
   { title: "inscription", isSelected: false, path: "/inscription/" },
+  { title: "déconnexion" }
 ];
 
 export const sitePlanNav = [
