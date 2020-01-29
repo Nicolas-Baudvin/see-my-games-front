@@ -20,6 +20,7 @@ import Account from '../Account';
 // Données
 // Styles et assets
 import './app.scss';
+import GameLibrary from 'src/components/GameLibrary';
 
 /**
  * Code
@@ -61,6 +62,14 @@ const App = () => {
             }
             {
               isConnected && <Account />
+            }
+          </Route>
+          <Route exact path="/mes-jeux/">
+            {
+              !isConnected && <Redirect from="/mes-jeux/" to="/" />
+            }
+            {
+              isConnected && <GameLibrary />
             }
           </Route>
         </Switch>
