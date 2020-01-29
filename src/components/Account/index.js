@@ -14,7 +14,7 @@ import Privacy from './privacy';
 export default () => {
   const { userData } = useSelector((state) => state.user);
   const [nav, setNav] = useState(accountMenu);
-  const [view, setView] = useState('privacy');
+  const [view, setView] = useState('account');
 
   const changeView = (viewName) => (e) => {
     if (view !== viewName) {
