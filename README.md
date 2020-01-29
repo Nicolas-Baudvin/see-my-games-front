@@ -44,8 +44,13 @@
   - [ ] Suppression
   - [ ] Modification
   - [ ] Lecture
-- [ ] Page Jeux
+- [x] Page Jeux
+  - [x] Recherche d'un jeu
+  - [x] Affichage des jeux
+  - [x] Carousel des jeux joués récemment
+  - [ ] Tri des jeux
 - [ ] Page Articles
+- [ ] Page de chargement
 - [ ] Page Jeu
   - [ ] Vidéos
   - [ ] Screenshots
