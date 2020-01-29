@@ -32,7 +32,7 @@
   - [x] Changement de pseudo
   - [x] Suppression du compte
   - [x] Remplacer l'avatar par celui de steam si ce dernier est vide
-  - [ ] Données privées
+  - [x] Données privées
   - [ ] Récapitulatif des articles écrit par l'utilisateur
   - [ ] Oublie de mot de passe
   - [x] Gestions d'erreurs serveurs
@@ -60,10 +60,12 @@
   - [ ] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
   - [ ] Possibilité d'écrire un message privé
   - [ ] Mise à disposition de plusieurs Channels
+  - [ ] Emoticones
 
 ----- V2 -----
 
 - [ ] Amélirorer l'UX
 - [ ] Système de liste de souhait (wishlist)
 - [ ] Système de liste d'amis (notemment pour le chat)
-- [ ] 
+- [ ] Donner son avis sur un jeu
+- [ ] ...
