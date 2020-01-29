@@ -87,19 +87,11 @@
     }
 }
 
-.disconnect-icon {
-    color: white;
-    align-self: center;
-    margin-top: .3em !important;
-    margin-right: .5em !important;
-    cursor: pointer;
-    transition: .3s;
-
-    &:hover {
-        color: #999;
-        transition: .3s;
-    }
+.logout {
+    margin-top: .4em !important;
 }
+
+
 
 @media only screen and (max-width: 1920px) and (min-width: 1080px) {
     .header {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import ClassNames from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 import { headerNav } from 'src/data/navs';
@@ -74,6 +74,11 @@ export default () => {
       case "mes jeux": {
         headerTltip[3].style.left = `${e.pageX + 5}px`;
         headerTltip[3].style.top = `${e.pageY + 5}px`;
+        break;
+      }
+      case "déconnexion": {
+        headerTltip[4].style.left = `${e.pageX + 5}px`;
+        headerTltip[4].style.top = `${e.pageY + 5}px`;
         break;
       }
       default: {
@@ -178,7 +183,10 @@ export default () => {
               }
 
               if (item.title === "déconnexion") {
-                return isConnected && <Icon key={item.title} onClick={disconnectUser} name="log out" size="huge" className="disconnect-icon" />;
+                return isConnected && <div className="header-nav__ul--item logout">
+                  <Icon onMouseMove={followCursor(item.title)} key={item.title} onClick={disconnectUser} name="log out" size="big" className="disconnect-icon" />
+                  <span className="header-tooltip">Déconnexion</span>
+                </div>;
               }
 
               if (item.title === "mon compte" || item.title === "mes jeux") {
