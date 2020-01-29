@@ -312,7 +312,9 @@
 
 .passchange,
 .emailchange,
-.delete {
+.delete,
+.myarticles,
+.privacy {
     display: flex;
     flex-direction: column;
 
@@ -357,10 +359,101 @@
         display: flex;
         flex-direction: column;
     }
+
     &-deletebtn {
         width: max-content;
         align-self: center;
         margin-top: 10em !important;
+    }
+}
+
+.privacy {
+    a {
+        color: #15c0ec;
+
+        &:hover {
+            text-decoration: underline;
+            color: #15c0ec;
+        }
+    }
+
+    text-align: left;
+    position: relative;
+    height: 100%;
+
+    &-email {
+        margin-left: 5em;
+        font-size: 1.3em;
+        font-weight: normal;
+    }
+
+    &-newsletter {
+        margin-top: 1em;
+        position: absolute;
+        bottom: 2em;
+        align-self: center;
+    }
+
+    &-steamdata {
+        display: flex;
+        flex-direction: column;
+        &-title {
+            text-align: center;
+            margin-bottom: 5em;
+        }
+        &-profileurl {
+            margin-left: 1em;
+        }
+    }
+
+    &-data {
+        display: flex;
+        flex-direction: column;
+
+        &-header {
+            align-self: center;
+            border-bottom: 1px solid grey;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2em;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    }
+
+    &-checkbox {
+        align-self: center;
+        margin-left: 5em;
+    }
+
+    &-datagroup {
+        display: flex;
+        margin-left: 5em;
+
+        &-title {
+            margin: 0;
+            margin-left: 1em;
+        }
+        &-profileurl {
+            margin-left: 11em;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &-title {
+        text-align: center !important;
+    }
+
+    &-avatar {
+        border-radius: 50%;
+        text-align: center !important;
+        align-self: center;
+
+        &-title {
+            margin-left: 5em;
+        }
     }
 }
 

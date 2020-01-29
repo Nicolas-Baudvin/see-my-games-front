@@ -8,11 +8,13 @@ import Account from './account';
 import Password from './changePass';
 import Email from './changeEmail';
 import Delete from './delete';
+import MyArticles from './myArticles';
+import Privacy from './privacy';
 
 export default () => {
   const { userData } = useSelector((state) => state.user);
   const [nav, setNav] = useState(accountMenu);
-  const [view, setView] = useState('account');
+  const [view, setView] = useState('privacy');
 
   const changeView = (viewName) => (e) => {
     if (view !== viewName) {
@@ -72,13 +74,13 @@ export default () => {
           view === "pass" && <Password />
         }
         {
-          view === "privacy"
+          view === "privacy" && <Privacy />
         }
         {
           view === "email" && <Email />
         }
         {
-          view === "posts"
+          view === "posts" && <MyArticles />
         }
         {
           view === "delete" && <Delete />
