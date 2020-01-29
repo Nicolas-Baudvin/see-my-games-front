@@ -28,7 +28,6 @@ import GameLibrary from 'src/components/GameLibrary';
 const App = () => {
 
   const { isConnected } = useSelector((state) => state.user);
-  console.log(isConnected)
   useEffect(() => {
 
   }, []);
