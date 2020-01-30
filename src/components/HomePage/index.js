@@ -1,8 +1,10 @@
 import React from 'react';
 import './home.scss';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default () => {
+  const { isConnected } = useSelector((state) => state.user);
 
   const followCursor = (target) => (e) => {
     const buttonTooltip = document.querySelector('.button-tooltip');
@@ -32,9 +34,16 @@ export default () => {
       </div>
       <span className="button-tooltip">Redirection vers la page inscription</span>
       <button onMouseLeave={hideTooltip} onMouseMove={followCursor("button")} type="button" className="homepage-button">
-        <Link to="/inscription" className="button-link">
-          commencer
-        </Link>
+        {
+          !isConnected && <Link to="/inscription/" className="button-link">
+            commencer
+          </Link>
+        }
+        {
+          isConnected && <Link to="/mes-jeux/" className="button-link">
+            Mes jeux
+          </Link>
+        }
       </button>
 
     </main>
