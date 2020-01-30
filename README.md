@@ -51,15 +51,12 @@
   - [ ] Tri des jeux
 - [ ] Page Articles
 - [ ] Page de chargement
-- [ ] Page Jeu
-  - [ ] Vidéos
-  - [ ] Screenshots
-  - [ ] Categories
-  - [ ] Configurations
-  - [ ] Prix
-  - [ ] Temps de jeu
-  - [ ] Page Steam
-  - [ ] Description complète du jeu
+- [x] Page Jeu
+  - [x] Vidéos
+  - [x] Screenshots
+  - [x] Categories
+  - [x] Configurations
+  - [x] Description complète du jeu
 - [ ] Page de Chat
   - [ ] Affichage des utilisateurs connectés
   - [ ] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
