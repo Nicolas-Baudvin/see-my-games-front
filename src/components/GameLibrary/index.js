@@ -70,7 +70,7 @@ const GameLibrary = () => {
         allGames.map((game) => {
           if (game.playtime_forever > 120) {
             return (
-              <Link key={game._id} className="games-steam-game-link" to={`/mes-jeux/${game.appid}`}>
+              <Link key={game._id} className="games-steam-game-link" to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
                 <div className="games-steam-game">
                   <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />
                   <h2 className="games-steam-game-title"> {game.name} </h2>
@@ -165,7 +165,7 @@ const GameLibrary = () => {
           <Slider className="carousel" {...settings}>
             {
               recentGames.map((game) => (
-                <Link to={`/mes-jeux/${game.appid}`}>
+                <Link to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
                   <div key={game.appid} className="carousel-item">
                     <div className="carousel-item-img-container">
                       <img src={`https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg?t=1571756795`} alt={`Jeu ${game.name}`} className="carousel-item-img" />
@@ -194,11 +194,11 @@ const GameLibrary = () => {
             Jeu Steam
           </Button>
           <Button onClick={handleSortClick("nosteam")} size="big" icon className="games-sort-sortBtn" primary>
-            <Icon name="sort alphabet down" />
+            <Icon name="hand paper" />
             Jeu non steam
           </Button>
           <Button onClick={handleSortClick("alphab")} size="big" icon className="games-sort-sortBtn" primary>
-            <Icon name="hand paper" />
+            <Icon name="sort alphabet down" />
             Ordre Alphabétique
           </Button>
           <Button color="red" onClick={handleSortClick("cancel")} size="big" icon className="games-sort-sortBtn" primary>
