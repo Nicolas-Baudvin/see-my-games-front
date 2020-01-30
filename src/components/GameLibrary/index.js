@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon, Input, Button, Transition, Dropdown, Item } from 'semantic-ui-react';
 import Slider from "react-slick";
+import ScrollAnimation from 'react-animate-on-scroll';
 
 import './games.scss';
 import { displayGames, displayRecentGames } from '../../store/Games/actions';
@@ -70,12 +71,18 @@ const GameLibrary = () => {
         allGames.map((game) => {
           if (game.playtime_forever > 120) {
             return (
-              <Link key={game._id} className="games-steam-game-link" to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
-                <div className="games-steam-game">
-                  <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />
-                  <h2 className="games-steam-game-title"> {game.name} </h2>
-                </div>
-              </Link>
+              <ScrollAnimation
+                animateIn="fadeIn"
+                className="games-steam-game-link"
+                key={game._id}
+              >
+                <Link className="games-steam-game-link" to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
+                  <div className="games-steam-game">
+                    <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />
+                    <h2 className="games-steam-game-title"> {game.name} </h2>
+                  </div>
+                </Link>
+              </ScrollAnimation>
             );
           }
         })
@@ -165,8 +172,8 @@ const GameLibrary = () => {
           <Slider className="carousel" {...settings}>
             {
               recentGames.map((game) => (
-                <Link to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
-                  <div key={game.appid} className="carousel-item">
+                <Link key={game.appid} to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
+                  <div className="carousel-item">
                     <div className="carousel-item-img-container">
                       <img src={`https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/header.jpg?t=1571756795`} alt={`Jeu ${game.name}`} className="carousel-item-img" />
                     </div>
