@@ -1,0 +1,13 @@
+.loadpage {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6em;
+    &-icon {
+
+    }
+    &-message {
+        font-size: 3em;
+    }
+}
