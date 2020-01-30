@@ -6,6 +6,7 @@ import Slick from 'react-slick';
 import { displayGameInfo } from '../../store/Games/actions';
 
 import './game.scss';
+import LoadPage from '../LoadPage';
 
 const GamePage = () => {
   const { appid } = useParams();
@@ -78,6 +79,12 @@ const GamePage = () => {
     document.documentElement.scrollTop = 0;
   }, []);
 
+  if (!gameInfo) {
+    return (
+      <LoadPage />
+    );
+  }
+
   return (
     <div className="gamepage">
 
@@ -117,7 +124,7 @@ const GamePage = () => {
             {...settings}
           >
             {
-              gameInfo && gameInfo.movies.map((item) => <div className="gamepage-carousel-movies-item">
+              gameInfo && gameInfo.movies.map((item) => <div key={item.id} className="gamepage-carousel-movies-item">
                 <video src={item.webm[480]} type="video/webm" controls width={600} />
               </div>)
             }
@@ -140,11 +147,11 @@ const GamePage = () => {
 
         <div className="gamepage-specs-blocks">
           <div className="gamepage-specs-categories">
-          <h3>Catégories :</h3>
+            <h3>Catégories :</h3>
             <ul>
               {
                 gameInfo && gameInfo.categories.map((item) => <li>
-                  <a href={`https://store.steampowered.com/search/?category2=${item.id}`} target="_blank" rel="noopener noreferrer">
+                  <a key={item.id} href={`https://store.steampowered.com/search/?category2=${item.id}`} target="_blank" rel="noopener noreferrer">
                     {item.description}
                   </a>
                 </li>)
