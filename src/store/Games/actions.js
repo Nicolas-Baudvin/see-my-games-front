@@ -6,9 +6,10 @@ export const displayGames = () => ({
   type: DISPLAY_GAMES
 });
 
-export const displayGameInfo = (gameId) => ({
+export const displayGameInfo = (appid, isSteam) => ({
   type: DISPLAY_GAMEINFO,
-  gameId
+  appid,
+  isSteam
 });
 
 export const displayRecentGames = () => ({

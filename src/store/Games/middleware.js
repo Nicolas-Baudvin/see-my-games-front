@@ -23,7 +23,21 @@ export default (store) => (next) => (action) => {
       break;
     }
     case DISPLAY_GAMEINFO: {
-      next(action);
+      const { appid } = action;
+      axios({
+        method: "get",
+        url: `${API_LINK}/steam/game/${appid}`
+      })
+        .then((res) => {
+          console.log(res.data.game.data);
+          action.game = res.data.game.data;
+          action.success = res.data.game.success;
+          next(action);
+        })
+        .catch((err) => {
+          console.log(err.response);
+          action.error = err.response.data.message;
+        });
       break;
     }
     case DISPLAY_GAMES: {
