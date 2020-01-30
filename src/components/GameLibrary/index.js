@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Icon, Input, Button, Transition } from 'semantic-ui-react';
+import { Icon, Input, Button, Transition, Dropdown, Item } from 'semantic-ui-react';
 import Slider from "react-slick";
 
 import './games.scss';
@@ -100,7 +100,45 @@ const GameLibrary = () => {
 
   const backToTop = () => {
     document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    document.documentElement.scrollTop = 0;
+  };
+
+  const handleSortClick = (sort) => e => {
+    setAllGames([...games]);
+    switch (sort) {
+      case "steam": {
+        const unsortedGames = allGames;
+        const sortedGames = unsortedGames.filter((game) => game.platform === "steam");
+        setAllGames([...sortedGames]);
+        break;
+      }
+      case "nosteam": {
+        const unsortedGames = allGames;
+        const sortedGames = unsortedGames.filter((game) => game.platform !== "steam");
+        setAllGames([...sortedGames]);
+        break;
+      }
+      case "alphab": {
+        const unsortedGames = allGames;
+        const sortedGames = unsortedGames.sort((a, b) => (
+          (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+        ));
+        setAllGames([...sortedGames]);
+        break;
+      }
+      case "cancel": {
+        const unsortedGames = games;
+        const sortedGames = unsortedGames.sort((a, b) => (
+          (a._id > b._id) ? 1 : ((b._id > a._id) ? -1 : 0)
+        ));
+        setAllGames([...sortedGames]);
+        break;
+      }
+      default: {
+        console.log(games);
+        break;
+      }
+    }
   };
 
   useEffect(() => {
@@ -109,6 +147,7 @@ const GameLibrary = () => {
   }, []);
 
   useEffect(() => {
+    console.log('refresh');
     if (games) {
       setAllGames(games);
     }
@@ -149,6 +188,24 @@ const GameLibrary = () => {
           onChange={handleSearchChange}
           value={searchValue}
         />
+        <div className="games-sort-sortBtns">
+          <Button onClick={handleSortClick("steam")} size="big" icon className="games-sort-sortBtn" primary>
+            <Icon name="steam" />
+            Jeu Steam
+          </Button>
+          <Button onClick={handleSortClick("nosteam")} size="big" icon className="games-sort-sortBtn" primary>
+            <Icon name="sort alphabet down" />
+            Jeu non steam
+          </Button>
+          <Button onClick={handleSortClick("alphab")} size="big" icon className="games-sort-sortBtn" primary>
+            <Icon name="hand paper" />
+            Ordre Alphabétique
+          </Button>
+          <Button color="red" onClick={handleSortClick("cancel")} size="big" icon className="games-sort-sortBtn" primary>
+            <Icon name="cancel" />
+            Annuler le tri
+          </Button>
+        </div>
         <Button className="games-sort-btn" size="big" content="Ajouter un jeu" primary />
       </div>
       {
