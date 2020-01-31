@@ -20,13 +20,25 @@ const GamePage = () => {
   if (gameInfo) {
     desc = parser.parseFromString((gameInfo.detailed_description), "text/html");
     minRequirement = parser.parseFromString((gameInfo.pc_requirements.minimum), "text/html");
-    recRequirement = parser.parseFromString((gameInfo.pc_requirements.recommended), "text/html");
+    if (gameInfo.pc_requirements.recommended) {
+      recRequirement = parser.parseFromString((gameInfo.pc_requirements.recommended), "text/html");
+    }
     language = parser.parseFromString((gameInfo.supported_languages), "text/html");
   }
-  const descHtml = { __html: desc.firstChild && desc.firstChild.innerHTML };
-  const languageHtml = { __html: language.firstChild && language.firstChild.innerHTML };
-  const minRequirementHtml = { __html: minRequirement.firstChild && minRequirement.firstChild.innerHTML };
-  const recRequirementHtml = { __html: recRequirement.firstChild && recRequirement.firstChild.innerHTML };
+
+  const descHtml = {
+    __html: desc.firstChild && desc.firstChild.innerHTML
+  };
+  const languageHtml = {
+    __html: language.firstChild && language.firstChild.innerHTML
+  };
+  const minRequirementHtml = {
+    __html: minRequirement.firstChild && minRequirement.firstChild.innerHTML
+  };
+  const recRequirementHtml = {
+    __html: recRequirement.firstChild && recRequirement.firstChild.innerHTML
+  };
+  console.log(gameInfo.pc_requirements)
   console.log(gameInfo);
 
   function useQuery() {
@@ -70,6 +82,11 @@ const GamePage = () => {
     ]
   };
 
+
+  const handleDblClickScreenshots = (link) => e => {
+    window.open(link, "_blank");
+  };
+
   useEffect(() => {
     const isSteam = query.get("isSteam");
     if (isSteam) {
@@ -89,7 +106,11 @@ const GamePage = () => {
     <div className="gamepage">
 
       <div className="gamepage-header">
-        <img src={gameInfo.header_image} alt={`entête du jeu ${gameInfo.name}`} className="gamepage-heade__img" />
+        <img
+          src={gameInfo.header_image}
+          alt={`entête du jeu ${gameInfo.name}`}
+          className="gamepage-heade__img"
+        />
         <h1 className="gamepage-header__title"> {gameInfo.name} </h1>
       </div>
 
@@ -107,9 +128,19 @@ const GamePage = () => {
             {...settings}
           >
             {
-              gameInfo && gameInfo.screenshots.map((item) => <div key={item.id} className="gamepage-carousel-screenshots-item">
-                <img src={item.path_thumbnail} alt={`Screenshots du jeu ${gameInfo.name}`} className="gamepage-carousel-img" />
-              </div>)
+              gameInfo && gameInfo.screenshots.map((item) => (
+                <div
+                  onDoubleClick={handleDblClickScreenshots(item.path_full)}
+                  key={item.id}
+                  className="gamepage-carousel-screenshots-item"
+                >
+                  <img
+                    src={item.path_thumbnail}
+                    alt={`Screenshots du jeu ${gameInfo.name}`}
+                    className="gamepage-carousel-img"
+                  />
+                </div>
+              ))
             }
           </Slick>
         }
@@ -120,13 +151,20 @@ const GamePage = () => {
         gameInfo.movies && <div className="gamepage-movies">
 
           <h2 className="gamepage-movies-title">Vidéos</h2>
+
           <Slick
             {...settings}
           >
             {
-              gameInfo && gameInfo.movies.map((item) => <div key={item.id} className="gamepage-carousel-movies-item">
-                <video src={item.webm[480]} type="video/webm" controls width={600} />
-              </div>)
+              gameInfo && gameInfo.movies.map((item) => (
+                <div key={item.id} className="gamepage-carousel-movies-item">
+                  <video
+                    src={item.webm[480]}
+                    type="video/webm"
+                    controls
+                    width={500}
+                  />
+                </div>))
             }
           </Slick>
 
@@ -139,8 +177,8 @@ const GamePage = () => {
         <div className="gamepage-specs-blocks">
           {
             gameInfo && <div className="gamepage-specs-requirement">
-              <p dangerouslySetInnerHTML={minRequirementHtml} />
-              <p dangerouslySetInnerHTML={recRequirementHtml} />
+              <p dangerouslySetInnerHTML={minRequirementHtml && minRequirementHtml} />
+              <p dangerouslySetInnerHTML={recRequirementHtml && recRequirementHtml} />
             </div>
           }
         </div>
@@ -150,11 +188,18 @@ const GamePage = () => {
             <h3>Catégories :</h3>
             <ul>
               {
-                gameInfo && gameInfo.categories.map((item) => <li>
-                  <a key={item.id} href={`https://store.steampowered.com/search/?category2=${item.id}`} target="_blank" rel="noopener noreferrer">
-                    {item.description}
-                  </a>
-                </li>)
+                gameInfo && gameInfo.categories.map((item) => (
+                  <li>
+                    <a
+                      key={item.id}
+                      href={`https://store.steampowered.com/search/?category2=${item.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.description}
+                    </a>
+                  </li>
+                ))
               }
             </ul>
           </div>
