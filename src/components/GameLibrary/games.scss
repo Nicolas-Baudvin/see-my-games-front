@@ -173,3 +173,33 @@
 }
 
 
+.ui.modal.transition.visible.active.games-modal {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    .ui.header {
+        height: 100px !important;
+    }
+    .ui.content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+}
+
+.games-modal-inputgroup {
+    width: 60% !important;
+    align-self: center;
+}
+
+.games-modal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.games-modal-form-label {
+    align-self: flex-start !important;
+    text-align: left;
+}

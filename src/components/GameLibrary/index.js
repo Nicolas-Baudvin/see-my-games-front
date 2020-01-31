@@ -8,6 +8,9 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import './games.scss';
 import { displayGames, displayRecentGames } from '../../store/Games/actions';
 
+import LoadPage from '../LoadPage';
+import FormModal from './modal';
+
 
 const GameLibrary = () => {
   const dispatch = useDispatch();
@@ -15,6 +18,9 @@ const GameLibrary = () => {
   const { games, recentGames } = useSelector((state) => state.games);
   const [searchValue, setSearch] = useState('');
   const [allGames, setAllGames] = useState(games);
+  const [visible, setVisible] = useState(false);
+  const trigger = React.createRef();
+  let timer;
   const settings = {
     dots: true,
     infinite: true,
@@ -148,6 +154,12 @@ const GameLibrary = () => {
     }
   };
 
+  const handleOpenModal = () => {
+    setVisible(true);
+    timer = window.setTimeout(() => setVisible(false), 3000);
+    console.log(visible);
+  };
+
   useEffect(() => {
     dispatch(displayGames());
     dispatch(displayRecentGames());
@@ -159,6 +171,12 @@ const GameLibrary = () => {
       setAllGames(games);
     }
   }, [games]);
+
+  if (!allGames) {
+    return (
+      <LoadPage />
+    );
+  }
 
   return (
     <div className="games">
@@ -213,12 +231,13 @@ const GameLibrary = () => {
             Annuler le tri
           </Button>
         </div>
-        <Button className="games-sort-btn" size="big" content="Ajouter un jeu" primary />
+        <Button ref={trigger} onClick={handleOpenModal} className="games-sort-btn" size="big" content="Ajouter un jeu" primary />
       </div>
       {
         allGames && <Games />
       }
       <Button className="backtopBtn" primary content="Retour haut de page" onClick={backToTop} />
+      <FormModal triggerRef={trigger} visible={visible} />
     </div>
   );
 };
