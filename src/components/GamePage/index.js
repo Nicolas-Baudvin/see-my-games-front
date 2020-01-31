@@ -189,9 +189,8 @@ const GamePage = () => {
             <ul>
               {
                 gameInfo && gameInfo.categories.map((item) => (
-                  <li>
+                  <li key={item.id}>
                     <a
-                      key={item.id}
                       href={`https://store.steampowered.com/search/?category2=${item.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
