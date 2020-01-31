@@ -33,6 +33,7 @@
           "some": [ "nesting", "id" ]
       }
     }],
+    "jsx-a11y/media-has-caption": "off",
 
     "prefer-destructuring": "off",
     "react/jsx-wrap-multilines": "off",
