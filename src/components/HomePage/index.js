@@ -32,7 +32,12 @@ export default () => {
         <h1 className="homepage-title">See My Games</h1>
         <aside className="homepage-title-aside"><div className="title-text">beta</div></aside>
       </div>
-      <span className="button-tooltip">Redirection vers la page inscription</span>
+      {
+        !isConnected && <span className="button-tooltip">Redirection vers la page inscription</span>
+      }
+      {
+        isConnected && <span className="button-tooltip">Redirection vers la page "mes jeux"</span>
+      }
       <button onMouseLeave={hideTooltip} onMouseMove={followCursor("button")} type="button" className="homepage-button">
         {
           !isConnected && <Link to="/inscription/" className="button-link">
