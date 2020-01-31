@@ -1,11 +1,23 @@
 import axios from 'axios';
-import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES } from './actions';
+import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES, NEW_GAME, DELETE_GAME, GAME_HAND_INFO } from './actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
   const API_LINK = "http://localhost:5000/api";
   const { userData } = state.user;
   switch (action.type) {
+    case NEW_GAME: {
+      next(action);
+      break;
+    }
+    case DELETE_GAME: {
+      next(action);
+      break;
+    }
+    case GAME_HAND_INFO: {
+      next(action);
+      break;
+    }
     case DISPLAY_RECENT_GAMES: {
       axios({
         method: 'get',

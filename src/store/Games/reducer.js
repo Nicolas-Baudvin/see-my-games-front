@@ -1,4 +1,11 @@
-import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES } from './actions';
+import {
+  DISPLAY_GAMEINFO,
+  DISPLAY_GAMES,
+  DISPLAY_RECENT_GAMES,
+  NEW_GAME,
+  DELETE_GAME,
+  GAME_HAND_INFO
+} from './actions';
 
 const initialState = {
   games: '',
@@ -12,6 +19,21 @@ export default (state = initialState, action) => {
       return {
         ...state,
         recentGames: action.games
+      };
+    }
+    case NEW_GAME: {
+      return {
+        ...state,
+      };
+    }
+    case DELETE_GAME: {
+      return {
+        ...state,
+      };
+    }
+    case GAME_HAND_INFO: {
+      return {
+        ...state,
       };
     }
     case DISPLAY_GAMES: {
