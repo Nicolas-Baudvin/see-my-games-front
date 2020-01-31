@@ -112,6 +112,7 @@ export default (state = initalState, action) => {
         ...state,
         userData: action.userData,
         isConnected: true,
+        isConnectedToSteam: action.userData.hasOwnProperty("steam_id")
       };
     }
     case SIGNUP: {
