@@ -183,7 +183,7 @@ export default () => {
               }
 
               if (item.title === "déconnexion") {
-                return isConnected && <div className="header-nav__ul--item logout">
+                return isConnected && <div key={item.title} className="header-nav__ul--item logout">
                   <Icon onMouseMove={followCursor(item.title)} key={item.title} onClick={disconnectUser} name="log out" size="big" className="disconnect-icon" />
                   <span className="header-tooltip">Déconnexion</span>
                 </div>;
