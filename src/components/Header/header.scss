@@ -20,6 +20,7 @@
                 background: rgba(230, 230, 230, 0);
                 border-radius: 15px;
                 transition: .3s;
+                height: max-content;
 
                 &:hover {
                     transition: .3s;
@@ -89,6 +90,7 @@
 
 .logout {
     margin-top: .4em !important;
+    cursor: pointer;
 }
 
 
