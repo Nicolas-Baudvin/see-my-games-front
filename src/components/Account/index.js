@@ -40,15 +40,12 @@ export default () => {
         <div className="account-avatar">
           <img className="account-avatar-img" src={userData.steam_avatarfull ? userData.steam_avatarfull : "/src/assets/default-avatar.png"} alt="Votre avatar" />
           <div className="account-avatar-edit">
-            <Icon className="account-avatar-icon" name="photo" size="big" />
+            <label className="account-editLabel" htmlFor="edit">
+              <Icon className="account-avatar-icon" name="photo" size="big" />
+            </label>
+            <input className="edit-avatar" type="file" name="edit" id="edit"/>
           </div>
           <h2 className="account-avatar-title">Bonjour, {userData.username}</h2>
-          <Button className="account-btn" color="teal" animated="vertical">
-            <Button.Content hidden>Edit</Button.Content>
-            <Button.Content visible>
-              <Icon name="edit" />
-            </Button.Content>
-          </Button>
         </div>
         <div className="account-menu">
           {

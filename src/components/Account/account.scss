@@ -460,3 +460,13 @@
 .errors {
     color: red;
 }
+
+.edit-avatar {
+    display: none;
+}
+
+.account-editLabel {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}

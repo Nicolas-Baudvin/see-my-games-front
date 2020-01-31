@@ -62,12 +62,6 @@ const Account = () => {
           <input onChange={(e) => setUsername(e.target.value)} name="username" className="accountData-input" placeholder="Votre pseudo" value={usernameValue} />
           <span className="success-message">{usernameChanged}</span>
         </Form.Field>
-        <Form.Field className="accountData-input-group avatar-input-container">
-          <Icon className="input-avatar-icon" name="image" size="large" />
-          <label htmlFor="image" className="file-label">Changer d'avatar</label>
-          <Icon name="send" size="large" className="input-avatar-iconRight" />
-          <input onChange={handleFileChange} className="avatar-input" type="file" name="image" id="image" ref={fileInput} />
-        </Form.Field>
         <Button primary className="accountData-form-btn" type="submit">Envoyer</Button>
       </Form>
       <Divider />
