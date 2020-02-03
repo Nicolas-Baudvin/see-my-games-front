@@ -7,11 +7,87 @@ export default (store) => (next) => (action) => {
   const { userData } = state.user;
   switch (action.type) {
     case NEW_GAME: {
-      next(action);
+      const { game } = action;
+      const token = localStorage.getItem('secure_token');
+      game.ownerId = userData._id;
+      axios({
+        method: 'post',
+        url: `${API_LINK}/games/add/`,
+        data: game,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          action.message = res.data.message;
+          // mise à jour de la bibliothèque de jeu
+          axios({
+            method: 'get',
+            url: `${API_LINK}/games/search/${userData._id}`,
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          })
+            .then((resp) => {
+              action.games = resp.data.games;
+              next(action);
+            })
+            .catch((err) => {
+              console.log(err.response);
+              action.error = err.response.data.message || err;
+            });
+        })
+        .catch((err) => {
+          console.log(err.response);
+          action.error = err.response.data.message || err;
+        });
       break;
     }
     case DELETE_GAME: {
-      next(action);
+      const token = localStorage.getItem('secure_token');
+      const { gameId } = action;
+
+      axios({
+        method: 'delete',
+        url: `${API_LINK}/games/delete/${gameId}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+
+          action.message = res.data.message;
+
+          axios({
+            method: 'get',
+            url: `${API_LINK}/games/search/${userData._id}`,
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          })
+            .then((resp) => {
+
+              action.games = resp.data.games;
+              next(action);
+            })
+            .catch((err) => {
+              console.log(err.response);
+              action.error = err.response.data.message || err;
+            });
+        })
+        .catch((err) => {
+          console.log(err.response);
+          action.error = err.response.data.message || err;
+        });
+
       break;
     }
     case GAME_HAND_INFO: {
@@ -24,7 +100,6 @@ export default (store) => (next) => (action) => {
         url: `${API_LINK}/steam/recent-games/${userData.steam_id}`
       })
         .then((res) => {
-          console.log(res);
           action.games = res.data.games;
           next(action);
         })
@@ -53,7 +128,6 @@ export default (store) => (next) => (action) => {
       break;
     }
     case DISPLAY_GAMES: {
-      console.log('Affichage de jeux en cours ...', userData.steam_id);
       const token = localStorage.getItem('secure_token');
 
       axios({
@@ -66,7 +140,6 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res);
           action.games = res.data.games;
           next(action);
         })

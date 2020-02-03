@@ -11,6 +11,8 @@ const initialState = {
   games: '',
   gameInfo: '',
   recentGames: '',
+  serverError: '',
+  message: '',
 };
 
 export default (state = initialState, action) => {
@@ -22,13 +24,41 @@ export default (state = initialState, action) => {
       };
     }
     case NEW_GAME: {
+      if (action.error) {
+        if (action.error.status === 500) {
+          return {
+            ...state,
+            serverError: "Le serveur a rencontré un problème, réessayez ou contacter l'administrateur",
+          };
+        }
+        return {
+          ...state,
+          serverError: action.error
+        };
+      }
       return {
         ...state,
+        games: action.games,
+        message: action.message
       };
     }
     case DELETE_GAME: {
+      if (action.error) {
+        if (action.error.status === 500) {
+          return {
+            ...state,
+            serverError: "Le serveur a rencontré un problème, réessayez ou contacter l'administrateur",
+          };
+        }
+        return {
+          ...state,
+          serverError: action.error
+        };
+      }
       return {
         ...state,
+        games: action.games,
+        message: action.message
       };
     }
     case GAME_HAND_INFO: {
