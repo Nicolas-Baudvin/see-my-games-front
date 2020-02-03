@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Icon, Input, Button, Transition, Dropdown, Item } from 'semantic-ui-react';
 import Slider from "react-slick";
 import ScrollAnimation from 'react-animate-on-scroll';
+import ClassNames from 'classnames';
 
 import './games.scss';
 import { displayGames, displayRecentGames, deleteGame, updateGame } from '../../store/Games/actions';
 
 import LoadPage from '../LoadPage';
 import FormModal from './modal';
+import UpdateModal from './updateModal';
 
 
 const GameLibrary = () => {
@@ -18,8 +20,10 @@ const GameLibrary = () => {
   const [searchValue, setSearch] = useState('');
   const [allGames, setAllGames] = useState(games);
   const [visible, setVisible] = useState(false);
+  const [show, setShow] = useState(false);
+  const [currentGameId, setCurrentGameId] = useState('');
   const trigger = React.createRef();
-  console.log(allGames);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -70,6 +74,11 @@ const GameLibrary = () => {
     ]
   };
 
+  const showMenu = (gameId) => {
+    setShow(true);
+    setCurrentGameId(gameId);
+  };
+
   const Games = () => (
     <div className="games-steam">
       {
@@ -82,10 +91,11 @@ const GameLibrary = () => {
                 key={game._id}
               >
                 <div className="games-nosteam-menu">
-                  <Icon onClick={() => dispatch(updateGame(game._id))} className="games-nosteam-menu-icons" name="edit" size="big" />
+                  <Icon onClick={() => showMenu(game._id)} className="games-nosteam-menu-icons" name="edit" size="big" />
                   <Icon onClick={() => dispatch(deleteGame(game._id))} className="games-nosteam-menu-icons" name="trash" size="big" />
                 </div>
-                <Link className="games-steam-game-link"> {/* TODO: page différente pour jeu ajouté à la main */}
+                <UpdateModal visible={show} currentGame={game} currentGameId={game._id} />
+                <Link className="games-steam-game-link" to="/mes-jeux/"> {/* TODO: page différente pour jeu ajouté à la main */}
                   <div className="games-steam-game">
                     <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />
                     <h2 className="games-steam-game-title"> {game.name} </h2>
