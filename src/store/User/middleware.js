@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, GET_GAMES, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD
+  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, GET_GAMES, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD, disconnect
 } from './actions';
 
 export default (store) => (next) => (action) => {
@@ -59,7 +59,7 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           console.log(res);
           action.success = res.data.message;
-          localStorage.clear();
+          store.dispatch(disconnect());
           next(action);
         })
         .catch((err) => {
