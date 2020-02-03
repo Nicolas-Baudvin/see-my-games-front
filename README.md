@@ -41,16 +41,17 @@
     - [x] Suppression de compte
   - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Enregistrer des jeux à la main
-  - [ ] Suppression
+  - [x] Ajout
+  - [x] Suppression
   - [ ] Modification
   - [ ] Lecture
 - [x] Page Jeux
   - [x] Recherche d'un jeu
   - [x] Affichage des jeux
   - [x] Carousel des jeux joués récemment
-  - [ ] Tri des jeux
+  - [x] Tri des jeux
 - [ ] Page Articles
-- [ ] Page de chargement
+- [x] Page de chargement
 - [x] Page Jeu
   - [x] Vidéos
   - [x] Screenshots
