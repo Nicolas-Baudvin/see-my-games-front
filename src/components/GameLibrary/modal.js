@@ -8,23 +8,29 @@ import { newGame } from '../../store/Games/actions';
 const FormModal = ({ triggerRef, visible }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(visible);
-  const [releaseDate, setReleaseDate] = useState('');
+  const [release_date, setReleaseDate] = useState('');
   const [platform, setPlatform] = useState('');
-  const [imageURI, setImageURI] = useState('');
+  const [header_img, setImageURI] = useState('');
   const [desc, setDesc] = useState('');
   const [name, setName] = useState('');
+  const [error, setError] = useState('');
+  const { serverError } = useSelector((state) => state.games);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const game = {
       name,
       desc,
-      imageURI,
+      header_img,
       platform,
-      releaseDate,
+      release_date,
     };
-
-    dispatch(newGame(game));
+    if (name && desc && header_img && platform && release_date) {
+      dispatch(newGame(game));
+    }
+    else {
+      setError("Tous les champs sont requis");
+    }
   };
 
   useEffect(() => {
@@ -54,7 +60,7 @@ const FormModal = ({ triggerRef, visible }) => {
 
           <Form.Field className="games-modal-inputgroup">
             <label htmlFor="imageuri" className="games-modal-form-label">Image du jeu</label>
-            <input value={imageURI} onChange={(e) => setImageURI(e.target.value)} name="imageuri" placeholder="Image du jeu" required />
+            <input value={header_img} onChange={(e) => setImageURI(e.target.value)} name="imageuri" placeholder="Image du jeu" required />
           </Form.Field>
 
           <Form.Field className="games-modal-inputgroup">
@@ -64,9 +70,12 @@ const FormModal = ({ triggerRef, visible }) => {
 
           <Form.Field className="games-modal-inputgroup">
             <label htmlFor="releasedate" className="games-modal-form-label">Date de sortie</label>
-            <input value={releaseDate} onChange={(e) => setReleaseDate(e.target.value)} name="releasedate" placeholder="Date de sortie" required />
+            <input value={release_date} onChange={(e) => setReleaseDate(e.target.value)} name="releasedate" placeholder="Date de sortie" required />
           </Form.Field>
-
+          <div className="errors">
+            {error}
+            {serverError}
+          </div>
         </Form>
       </Modal.Content>
       <Modal.Actions>

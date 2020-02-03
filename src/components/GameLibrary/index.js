@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import ScrollAnimation from 'react-animate-on-scroll';
 
 import './games.scss';
-import { displayGames, displayRecentGames } from '../../store/Games/actions';
+import { displayGames, displayRecentGames, deleteGame, updateGame } from '../../store/Games/actions';
 
 import LoadPage from '../LoadPage';
 import FormModal from './modal';
@@ -14,13 +14,12 @@ import FormModal from './modal';
 
 const GameLibrary = () => {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.user);
   const { games, recentGames } = useSelector((state) => state.games);
   const [searchValue, setSearch] = useState('');
   const [allGames, setAllGames] = useState(games);
   const [visible, setVisible] = useState(false);
   const trigger = React.createRef();
-  let timer;
+  console.log(allGames);
   const settings = {
     dots: true,
     infinite: true,
@@ -75,6 +74,26 @@ const GameLibrary = () => {
     <div className="games-steam">
       {
         allGames.map((game) => {
+          if (game.hand_added) {
+            return (
+              <ScrollAnimation
+                animateIn="fadeIn"
+                className="games-steam-game-link"
+                key={game._id}
+              >
+                <div className="games-nosteam-menu">
+                  <Icon onClick={() => dispatch(updateGame(game._id))} className="games-nosteam-menu-icons" name="edit" size="big" />
+                  <Icon onClick={() => dispatch(deleteGame(game._id))} className="games-nosteam-menu-icons" name="trash" size="big" />
+                </div>
+                <Link className="games-steam-game-link"> {/* TODO: page différente pour jeu ajouté à la main */}
+                  <div className="games-steam-game">
+                    <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />
+                    <h2 className="games-steam-game-title"> {game.name} </h2>
+                  </div>
+                </Link>
+              </ScrollAnimation>
+            );
+          }
           if (game.playtime_forever > 120) {
             return (
               <ScrollAnimation

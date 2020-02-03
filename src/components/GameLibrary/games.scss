@@ -19,6 +19,7 @@
             margin-right: 1.3em !important;
 
         }
+
         &-sortBtns {
             display: flex;
             align-self: center;
@@ -44,12 +45,16 @@
 
             &-img {
                 transition: .3s;
+                width: 460px;
+                height: 215px;
             }
 
             &-link {
                 margin: 1em 2em;
                 position: relative;
                 transition: .3s;
+                height: max-content;
+                width: max-content;
 
                 &:hover {
                     img {
@@ -59,6 +64,10 @@
 
                     h2 {
                         text-decoration: underline;
+                    }
+                    .games-nosteam-menu {
+                        opacity: 1;
+                        transition: .3s;
                     }
 
                 }
@@ -97,6 +106,8 @@
     &-container {
         position: relative;
         margin-top: 2em;
+        width: 90%;
+        align-self: center;
     }
 
     &-item {
@@ -177,9 +188,11 @@
     display: flex;
     flex-direction: column;
     height: 60%;
+
     .ui.header {
         height: 100px !important;
     }
+
     .ui.content {
         display: flex !important;
         flex-direction: column !important;
@@ -202,4 +215,24 @@
 .games-modal-form-label {
     align-self: flex-start !important;
     text-align: left;
+}
+
+.games-nosteam-menu {
+    opacity: 0;
+    position: absolute;
+    top: 1.355em;
+    left: 0;
+    z-index: 10000;
+    width: max-content;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, .2);
+    color: white;
+    padding: 1em;
+    &-icons {
+        cursor: pointer;
+        color: white;
+        &:hover {
+            color: #1678C2;
+        }
+    }
 }
