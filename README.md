@@ -40,11 +40,11 @@
     - [x] Email
     - [x] Suppression de compte
   - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
-- [ ] Enregistrer des jeux à la main
+- [x] Enregistrer des jeux à la main
   - [x] Ajout
   - [x] Suppression
-  - [ ] Modification
-  - [ ] Lecture
+  - [x] Modification
+  - [x] Lecture
 - [x] Page Jeux
   - [x] Recherche d'un jeu
   - [x] Affichage des jeux
