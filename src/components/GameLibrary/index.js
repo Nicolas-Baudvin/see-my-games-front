@@ -23,6 +23,7 @@ const GameLibrary = () => {
   const [show, setShow] = useState(false);
   const [currentGameId, setCurrentGameId] = useState('');
   const trigger = React.createRef();
+  const updateTrigger = React.createRef();
 
   const settings = {
     dots: true,
@@ -91,10 +92,10 @@ const GameLibrary = () => {
                 key={game._id}
               >
                 <div className="games-nosteam-menu">
-                  <Icon onClick={() => showMenu(game._id)} className="games-nosteam-menu-icons" name="edit" size="big" />
+                  <Icon ref={updateTrigger} onClick={() => showMenu(game._id)} className="games-nosteam-menu-icons" name="edit" size="big" />
                   <Icon onClick={() => dispatch(deleteGame(game._id))} className="games-nosteam-menu-icons" name="trash" size="big" />
                 </div>
-                <UpdateModal visible={show} currentGame={game} currentGameId={game._id} />
+                <UpdateModal triggerRef={updateTrigger} visible={show} currentGame={game} currentGameId={currentGameId} />
                 <Link className="games-steam-game-link" to="/mes-jeux/"> {/* TODO: page différente pour jeu ajouté à la main */}
                   <div className="games-steam-game">
                     <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />

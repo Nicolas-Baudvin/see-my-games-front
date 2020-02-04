@@ -65,6 +65,7 @@
                     h2 {
                         text-decoration: underline;
                     }
+
                     .games-nosteam-menu {
                         opacity: 1;
                         transition: .3s;
@@ -228,9 +229,11 @@
     background-color: rgba(0, 0, 0, .2);
     color: white;
     padding: 1em;
+
     &-icons {
         cursor: pointer;
         color: white;
+
         &:hover {
             color: #1678C2;
         }
@@ -243,4 +246,21 @@
 
 .hide {
     display: inline;
+}
+
+
+.updategame.ui.modal.transition.visible.active {
+    display: flex !important;
+    flex-direction: column !important;
+
+    .header {
+        height: 70px;
+    }
+}
+
+.updategame {
+    &-input {
+        width: 50%;
+        margin: 2em auto;
+    }
 }
