@@ -4,7 +4,8 @@ import {
   DISPLAY_RECENT_GAMES,
   NEW_GAME,
   DELETE_GAME,
-  GAME_HAND_INFO
+  GAME_HAND_INFO,
+  UPDATE_GAME
 } from './actions';
 
 const initialState = {
@@ -17,6 +18,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_GAME: {
+      return {
+        ...state,
+        message: action.success,
+        games: action.games
+      };
+    }
     case DISPLAY_RECENT_GAMES: {
       return {
         ...state,

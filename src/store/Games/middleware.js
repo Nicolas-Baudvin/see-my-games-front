@@ -1,11 +1,50 @@
 import axios from 'axios';
-import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES, NEW_GAME, DELETE_GAME, GAME_HAND_INFO } from './actions';
+import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES, NEW_GAME, DELETE_GAME, GAME_HAND_INFO, UPDATE_GAME } from './actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
   const API_LINK = "http://localhost:5000/api";
   const { userData } = state.user;
   switch (action.type) {
+    case UPDATE_GAME: {
+      const { game } = action;
+      const token = localStorage.getItem('secure_token');
+      axios({
+        method: 'PUT',
+        url: `${API_LINK}/games/update/${game.ownerId}`,
+        data: game,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          console.log(res);
+          action.success = res.data.message;
+          axios({
+            method: 'get',
+            url: `${API_LINK}/games/search/`,
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          })
+            .then((resp) => {
+              console.log(resp);
+              action.games = resp.data.games;
+              next(action);
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      break;
+    }
     case NEW_GAME: {
       const { game } = action;
       const token = localStorage.getItem('secure_token');
