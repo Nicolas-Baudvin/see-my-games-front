@@ -26,20 +26,18 @@
 - [x] Connexion à Steam
 - [x] Déconnexion
 - [x] Gérer les erreurs serveurs Connexion / Inscription
-- [ ] Page Mon compte
+- [x] Page Mon compte
   - [x] Changement de mot de passe
   - [x] Changement d'Email
   - [x] Changement de pseudo
   - [x] Suppression du compte
   - [x] Remplacer l'avatar par celui de steam si ce dernier est vide
   - [x] Données privées
-  - [ ] Récapitulatif des articles écrit par l'utilisateur
-  - [ ] Oublie de mot de passe
-  - [x] Gestions d'erreurs serveurs
-    - [x] Mot de passe
-    - [x] Email
-    - [x] Suppression de compte
-  - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
+  - [ ] Récapitulatif des articles écrit par l'utilisateur affiché sur la page mon compte
+- [x] Gestions d'erreurs serveurs
+  - [x] Mot de passe
+  - [x] Email
+  - [x] Suppression de compte
 - [x] Enregistrer des jeux à la main
   - [x] Ajout
   - [x] Suppression
@@ -50,7 +48,6 @@
   - [x] Affichage des jeux
   - [x] Carousel des jeux joués récemment
   - [x] Tri des jeux
-- [ ] Page Articles
 - [x] Page de chargement
 - [x] Page Jeu
   - [x] Vidéos
@@ -58,17 +55,25 @@
   - [x] Categories
   - [x] Configurations
   - [x] Description complète du jeu
+- [ ] Page Articles
+- [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Page de Chat
   - [ ] Affichage des utilisateurs connectés
   - [ ] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
   - [ ] Possibilité d'écrire un message privé
   - [ ] Mise à disposition de plusieurs Channels
   - [ ] Emoticones
+- [ ] Oublie de mot de passe
 
 ----- V2 -----
 
 - [ ] Amélirorer l'UX
 - [ ] Système de liste de souhait (wishlist)
-- [ ] Système de liste d'amis (notemment pour le chat)
+- [ ] Système de liste d'amis (notamment pour le chat)
 - [ ] Donner son avis sur un jeu
-- [ ] ...
+- [ ] Forum
+
+### ISSUES
+
+ - [x] Titre de modal connexion et inscription imparfaitement placé selon breakpoint. => fixed
+ - [ ] Breakpoint mobile de la page d'accueil qui merdouille
