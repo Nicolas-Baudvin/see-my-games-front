@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, GET_GAMES, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD, disconnect
 } from './actions';
+import { success, fail } from '../Popup/actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
@@ -31,11 +32,13 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           console.log(res);
           action.success = res.data.message;
+          store.dispatch(success(res.data.message));
           next(action);
         })
         .catch((err) => {
           console.log(err.response);
           action.error = err.response.data.message;
+          store.dispatch(success(err.response.data.message));
         });
 
 
@@ -60,11 +63,13 @@ export default (store) => (next) => (action) => {
           console.log(res);
           action.success = res.data.message;
           store.dispatch(disconnect());
+          store.dispatch(success(res.data.message));
           next(action);
         })
         .catch((err) => {
           console.log(err);
           action.error = err.response.data.message;
+          store.dispatch(success(err.response.data.message));
           next(action);
         });
 
@@ -148,6 +153,7 @@ export default (store) => (next) => (action) => {
           };
           localStorage.setItem('secure_token', res.data.token); // TODO: Préférer mettre le token dans un cookie httpOnly
           localStorage.setItem('user_data', JSON.stringify(action.userData));
+          store.dispatch(success("Vous êtes désormais connecté"));
           next(action);
         })
         .catch((err) => {
@@ -186,6 +192,7 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           console.log(res);
           action.success = res.data.message;
+          store.dispatch(success(res.data.message));
           next(action);
         })
         .catch((err) => {
@@ -194,16 +201,19 @@ export default (store) => (next) => (action) => {
           switch (status) {
             case 400: {
               action.error = "Ce pseudo ou cet email existe déjà";
+              store.dispatch(fail(action.error));
               next(action);
               break;
             }
             case 403: {
               action.error = data.message;
+              store.dispatch(fail(action.error));
               next(action);
               break;
             }
             case 500: {
               action.error = "Le serveur rencontre un problème. Réessayez ou prévenez l'administrateur du site.";
+              store.dispatch(fail(action.error));
               next(action);
               break;
             }
@@ -241,6 +251,7 @@ export default (store) => (next) => (action) => {
     }
     case DISCONNECT: {
       next(action);
+      store.dispatch(success("Vous avez été déconnecté avec succès."));
       break;
     }
     case IMPORT_GAMES: {

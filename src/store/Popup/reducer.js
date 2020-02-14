@@ -3,7 +3,7 @@ import { SUCCESS, FAIL, CLOSE } from "./actions";
 const initialState = {
   message: "",
   isSuccess: false,
-  visible: true,
+  visible: false,
 };
 
 export default (state = initialState, action) => {
