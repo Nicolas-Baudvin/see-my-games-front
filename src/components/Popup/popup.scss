@@ -1,0 +1,52 @@
+.popup {
+    position: fixed;
+    bottom: 3em;
+    left: 3em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    width: max-content;
+    height: max-content;
+
+    &-header {
+        &-fail {
+            background-color: #F05656;
+            padding: 2em;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            width: 500px;
+        }
+
+        &-success {
+            background-color: #1861CA;
+            padding: 2em;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            width: 500px;
+        }
+    }
+
+    &-action {
+        display: flex;
+        flex-direction: column;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: white;
+        padding: 1em;
+
+        &-btn {
+            align-self: flex-end;
+        }
+
+    }
+
+    &-mainTitle {
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+
+.hidden {
+    display: none;
+}
