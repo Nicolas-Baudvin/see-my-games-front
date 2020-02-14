@@ -37,6 +37,7 @@
 
     &-right {
         padding: 1em !important;
+
         &-button {
             width: 100%;
             background: rgb(183, 233, 233) !important;
@@ -156,7 +157,7 @@
         &-title {
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 2em;
+            font-size: 1.6em;
             position: absolute;
             color: white;
             align-self: center;
@@ -182,6 +183,38 @@
             &:nth-child(3) {
                 top: 13.5em;
                 margin-left: 1.8em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {}
+
+@media only screen and (max-width: 1366px) and (min-width: 768px) {
+    .modal {
+        &-left {
+            &-title {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .modal {
+        &-left {
+            &-title {
+                font-size: 1.3em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .modal {
+        &-left {
+            &-title {
+                font-size: 1em;
             }
         }
     }
