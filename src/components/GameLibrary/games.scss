@@ -264,3 +264,72 @@
         margin: 2em auto;
     }
 }
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {}
+
+@media only screen and (max-width: 1366px) and (min-width: 768px) {}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .games {
+        &-sort {
+            flex-direction: column;
+
+            &-sortBtns {
+                flex-direction: column;
+            }
+
+            &-sortBtn {
+                margin: .5em 0 !important;
+
+            }
+            &-input {
+                align-self: center;
+            }
+        }
+        &-steam {
+            align-items: center;
+            &-game {
+                &-img {
+                    object-fit: contain;
+                }
+                &-link {
+                    align-self: center;
+                    margin: 1em auto;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 360px) {
+    .games {
+        &-sort {
+            flex-direction: column;
+
+            &-sortBtns {
+                flex-direction: column;
+            }
+
+            &-sortBtn {
+                margin: .5em 0 !important;
+
+            }
+            &-input {
+                align-self: center;
+            }
+        }
+        &-steam {
+            align-items: center;
+            &-game {
+                &-img {
+                    width: 300px;
+                    object-fit: contain;
+                }
+                &-link {
+                    align-self: center;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}
