@@ -28,7 +28,6 @@ const Privacy = () => {
               <h3 className="privacy-datagroup-title">L'avatar Steam remplace votre avatar See My Games</h3>
             </div>
             <div className="privacy-datagroup-profileurl">
-              <h3 className="privacy-datagroup-title">Mon profil Steam : </h3>
               <a className="privacy-steamdata-profileurl" href={userData.steam_profileurl}>Mon profil Steam</a>
             </div>
           </div>

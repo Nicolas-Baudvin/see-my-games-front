@@ -162,9 +162,6 @@
     flex-direction: column;
     padding: 2em;
 
-
-    &-input {}
-
     &-title {
         color: black;
         text-transform: uppercase;
@@ -397,10 +394,12 @@
     &-steamdata {
         display: flex;
         flex-direction: column;
+
         &-title {
             text-align: center;
             margin-bottom: 5em;
         }
+
         &-profileurl {
             margin-left: 1em;
         }
@@ -435,6 +434,7 @@
             margin: 0;
             margin-left: 1em;
         }
+
         &-profileurl {
             margin-left: 11em;
             display: flex;
@@ -469,4 +469,208 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {}
+
+@media only screen and (max-width: 1366px) and (min-width: 768px) {}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .account {
+        flex-direction: column;
+
+        &-block {
+            &:nth-child(2) {
+                text-align: center;
+                background-color: white;
+                align-self: center;
+                margin: 2em 0;
+                width: 100%;
+            }
+
+            &:nth-child(1) {
+                align-self: center;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+    }
+
+    .accountData {
+        padding: 1em;
+
+        &-form {
+            width: 100%;
+
+            &-btn {
+                width: 100px;
+                align-self: center;
+            }
+        }
+
+        &-label {
+            padding: 0;
+            font-size: .9em !important;
+        }
+    }
+
+    .privacy {
+        &-datagroup {
+            display: flex;
+            margin-left: 0em;
+
+            &-title {
+                margin: 0;
+                margin-left: .5em;
+            }
+
+            &-profileurl {
+                margin-left: .5em;
+                display: flex;
+                align-items: center;
+            }
+
+            &-profileurl {
+                align-self: center;
+            }
+        }
+
+        &-steamdata {
+            &-title {
+                margin-bottom: 2em;
+            }
+        }
+
+        &-newsletter {
+            position: relative;
+            bottom: 0;
+            margin-top: 2em;
+            align-self: center;
+        }
+    }
+
+    .passchange,
+    .emailchange,
+    .delete,
+    .myarticles,
+    .privacy {
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            margin-top: 2em !important;
+            width: 80%;
+            padding-bottom: 1em;
+
+            &-btn {
+                margin-top: 1em !important;
+            }
+        }
+        &-deletebtn {
+            margin: 2em 0 !important;
+            margin-top: 1em !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .account {
+        flex-direction: column;
+
+        &-block {
+            &:nth-child(2) {
+                text-align: center;
+                background-color: white;
+                align-self: center;
+                margin: 2em 0;
+                width: 100%;
+            }
+
+            &:nth-child(1) {
+                align-self: center;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+    }
+
+    .accountData {
+        padding: 1em;
+
+        &-form {
+            width: 100%;
+
+            &-btn {
+                width: 100px;
+                align-self: center;
+            }
+        }
+
+        &-label {
+            padding: 0;
+            font-size: .9em !important;
+        }
+    }
+
+    .privacy {
+        &-datagroup {
+            display: flex;
+            margin-left: 0em;
+
+            &-title {
+                margin: 0;
+                margin-left: .5em;
+            }
+
+            &-profileurl {
+                margin-left: .5em;
+                display: flex;
+                align-items: center;
+            }
+
+            &-profileurl {
+                align-self: center;
+            }
+        }
+
+        &-steamdata {
+            &-title {
+                margin-bottom: 2em;
+            }
+        }
+
+        &-newsletter {
+            position: relative;
+            bottom: 0;
+            margin-top: 2em;
+            align-self: center;
+        }
+    }
+
+    .passchange,
+    .emailchange,
+    .delete,
+    .myarticles,
+    .privacy {
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            margin-top: 2em !important;
+            width: 80%;
+            padding-bottom: 1em;
+
+            &-btn {
+                margin-top: 1em !important;
+            }
+        }
+        &-deletebtn {
+            margin: 2em 0 !important;
+            margin-top: 1em !important;
+        }
+    }
 }
