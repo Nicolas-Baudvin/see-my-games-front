@@ -1,7 +1,7 @@
 /**
  * Imports de dépendances
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router, Switch, Route, Redirect
 } from 'react-router-dom';
@@ -14,24 +14,23 @@ import { useSelector } from 'react-redux';
 import Footer from 'src/components/Footer/';
 import Header from 'src/components/Header/';
 import HomePage from 'src/components/HomePage/';
+import GameLibrary from 'src/components/GameLibrary';
 import Login from '../Login';
 import Signup from '../Signup';
 import Account from '../Account';
+import GamePage from '../GamePage';
+import Popup from '../Popup';
 // Données
 // Styles et assets
 import './app.scss';
-import GameLibrary from 'src/components/GameLibrary';
-import GamePage from '../GamePage';
 
 /**
  * Code
  */
 const App = () => {
-
   const { isConnected } = useSelector((state) => state.user);
-  useEffect(() => {
+  const { message, isSuccess, visible } = useSelector((state) => state.popup);
 
-  }, []);
   return <Router>
     <div id="app">
       <div className="background">
@@ -84,6 +83,7 @@ const App = () => {
       </div>
       <Footer />
     </div>
+    <Popup visible={visible} isSuccess={isSuccess} message={message} />
   </Router>;
 };
 
