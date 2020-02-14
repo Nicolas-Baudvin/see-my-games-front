@@ -136,7 +136,7 @@ export default () => {
                   position="right center"
                   inverted
                 />
-              </li>;
+              </li>
             </ul>
           </nav>
         </nav>
