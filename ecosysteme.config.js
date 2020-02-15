@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "<your application name>",
-      script: "/var/www/html/seemygames/see-my-games-front/src/",
+      script: "see-my-games-front/src/",
       watch: true,
       env: {
         PORT: 3000, // you can choose
