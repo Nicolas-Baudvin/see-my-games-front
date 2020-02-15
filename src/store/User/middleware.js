@@ -6,7 +6,7 @@ import { success, fail } from '../Popup/actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
-  const API_LINK = "https://localhost:5000/api";
+  const API_LINK = "http://localhost:5000/api";
 
   switch (action.type) {
     case UPDATE_PASSWORD: {
