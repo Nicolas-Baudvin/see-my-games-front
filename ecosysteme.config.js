@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "<your application name>",
-      script: "src/",
+      script: "dist/",
       watch: true,
       env: {
         PORT: 3000, // you can choose
