@@ -35,7 +35,6 @@ const Account = () => {
   };
 
   const handleFileChange = (e) => {
-    console.log(fileInput.current.files, e.target);
   };
 
   useEffect(() => {

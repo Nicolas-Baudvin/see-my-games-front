@@ -38,8 +38,6 @@ const GamePage = () => {
   const recRequirementHtml = {
     __html: recRequirement.firstChild && recRequirement.firstChild.innerHTML
   };
-  console.log(gameInfo.pc_requirements)
-  console.log(gameInfo);
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);

@@ -52,7 +52,7 @@
   },
   "scripts": {
     "test": "NODE_ENV=test mochapack --webpack-config webpack.config.test.js --watch --recursive --glob '*.test.js' tests",
-    "start": "webpack-dev-server --https --cert ./seemygames.com+4.pem --key ./seemygames.com+4-key.pem",
+    "start": "webpack-dev-server",
     "clean": "rm -rf dist",
     "clean:all": "rm -rf dist node_modules",
     "build:dev": "NODE_ENV=development webpack",

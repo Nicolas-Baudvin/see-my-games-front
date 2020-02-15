@@ -20,7 +20,6 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res);
           action.success = res.data.message;
           axios({
             method: 'get',
@@ -32,16 +31,13 @@ export default (store) => (next) => (action) => {
             }
           })
             .then((resp) => {
-              console.log(resp);
               action.games = resp.data.games;
               next(action);
             })
             .catch((err) => {
-              console.log(err);
             })
         })
         .catch((err) => {
-          console.log(err);
         });
       break;
     }
@@ -76,12 +72,10 @@ export default (store) => (next) => (action) => {
               next(action);
             })
             .catch((err) => {
-              console.log(err.response);
               action.error = err.response.data.message || err;
             });
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message || err;
         });
       break;
@@ -118,12 +112,10 @@ export default (store) => (next) => (action) => {
               next(action);
             })
             .catch((err) => {
-              console.log(err.response);
               action.error = err.response.data.message || err;
             });
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message || err;
         });
 
@@ -143,7 +135,6 @@ export default (store) => (next) => (action) => {
           next(action);
         })
         .catch((err) => {
-          console.log(err);
         });
 
       break;
@@ -155,13 +146,11 @@ export default (store) => (next) => (action) => {
         url: `${API_LINK}/steam/game/${appid}`
       })
         .then((res) => {
-          console.log(res.data.game.data);
           action.game = res.data.game.data;
           action.success = res.data.game.success;
           next(action);
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message;
         });
       break;
@@ -183,7 +172,6 @@ export default (store) => (next) => (action) => {
           next(action);
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message;
         });
 

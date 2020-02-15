@@ -178,7 +178,6 @@ const GameLibrary = () => {
         break;
       }
       default: {
-        console.log(games);
         break;
       }
     }
@@ -187,7 +186,6 @@ const GameLibrary = () => {
   const handleOpenModal = () => {
     setVisible(true);
     timer = window.setTimeout(() => setVisible(false), 3000);
-    console.log(visible);
   };
 
   useEffect(() => {
@@ -196,7 +194,6 @@ const GameLibrary = () => {
   }, []);
 
   useEffect(() => {
-    console.log('refresh');
     if (games) {
       setAllGames(games);
     }

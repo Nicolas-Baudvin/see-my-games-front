@@ -13,7 +13,6 @@ export default (store) => (next) => (action) => {
       const { password, confPassword } = action;
       const { userData } = state.user;
       const token = localStorage.getItem('secure_token');
-      console.log(userData);
 
       axios({
         method: 'post',
@@ -30,13 +29,11 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res);
           action.success = res.data.message;
           store.dispatch(success(res.data.message));
           next(action);
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message;
           store.dispatch(success(err.response.data.message));
         });
@@ -60,14 +57,12 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res);
           action.success = res.data.message;
           store.dispatch(disconnect());
           store.dispatch(success(res.data.message));
           next(action);
         })
         .catch((err) => {
-          console.log(err);
           action.error = err.response.data.message;
           store.dispatch(success(err.response.data.message));
           next(action);
@@ -79,7 +74,6 @@ export default (store) => (next) => (action) => {
       const { email, confEmail } = action;
       const { userData } = state.user;
       const token = localStorage.getItem('secure_token');
-      console.log(userData);
 
       axios({
         method: 'post',
@@ -96,12 +90,10 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res);
           action.success = res.data.message;
           next(action);
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message;
         });
       break;
@@ -124,14 +116,12 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res);
           localStorage.setItem('user_data', JSON.stringify(res.data.user));
           action.success = res.data.message;
           action.user = res.data.user;
           next(action);
         })
         .catch((err) => {
-          console.log(err.response);
           action.error = err.response.data.message;
         });
       break;
@@ -147,7 +137,6 @@ export default (store) => (next) => (action) => {
         data: action.data
       })
         .then((res) => {
-          console.log(res);
           action.userData = {
             ...res.data
           };
@@ -190,13 +179,11 @@ export default (store) => (next) => (action) => {
         data: action.data,
       })
         .then((res) => {
-          console.log(res);
           action.success = res.data.message;
           store.dispatch(success(res.data.message));
           next(action);
         })
         .catch((err) => {
-          console.log(err.response.status);
           const { status, data } = err.response;
           switch (status) {
             case 400: {
@@ -238,13 +225,11 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((res) => {
-          console.log(res.data);
           localStorage.setItem('user_data', JSON.stringify(res.data.user));
           action.message = res.data.message;
           next(action);
         })
         .catch((err) => {
-          console.log(err);
         });
 
       break;
@@ -266,12 +251,10 @@ export default (store) => (next) => (action) => {
           Authorization: `Bearer ${userData.token}`
         }
       }).then((res) => {
-        console.log(res);
         localStorage.setItem('user_data', JSON.stringify(res.data.user));
         next(action);
       })
         .catch((err) => {
-          console.log(err);
         });
 
       break;

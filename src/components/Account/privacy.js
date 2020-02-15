@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const Privacy = () => {
   const { userData } = useSelector((state) => state.user);
-  console.log(userData);
   return (
     <div className="privacy">
       <div className="privacy-header">

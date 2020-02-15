@@ -34,7 +34,6 @@ const FormModal = ({ triggerRef, visible }) => {
   };
 
   useEffect(() => {
-    console.log(visible);
     if (visible) {
       setOpen(true);
     }
