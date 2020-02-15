@@ -149,12 +149,12 @@ export default (store) => (next) => (action) => {
           const { status, data } = err.response;
           switch (status) {
             case 400: {
-              action.error = data;
+              action.error = data.message;
               next(action);
               break;
             }
             case 401: {
-              action.error = data;
+              action.error = data.message;
               next(action);
               break;
             }
