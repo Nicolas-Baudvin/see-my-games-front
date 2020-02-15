@@ -115,9 +115,11 @@ module.exports = {
     overlay: true, // Overlay navigateur si erreurs de build
     stats: 'minimal', // Infos en console limitées
     progress: true, // progression du build en console
+    compress: true,
     inline: true, // Rechargement du navigateur en cas de changement
     open: true, // on ouvre le navigateur
     historyApiFallback: true,
+    public: 'seemygames.fr',
     host: host,
     port: port,
   },

@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "<your application name>",
+      name: "seemygames",
       script: "dist/",
       watch: true,
       env: {
