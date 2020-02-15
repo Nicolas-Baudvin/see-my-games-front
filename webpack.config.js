@@ -122,6 +122,11 @@ module.exports = {
     public: 'seemygames.fr',
     host: host,
     port: port,
+    allowedHosts: [
+      '.amazonaws.com',
+      'www.seemygames.fr',
+      'seemygames.fr'
+    ]
   },
   plugins: [
     // Permet de prendre le index.html de src comme base pour le fichier de dist/
