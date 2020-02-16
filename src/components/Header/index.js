@@ -46,39 +46,39 @@ export default () => {
         tooltip.style.top = `${e.pageY + 5}px`;
         break;
       }
-      case "articles": {
+      // case "articles": {
+      //   headerTltip[0].style.left = `${e.pageX + 5}px`;
+      //   headerTltip[0].style.top = `${e.pageY + 5}px`;
+      //   break;
+      // }
+      // case "forum": {
+      //   headerTltip[1].style.left = `${e.pageX + 5}px`;
+      //   headerTltip[1].style.top = `${e.pageY + 5}px`;
+      //   break;
+      // }
+      case "connexion": {
         headerTltip[0].style.left = `${e.pageX + 5}px`;
         headerTltip[0].style.top = `${e.pageY + 5}px`;
         break;
       }
-      case "forum": {
+      case "inscription": {
         headerTltip[1].style.left = `${e.pageX + 5}px`;
         headerTltip[1].style.top = `${e.pageY + 5}px`;
         break;
       }
-      case "connexion": {
-        headerTltip[2].style.left = `${e.pageX + 5}px`;
-        headerTltip[2].style.top = `${e.pageY + 5}px`;
-        break;
-      }
-      case "inscription": {
-        headerTltip[3].style.left = `${e.pageX + 5}px`;
-        headerTltip[3].style.top = `${e.pageY + 5}px`;
-        break;
-      }
       case "mon compte": {
-        headerTltip[2].style.left = `${e.pageX + 5}px`;
-        headerTltip[2].style.top = `${e.pageY + 5}px`;
+        headerTltip[0].style.left = `${e.pageX + 5}px`;
+        headerTltip[0].style.top = `${e.pageY + 5}px`;
         break;
       }
       case "mes jeux": {
-        headerTltip[3].style.left = `${e.pageX + 5}px`;
-        headerTltip[3].style.top = `${e.pageY + 5}px`;
+        headerTltip[1].style.left = `${e.pageX + 5}px`;
+        headerTltip[1].style.top = `${e.pageY + 5}px`;
         break;
       }
       case "déconnexion": {
-        headerTltip[4].style.left = `${e.pageX + 5}px`;
-        headerTltip[4].style.top = `${e.pageY + 5}px`;
+        headerTltip[2].style.left = `${e.pageX + 5}px`;
+        headerTltip[2].style.top = `${e.pageY + 5}px`;
         break;
       }
       default: {
