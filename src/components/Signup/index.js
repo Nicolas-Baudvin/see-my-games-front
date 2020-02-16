@@ -33,7 +33,6 @@ const Signup = ({ visible }) => {
   };
   const handleFormSubmit = () => {
     const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    console.log('submit');
     if (usernameValue && passValue && passConfValue && emailValue) {
       if (passValue.length >= 6) {
         if (emailReg.test(emailValue)) {

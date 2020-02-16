@@ -21,8 +21,4 @@ const reactModelStore = createStore(
   withReduxDevTools(middlewares)
 );
 
-// Juste pour debugguer, ne pas laisser en production.
-console.log('Store', reactModelStore);
-window.store = reactModelStore;
-
 export default reactModelStore;
