@@ -26,7 +26,7 @@ const Account = () => {
   };
 
   const handleClicSteamBtn = () => {
-    const popupWindow = window.open('http://localhost:5000/api/auth/steam/', '_blank', 'width=800, height=600');
+    const popupWindow = window.open('https://seemygames.fr/api/auth/steam/', '_blank', 'width=800, height=600');
     if (window.focus) popupWindow.focus();
   };
 
@@ -39,7 +39,7 @@ const Account = () => {
 
   useEffect(() => {
     window.addEventListener('message', (event) => {
-      if (event.origin !== "http://localhost:5000") return;
+      if (event.origin !== "https://seemygames.fr") return;
 
       const { data, ok } = event.data;
 
