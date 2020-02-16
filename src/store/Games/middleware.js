@@ -3,7 +3,7 @@ import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES, NEW_GAME, DELETE
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
-  const API_LINK = "https://www.seemygames.fr:5000/api";
+  const API_LINK = "https://www.seemygames.fr/api";
   const { userData } = state.user;
   switch (action.type) {
     case UPDATE_GAME: {
