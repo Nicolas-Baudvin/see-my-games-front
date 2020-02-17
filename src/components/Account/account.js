@@ -34,15 +34,14 @@ const Account = () => {
     dispatch(importGames());
   };
 
-  const handleFileChange = (e) => {
-  };
+  // const handleFileChange = (e) => {
+  // };
 
   useEffect(() => {
     window.addEventListener('message', (event) => {
       if (event.origin !== "https://seemygames.fr") return;
 
       const { data, ok } = event.data;
-
       if (ok) {
         dispatch(linkSteamAccount(data));
       }
