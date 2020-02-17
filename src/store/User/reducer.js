@@ -88,8 +88,7 @@ export default (state = initalState, action) => {
     case LINK_STEAM_ACCOUNT: {
       return {
         ...state,
-        steamSuccess: action.message,
-        connectedToSteam: true,
+        isConnectedToSteam: true,
         userData: action.userData
       };
     }

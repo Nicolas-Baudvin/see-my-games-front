@@ -224,7 +224,6 @@ export default (store) => (next) => (action) => {
       })
         .then((res) => {
           localStorage.setItem('user_data', JSON.stringify(res.data.user));
-          action.message = res.data.message;
           action.userData = res.data.user;
           store.dispatch(success("Votre compte steam est désormais relié à votre compte SMG"));
           next(action);
