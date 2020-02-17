@@ -119,7 +119,7 @@ module.exports = {
     inline: true, // Rechargement du navigateur en cas de changement
     open: true, // on ouvre le navigateur
     historyApiFallback: true,
-    public: 'seemygames.fr',
+    public: 'https://www.seemygames.fr',
     host: host,
     port: port,
     allowedHosts: [
