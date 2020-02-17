@@ -35,9 +35,6 @@ export const linkSteamAccount = (data) => ({
   type: LINK_STEAM_ACCOUNT,
   data
 });
-export const getGames = () => ({
-  type: GET_GAMES
-});
 export const updateProfil = (newUsername) => ({
   type: UPDATE_PROFIL,
   newUsername

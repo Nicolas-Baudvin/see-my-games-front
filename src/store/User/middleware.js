@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, GET_GAMES, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD, disconnect
+  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD, disconnect
 } from './actions';
 import { success, fail } from '../Popup/actions';
 
@@ -43,6 +43,7 @@ export default (store) => (next) => (action) => {
     }
     case DELETE_ACCOUNT: {
       const { userData } = state.user;
+      const token = localStorage.getItem('secure_token');
 
       axios({
         method: 'delete',
@@ -126,10 +127,6 @@ export default (store) => (next) => (action) => {
         });
       break;
     }
-    case GET_GAMES: {
-      next(action);
-      break;
-    }
     case LOGIN: {
       axios({
         method: 'POST',
@@ -205,6 +202,7 @@ export default (store) => (next) => (action) => {
               break;
             }
             default: {
+              action.error = "Le serveur rencontre un problème. Réessayez ou prévenez l'administrateur du site.";
               next(action);
               break;
             }
@@ -227,9 +225,12 @@ export default (store) => (next) => (action) => {
         .then((res) => {
           localStorage.setItem('user_data', JSON.stringify(res.data.user));
           action.message = res.data.message;
+          action.userData = res.data.user;
+          store.dispatch(success("Votre compte steam est désormais relié à votre compte SMG"));
           next(action);
         })
         .catch((err) => {
+          action.error = err.response.data.message;
         });
 
       break;
@@ -252,9 +253,12 @@ export default (store) => (next) => (action) => {
         }
       }).then((res) => {
         localStorage.setItem('user_data', JSON.stringify(res.data.user));
+        action.userData = res.data.user;
+        store.dispatch(success("Vos jeux ont été importé !"));
         next(action);
       })
         .catch((err) => {
+          action.err = err.response.data.message;
         });
 
       break;

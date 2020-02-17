@@ -90,6 +90,7 @@ export default (state = initalState, action) => {
         ...state,
         steamSuccess: action.message,
         connectedToSteam: true,
+        userData: action.userData
       };
     }
     case DISCONNECT: {
@@ -130,6 +131,7 @@ export default (state = initalState, action) => {
     case IMPORT_GAMES: {
       return {
         ...state,
+        userData: action.userData,
       };
     }
     default: {
