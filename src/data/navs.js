@@ -45,3 +45,9 @@ export const accountMenu = [
     title: "Supprimer mon compte", view: "delete", isSelected: false, icon: "delete"
   },
 ];
+
+export const chatChannels = [
+  { title: "Général", isSelected: true },
+  { title: "Steam", isSelected: false },
+  { title: "Autre", isSelected: false }
+];
