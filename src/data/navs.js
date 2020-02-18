@@ -1,4 +1,5 @@
 export const headerNav = [
+  { title: "chatroom", isSelected: false, path: "/chatroom/" },
   { title: "mon compte", isSelected: false, path: "/mon-compte/" },
   { title: "mes jeux", isSelected: false, path: "/mes-jeux/" },
   { title: "connexion", isSelected: false, path: "/connexion/" },
