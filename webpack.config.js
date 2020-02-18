@@ -1,5 +1,7 @@
 // Node import
 const path = require('path');
+const DotenvPlugin = require('dotenv');
+const Webpack = require('webpack');
 
 // Plugins de traitement pour dist/
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -12,6 +14,12 @@ const host = 'localhost';
 const port = 3000;
 
 const devMode = process.env.NODE_ENV !== 'production';
+
+const env = DotenvPlugin.config({ path: '.env'}).parsed;
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 // Config de Webpack
 module.exports = {
@@ -119,14 +127,14 @@ module.exports = {
     inline: true, // Rechargement du navigateur en cas de changement
     open: true, // on ouvre le navigateur
     historyApiFallback: true,
-    public: 'https://www.seemygames.fr',
+    // public: 'https://www.seemygames.fr',
     host: host,
-    port: port,
-    allowedHosts: [
-      '.amazonaws.com',
-      'www.seemygames.fr',
-      'seemygames.fr'
-    ]
+    port: port
+    // allowedHosts: [
+    //   '.amazonaws.com',
+    //   'www.seemygames.fr',
+    //   'seemygames.fr'
+    // ]
   },
   plugins: [
     // Permet de prendre le index.html de src comme base pour le fichier de dist/
@@ -139,5 +147,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new Webpack.DefinePlugin(envKeys),
   ],
 };
