@@ -20,6 +20,7 @@ import Signup from '../Signup';
 import Account from '../Account';
 import GamePage from '../GamePage';
 import Popup from '../Popup';
+import ChatRoom from '../ChatRoom';
 // Données
 // Styles et assets
 import './app.scss';
@@ -77,6 +78,14 @@ const App = () => {
             }
             {
               isConnected && <GamePage />
+            }
+          </Route>
+          <Route>
+            {
+              !isConnected && <Redirect from="/chatroom/" to="/" />
+            }
+            {
+              isConnected && <ChatRoom />
             }
           </Route>
         </Switch>
