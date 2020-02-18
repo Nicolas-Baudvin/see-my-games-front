@@ -1,0 +1,180 @@
+.chatroom {
+    display: flex;
+    background-color: white;
+    width: 90%;
+    align-self: center;
+    margin-bottom: 2em;
+    box-shadow: 0 0 10px grey;
+
+    &-channels {
+        width: 15%;
+        position: relative;
+
+        
+
+        &-header {
+            background-color: #7881AD;
+            padding: 1em;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2) inset;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .ui.icon.input {
+                margin-top: .5em;
+            }
+            &-title {
+                font-size: 1.5em;
+                color: white !important;
+            }
+        }
+
+        &-menu {
+            margin-top: 3em;
+            padding: 1em;
+
+            h2 {
+                margin-top: 1em;
+            }
+        }
+
+        &-frstMenu {
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+
+            li {
+                width: 150px;
+                list-style-type: none;
+                font-size: 1.3em;
+                text-decoration-color: #507DBC;
+                margin: 1em 0;
+                cursor: pointer;
+                text-transform: uppercase;
+                align-self: center;
+                display: flex;
+                align-items: center;
+
+                .ui.fitted.checkbox {
+                    margin-right: 1em;
+
+                    &:nth-child(2) {
+                        color: green;
+                    }
+                }
+
+                &:hover {
+                    font-weight: bold;
+                    text-decoration: underline;
+                    text-decoration-color: #507DBC;
+                }
+            }
+        }
+
+        &-disconnectBtn {
+            padding: 1em;
+            position: absolute;
+            bottom: 1em;
+            left: 1em;
+            cursor: pointer;
+
+            &:hover {
+                span {
+                    display: inline;
+                }
+            }
+
+            span {
+                display: none;
+                position: absolute;
+                background-color: #111;
+                color: white;
+                font-weight: bold;
+                padding: .5em;
+            }
+        }
+    }
+
+    &-chat {
+        width: 70%;
+
+        &-container {
+            padding: 1em;
+            height: 600px;
+            background-color: #DFE6ED;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2) inset;
+        }
+
+        &-header {
+            padding: 3em 0;
+            background-color: #ECF1F6;
+            display: flex;
+
+            &-title {
+                color: #333 !important;
+                margin: 0 auto;
+                text-transform: uppercase;
+            }
+        }
+
+        &-textarea {
+            display: flex;
+            position: relative;
+            width: 100%;
+
+            .ui.form {
+                width: 90%;
+                display: flex;
+                align-items: center;
+
+                .ui.primary.button {
+                    height: 50px;
+                    width: 200px;
+                    margin-left: 1em;
+                }
+            }
+
+            &-openemoji {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                right: 5em;
+                top: 1.5em;
+                cursor: pointer;
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+
+                &:hover {
+                    box-shadow: 0 0 5px grey;
+                }
+            }
+
+            &-picker {
+                display: none;
+            }
+        }
+    }
+
+    &-friends {
+        width: 15%;
+        display: flex;
+        flex-direction: column;
+
+        &-header {
+            margin: 0 auto;
+            background-color: #7881AD;
+            width: 100%;
+            padding: 1.3em 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2) inset;
+
+            h2 {
+                text-align: center;
+                color: white !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}
