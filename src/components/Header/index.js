@@ -51,11 +51,11 @@ export default () => {
       //   headerTltip[0].style.top = `${e.pageY + 5}px`;
       //   break;
       // }
-      // case "forum": {
-      //   headerTltip[1].style.left = `${e.pageX + 5}px`;
-      //   headerTltip[1].style.top = `${e.pageY + 5}px`;
-      //   break;
-      // }
+      case "chatroom": {
+        headerTltip[0].style.left = `${e.pageX + 5}px`;
+        headerTltip[0].style.top = `${e.pageY + 5}px`;
+        break;
+      }
       case "connexion": {
         headerTltip[0].style.left = `${e.pageX + 5}px`;
         headerTltip[0].style.top = `${e.pageY + 5}px`;
@@ -67,18 +67,18 @@ export default () => {
         break;
       }
       case "mon compte": {
-        headerTltip[0].style.left = `${e.pageX + 5}px`;
-        headerTltip[0].style.top = `${e.pageY + 5}px`;
-        break;
-      }
-      case "mes jeux": {
         headerTltip[1].style.left = `${e.pageX + 5}px`;
         headerTltip[1].style.top = `${e.pageY + 5}px`;
         break;
       }
-      case "déconnexion": {
+      case "mes jeux": {
         headerTltip[2].style.left = `${e.pageX + 5}px`;
         headerTltip[2].style.top = `${e.pageY + 5}px`;
+        break;
+      }
+      case "déconnexion": {
+        headerTltip[3].style.left = `${e.pageX + 5}px`;
+        headerTltip[3].style.top = `${e.pageY + 5}px`;
         break;
       }
       default: {
@@ -154,6 +154,15 @@ export default () => {
               </Menu.Item>;
             }
 
+            if (item.title === "chatroom") {
+              return isConnected && <Menu.Item key={item.title} as="div">
+                <Link to={item.path} className="sidemenu-item">
+                  <Icon name="chat" size="big" />
+                  <h3 className="sidemenu-title">{item.title}</h3>
+                </Link>
+              </Menu.Item>;
+            }
+
             return <Menu.Item key={item.title} as="div">
               <Link to={item.path} className="sidemenu-item">
                 <Icon name={item.title === "articles" ? "newspaper" : "chat"} size="big" />
@@ -189,7 +198,7 @@ export default () => {
                 </div>;
               }
 
-              if (item.title === "mon compte" || item.title === "mes jeux") {
+              if (item.title === "mon compte" || item.title === "mes jeux" || item.title === "chatroom") {
                 return isConnected && <Link
                   onMouseMove={followCursor(item.title)}
                   key={item.title}
