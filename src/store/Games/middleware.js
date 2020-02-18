@@ -3,7 +3,6 @@ import { DISPLAY_GAMEINFO, DISPLAY_GAMES, DISPLAY_RECENT_GAMES, NEW_GAME, DELETE
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
-  const API_LINK = "https://www.seemygames.fr/api";
   const { userData } = state.user;
   switch (action.type) {
     case UPDATE_GAME: {
@@ -11,7 +10,7 @@ export default (store) => (next) => (action) => {
       const token = localStorage.getItem('secure_token');
       axios({
         method: 'PUT',
-        url: `${API_LINK}/games/update/${game.ownerId}`,
+        url: `${process.env.API_URL}/games/update/${game.ownerId}`,
         data: game,
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +22,7 @@ export default (store) => (next) => (action) => {
           action.success = res.data.message;
           axios({
             method: 'get',
-            url: `${API_LINK}/games/search/`,
+            url: `${process.env.API_URL}/games/search/`,
             headers: {
               'Content-Type': 'application/json',
               Accept: 'application/json',
@@ -47,7 +46,7 @@ export default (store) => (next) => (action) => {
       game.ownerId = userData._id;
       axios({
         method: 'post',
-        url: `${API_LINK}/games/add/`,
+        url: `${process.env.API_URL}/games/add/`,
         data: game,
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +59,7 @@ export default (store) => (next) => (action) => {
           // mise à jour de la bibliothèque de jeu
           axios({
             method: 'get',
-            url: `${API_LINK}/games/search/${userData._id}`,
+            url: `${process.env.API_URL}/games/search/${userData._id}`,
             headers: {
               'Content-Type': 'application/json',
               Accept: 'application/json',
@@ -86,7 +85,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         method: 'delete',
-        url: `${API_LINK}/games/delete/${gameId}`,
+        url: `${process.env.API_URL}/games/delete/${gameId}`,
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -99,7 +98,7 @@ export default (store) => (next) => (action) => {
 
           axios({
             method: 'get',
-            url: `${API_LINK}/games/search/${userData._id}`,
+            url: `${process.env.API_URL}/games/search/${userData._id}`,
             headers: {
               'Content-Type': 'application/json',
               Accept: 'application/json',
@@ -128,7 +127,7 @@ export default (store) => (next) => (action) => {
     case DISPLAY_RECENT_GAMES: {
       axios({
         method: 'get',
-        url: `${API_LINK}/steam/recent-games/${userData.steam_id}`
+        url: `${process.env.API_URL}/steam/recent-games/${userData.steam_id}`
       })
         .then((res) => {
           action.games = res.data.games;
@@ -143,7 +142,7 @@ export default (store) => (next) => (action) => {
       const { appid } = action;
       axios({
         method: "get",
-        url: `${API_LINK}/steam/game/${appid}`
+        url: `${process.env.API_URL}/steam/game/${appid}`
       })
         .then((res) => {
           action.game = res.data.game.data;
@@ -160,7 +159,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         method: 'get',
-        url: `${API_LINK}/games/search/${userData._id}/`,
+        url: `${process.env.API_URL}/games/search/${userData._id}/`,
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',

@@ -1,12 +1,20 @@
 import axios from 'axios';
 import {
-  IMPORT_GAMES, DISCONNECT, LOGIN, SIGNUP, LINK_STEAM_ACCOUNT, UPDATE_PROFIL, UPDATE_EMAIL, DELETE_ACCOUNT, UPDATE_PASSWORD, disconnect
+  IMPORT_GAMES,
+  DISCONNECT,
+  LOGIN,
+  SIGNUP,
+  LINK_STEAM_ACCOUNT,
+  UPDATE_PROFIL,
+  UPDATE_EMAIL,
+  DELETE_ACCOUNT,
+  UPDATE_PASSWORD,
+  disconnect
 } from './actions';
 import { success, fail } from '../Popup/actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
-  const API_LINK = "https://www.seemygames.fr/api";
 
   switch (action.type) {
     case UPDATE_PASSWORD: {
@@ -16,7 +24,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         method: 'post',
-        url: `${API_LINK}/auth/change-password/`,
+        url: `${process.env.API_URL}/auth/change-password/`,
         data: {
           password,
           confPassword,
@@ -47,7 +55,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         method: 'delete',
-        url: `${API_LINK}/auth/delete/`,
+        url: `${process.env.API_URL}/auth/delete/`,
         data: {
           userId: userData._id,
         },
@@ -78,7 +86,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         method: 'post',
-        url: `${API_LINK}/auth/change-email/`,
+        url: `${process.env.API_URL}/auth/change-email/`,
         data: {
           email,
           confEmail,
@@ -105,7 +113,7 @@ export default (store) => (next) => (action) => {
       const token = localStorage.getItem('secure_token');
       axios({
         method: 'post',
-        url: `${API_LINK}/auth/update/`,
+        url: `${process.env.API_URL}/auth/update/`,
         data: {
           newUsername,
           id: userData._id
@@ -128,9 +136,10 @@ export default (store) => (next) => (action) => {
       break;
     }
     case LOGIN: {
+      console.log(process.env.API_URL);
       axios({
         method: 'POST',
-        url: `${API_LINK}/auth/login/`,
+        url: `${process.env.API_URL}/auth/login/`,
         data: action.data
       })
         .then((res) => {
@@ -172,7 +181,7 @@ export default (store) => (next) => (action) => {
     case SIGNUP: {
       axios({
         method: 'POST',
-        url: `${API_LINK}/auth/signup/`,
+        url: `${process.env.API_URL}/auth/signup/`,
         data: action.data,
       })
         .then((res) => {
@@ -215,7 +224,7 @@ export default (store) => (next) => (action) => {
       const { userData } = state.user;
       axios({
         method: 'get',
-        url: `${API_LINK}/steam/summaries/${steamid}/${userData._id}`,
+        url: `${process.env.API_URL}/steam/summaries/${steamid}/${userData._id}`,
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -244,7 +253,7 @@ export default (store) => (next) => (action) => {
 
       axios({
         method: "get",
-        url: `${API_LINK}/steam/games/${userData.steam_id}/${userData._id}`,
+        url: `${process.env.API_URL}/steam/games/${userData.steam_id}/${userData._id}`,
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
