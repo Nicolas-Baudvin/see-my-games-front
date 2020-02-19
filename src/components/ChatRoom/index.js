@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 import {
   Input, Icon, Form, TextArea, Checkbox, Button
 } from 'semantic-ui-react';
-import 'emoji-mart/css/emoji-mart.css';
 import { Picker, Emoji } from 'emoji-mart';
 import { chatChannels } from 'src/data/navs';
+import { useDistpach, useSelector } from 'react-redux';
+import 'emoji-mart/css/emoji-mart.css';
+
 
 export default () => {
-
   const [nav, setNav] = useState(chatChannels);
   const [currentChan, setCurrentChan] = useState('général');
 
@@ -25,6 +26,10 @@ export default () => {
     });
     setNav(newNav);
   };
+
+  useEffect(() => {
+
+  });
 
   return (<div className="chatroom">
     <div className="chatroom-channels">
@@ -47,7 +52,7 @@ export default () => {
 
         <h2 className="chatroom-channels-menu-scdMenu">Vos discussion récentes</h2>
         <ul className="chatroom-channels-scdMenu">
-          {/* Discussion récentes */}
+          {/* TODO: Discussion/Channels récents */}
         </ul>
       </div>
 
