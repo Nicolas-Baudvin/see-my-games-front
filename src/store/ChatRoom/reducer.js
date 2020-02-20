@@ -1,18 +1,50 @@
-import { CONNECT_TO_CHAT, DISCONNECT_FROM_CHAT, NEW_MESSAGE, SEND_MESSAGE, GET_MESSAGES } from "./actions";
+import {
+  CONNECT_TO_CHAT_GENERAL,
+  DISCONNECT_FROM_CHAT,
+  NEW_MESSAGE_GENERAL,
+  SEND_MESSAGE,
+  GET_MESSAGES,
+  CONNECT_TO_CHAT_OTHER,
+  CONNECT_TO_CHAT_STEAM,
+  SEND_MESSAGE_STEAM,
+  SEND_MESSAGE_OTHER,
+  NEW_MESSAGE_STEAM,
+  NEW_MESSAGE_OTHER,
+  GET_STEAM_MESSAGES,
+  GET_OTHER_MESSAGES,
+  UPDATE_USERLIST_GENERAL,
+  UPDATE_USERLIST_STEAM,
+  UPDATE_USERLIST_OTHER
+} from "./actions";
 
 const initialState = {
-  isConnected: false,
+  isConnectedToGeneral: false,
   messages: [],
   steamMessages: [],
   otherMessages: [],
+  usersConnectedGeneral: [],
+  usersConnectedOther: [],
+  usersConnectedSteam: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CONNECT_TO_CHAT: {
+    case CONNECT_TO_CHAT_GENERAL: {
       return {
         ...state,
-        isConnected: true
+        isConnectedToGeneral: true
+      };
+    }
+    case CONNECT_TO_CHAT_OTHER: {
+      return {
+        ...state,
+        isConnectedToOther: true,
+      };
+    }
+    case CONNECT_TO_CHAT_STEAM: {
+      return {
+        ...state,
+        isConnectedToSteam: true,
       };
     }
     case DISCONNECT_FROM_CHAT: {
@@ -20,14 +52,38 @@ export default (state = initialState, action) => {
         ...state,
       };
     }
-    case NEW_MESSAGE: {
-      console.log(action.message, state);
+    case NEW_MESSAGE_GENERAL: {
+      console.log("nouveau message reçu dans général chat");
       return {
         ...state,
         messages: [...state.messages, action.message]
       };
     }
+    case NEW_MESSAGE_STEAM: {
+      console.log("nouveau message reçu dans steam chat");
+      return {
+        ...state,
+        steamMessages: [...state.steamMessages, action.message]
+      };
+    }
+    case NEW_MESSAGE_OTHER: {
+      console.log("nouveau message reçu dans autre chat");
+      return {
+        ...state,
+        otherMessages: [...state.otherMessages, action.message]
+      };
+    }
     case SEND_MESSAGE: {
+      return {
+        ...state,
+      };
+    }
+    case SEND_MESSAGE_STEAM: {
+      return {
+        ...state,
+      };
+    }
+    case SEND_MESSAGE_OTHER: {
       return {
         ...state,
       };
@@ -36,6 +92,36 @@ export default (state = initialState, action) => {
       return {
         ...state,
         messages: action.messages || []
+      };
+    }
+    case GET_STEAM_MESSAGES: {
+      return {
+        ...state,
+        steamMessages: action.messages || []
+      };
+    }
+    case GET_OTHER_MESSAGES: {
+      return {
+        ...state,
+        otherMessages: action.messages || []
+      };
+    }
+    case UPDATE_USERLIST_GENERAL: {
+      return {
+        ...state,
+        usersConnectedGeneral: action.list
+      };
+    }
+    case UPDATE_USERLIST_STEAM: {
+      return {
+        ...state,
+        usersConnectedSteam: action.list
+      };
+    }
+    case UPDATE_USERLIST_OTHER: {
+      return {
+        ...state,
+        usersConnectedOther: action.list
       };
     }
     default: {
