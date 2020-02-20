@@ -12,8 +12,8 @@ export const GET_MESSAGES = "action-chat/GET_MESSAGE";
 export const GET_STEAM_MESSAGES = "action-chat/GET_STEAM_MESSAGES";
 export const GET_OTHER_MESSAGES = "action-chat/GET_OTHER_MESSAGES";
 export const UPDATE_USERLIST_GENERAL = "action-chat/UPDATE_USERLIST_GENERAL";
-export const UPDATE_USERLIST_STEAM = "action-chat/";
-export const UPDATE_USERLIST_OTHER = "action-chat/";
+export const UPDATE_USERLIST_STEAM = "action-chat/UPDATE_USERLIST_STEAM";
+export const UPDATE_USERLIST_OTHER = "action-chat/UPDATE_USERLIST_OTHER";
 
 export const updateGeneralList = (list) => ({
   type: UPDATE_USERLIST_GENERAL,

@@ -8,7 +8,9 @@ import 'emoji-mart/css/emoji-mart.css';
 import { Picker, Emoji, emojiIndex } from 'emoji-mart';
 import { chatChannels } from 'src/data/navs';
 import { useDispatch, useSelector } from 'react-redux';
-import { connectToChatGeneral, sendMessage, connectToChatSteam, connectToChatOther, disconnectFromChat, sendMessageOther, sendMessageSteam } from '../../store/ChatRoom/actions';
+import {
+  connectToChatGeneral, sendMessage, connectToChatSteam, connectToChatOther, disconnectFromChat, sendMessageOther, sendMessageSteam
+} from '../../store/ChatRoom/actions';
 
 export default () => {
   const [nav, setNav] = useState(chatChannels);
@@ -18,9 +20,11 @@ export default () => {
   const [searchEmojis, setSearchEmojis] = useState('grinning');
   const [msgArray, setMsgArray] = useState([]);
   const dispatch = useDispatch();
-  const { messages, steamMessages, otherMessages, usersConnectedSteam, usersConnectedOther, usersConnectedGeneral } = useSelector((state) => state.chat);
+  const {
+    messages, steamMessages, otherMessages, usersConnectedSteam, usersConnectedOther, usersConnectedGeneral
+  } = useSelector((state) => state.chat);
   const { userData } = useSelector((state) => state.user);
-
+  console.log(usersConnectedOther);
   const changeChan = (chanName) => (e) => {
     const newNav = nav.map((chan) => {
       if (chan.title === chanName) {
@@ -115,7 +119,6 @@ export default () => {
       }
     }
   }, [currentChan]);
-
 
 
   return (<div className="chatroom">
@@ -235,18 +238,35 @@ export default () => {
         <h2 className="chatroom-users-title">
           <Icon name="users" size="big" />
           Utilisateurs en ligne
-          {
-            currentChan === "Général" && usersConnectedGeneral.length && usersConnectedGeneral.map((user) => {
-              return (
-                <div key={user.username} className="chatroom-users-user">
-                  <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
-                  <h2 className="chatroom-users-user-username"> {user.username} </h2>
-                </div>
-              );
-            })
-          }
         </h2>
       </div>
+      {
+        currentChan === "Général" && usersConnectedGeneral.length && usersConnectedGeneral.map((user) => (
+          <div key={user.username} className="chatroom-users-user">
+            <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
+            <div className="chatroom-users-user-online" />
+            <h2 className="chatroom-users-user-username"> {user.username} </h2>
+          </div>
+        ))
+      }
+      {
+        currentChan === "Steam" && usersConnectedSteam.length && usersConnectedSteam.map((user) => (
+          <div key={user.username} className="chatroom-users-user">
+            <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
+            <div className="chatroom-users-user-online" />
+            <h2 className="chatroom-users-user-username"> {user.username} </h2>
+          </div>
+        ))
+      }
+      {
+        currentChan === "Autre" && usersConnectedOther.length && usersConnectedOther.map((user) => (
+          <div key={user.username} className="chatroom-users-user">
+            <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
+            <div className="chatroom-users-user-online" />
+            <h2 className="chatroom-users-user-username"> {user.username} </h2>
+          </div>
+        ))
+      }
     </div>
   </div>
   );

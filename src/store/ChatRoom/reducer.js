@@ -107,18 +107,21 @@ export default (state = initialState, action) => {
       };
     }
     case UPDATE_USERLIST_GENERAL: {
+      console.log(action.list);
       return {
         ...state,
         usersConnectedGeneral: action.list
       };
     }
     case UPDATE_USERLIST_STEAM: {
+      console.log(action.list);
       return {
         ...state,
         usersConnectedSteam: action.list
       };
     }
     case UPDATE_USERLIST_OTHER: {
+      console.log(action.list);
       return {
         ...state,
         usersConnectedOther: action.list

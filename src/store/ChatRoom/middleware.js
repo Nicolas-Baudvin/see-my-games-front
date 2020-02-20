@@ -19,7 +19,8 @@ import {
   GET_OTHER_MESSAGES,
   updateGeneralList,
   updateOtherList,
-  updateSteamList
+  updateSteamList,
+  UPDATE_USERLIST_OTHER
 } from './actions';
 import { success, fail } from "../Popup/actions";
 
@@ -68,6 +69,7 @@ export default (store) => (next) => (action) => {
       general.on("update_userlist", (userlist) => {
         console.log("general", userlist);
         store.dispatch(updateGeneralList(userlist));
+        next(action);
       });
       break;
     }
@@ -109,6 +111,7 @@ export default (store) => (next) => (action) => {
       steam.on("update_userlist", (userlist) => {
         console.log("steam", userlist);
         store.dispatch(updateSteamList(userlist));
+        next(action);
       });
       break;
     }
@@ -150,7 +153,13 @@ export default (store) => (next) => (action) => {
       other.on("update_userlist", (userlist) => {
         console.log(userlist);
         store.dispatch(updateOtherList(userlist));
+        next(action);
       });
+      break;
+    }
+    case UPDATE_USERLIST_OTHER: {
+        console.log("other", action)
+      next(action);
       break;
     }
     /**
