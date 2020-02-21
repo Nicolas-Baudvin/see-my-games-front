@@ -8,8 +8,16 @@ import 'emoji-mart/css/emoji-mart.css';
 import { Picker, Emoji, emojiIndex } from 'emoji-mart';
 import { chatChannels } from 'src/data/navs';
 import { useDispatch, useSelector } from 'react-redux';
+import { fail } from "src/store/Popup/actions";
 import {
-  connectToChatGeneral, sendMessage, connectToChatSteam, connectToChatOther, disconnectFromChat, sendMessageOther, sendMessageSteam
+  connectToChatGeneral,
+  sendMessage,
+  connectToChatSteam,
+  connectToChatOther,
+  sendMessageOther,
+  sendMessageSteam,
+  sendPrivateMessage,
+  connectToPrivateChat
 } from '../../store/ChatRoom/actions';
 
 export default () => {
@@ -17,19 +25,34 @@ export default () => {
   const [currentChan, setCurrentChan] = useState('Général');
   const [text, setText] = useState('');
   const [visible, setVisible] = useState(false);
-  const [searchEmojis, setSearchEmojis] = useState('grinning');
+  const [searchEmojis, setSearchEmojis] = useState('');
   const [msgArray, setMsgArray] = useState([]);
   const dispatch = useDispatch();
   const {
-    messages, steamMessages, otherMessages, usersConnectedSteam, usersConnectedOther, usersConnectedGeneral
+    messages,
+    steamMessages,
+    otherMessages,
+    usersConnectedSteam,
+    usersConnectedOther,
+    usersConnectedGeneral,
+    privateMessages
   } = useSelector((state) => state.chat);
   const { userData } = useSelector((state) => state.user);
-  console.log(usersConnectedOther);
+  console.log(privateMessages);
+  /**
+   * @description Gère le changement du channel courant
+   * @param {string} chanName - nom du channel
+   */
   const changeChan = (chanName) => (e) => {
     const newNav = nav.map((chan) => {
       if (chan.title === chanName) {
         chan.isSelected = true;
-        setCurrentChan(chanName);
+        if (chan.socketId) {
+          setCurrentChan([chan.socketId, chanName]);
+        }
+        else {
+          setCurrentChan(chanName);
+        }
       }
       else {
         chan.isSelected = false;
@@ -39,6 +62,9 @@ export default () => {
     setNav(newNav);
   };
 
+  /**
+   * @description Envoie le message du textArea dans le channel courant
+   */
   const handleSubmitMessage = () => {
     switch (currentChan) {
       case "Général": {
@@ -60,20 +86,56 @@ export default () => {
         break;
       }
       default: {
+        if (Array.isArray(currentChan)) {
+          const message = {
+            text,
+            to: currentChan[1],
+            socketId: currentChan[0],
+            from: userData.username,
+            avatar: userData.steam_avatar
+          };
+          dispatch(sendPrivateMessage(message));
+        }
         break;
       }
     }
     setText('');
   };
 
+  /**
+   * @description Rajoute l'émoji selectionné au text
+   * @param {object} emoji Object emoji
+   */
   const handleClickEmoji = (emoji) => {
     setText(text + emoji.native);
   };
 
-  const playerProfil = () => {
-    // get player profil
+  /**
+   * @description Ouvre une nouvelle fenêtre de communication privée.
+   * @param {string} socketId Socket de l'utilisateur selectionné
+   * @param {string} username Pseudo de l'utilisateur selectionné
+   * @returns dispatch || void
+   */
+  const handleClickOnUser = (socketId, username) => {
+    console.log(socketId);
+    // if (userData.username === username) {
+    //   return dispatch(fail("Vous ne pouvez pas vous envoyer un message à vous même..."));
+    // }
+    for (let i = 0; i < nav.length; i++) {
+      if (nav[i].title === username) {
+        return dispatch(fail("Vous avez déjà ouvert une conversation avec cet utilisateur"));
+      }
+    }
+    const newNavEntry = { title: username, isSelected: false, socketId };
+    const newNav = nav;
+    newNav.push(newNavEntry);
+    setNav([...newNav]);
   };
 
+  /**
+   * @description Gère le changement de valeur du TextArea
+   * @param {event} e Event
+   */
   const handleChangeTextArea = (e) => {
     const { target } = e;
     const msg = target.value;
@@ -93,25 +155,22 @@ export default () => {
     }
   };
 
+  /**
+   * @description Se connecte au channel courant en fonction du... channel courant.
+   */
   useEffect(() => {
-    console.log(currentChan);
+    dispatch(connectToPrivateChat());
     switch (currentChan) {
       case "Général": {
         dispatch(connectToChatGeneral());
-        // dispatch(disconnectFromChat("Steam"));
-        // dispatch(disconnectFromChat("Other"));
         break;
       }
       case "Steam": {
         dispatch(connectToChatSteam());
-        // dispatch(disconnectFromChat("Other"));
-        // dispatch(disconnectFromChat("Général"));
         break;
       }
       case "Autre": {
         dispatch(connectToChatOther());
-        // dispatch(disconnectFromChat("Général"));
-        // dispatch(disconnectFromChat("Steam"));
         break;
       }
       default: {
@@ -119,6 +178,22 @@ export default () => {
       }
     }
   }, [currentChan]);
+
+  useEffect(() => {
+    const lastPrivateMessage = privateMessages[privateMessages.length - 1];
+
+    if (lastPrivateMessage.from !== userData.username) {
+      const newNavEntry = {
+        title: lastPrivateMessage.from,
+        isSelected: false,
+        socketId: lastPrivateMessage.fromSocketId
+      };
+      const newNav = nav;
+
+      newNav.push(newNavEntry);
+      setNav([...newNav]);
+    }
+  }, [privateMessages]);
 
 
   return (<div className="chatroom">
@@ -159,7 +234,7 @@ export default () => {
 
     <div className="chatroom-chat">
       <div className="chatroom-chat-header">
-        <h2 className="chatroom-chat-header-title">{currentChan}</h2>
+        <h2 className="chatroom-chat-header-title">{Array.isArray(currentChan) ? currentChan[1] : currentChan}</h2>
       </div>
       <div className="chatroom-chat-container">
         {/* TODO: discussion ici */}
@@ -170,7 +245,7 @@ export default () => {
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
                   {mes.message}
-                  <span className="message-date"><time>{mes.time}</time> par <span onClick={playerProfil} className="message-user">{mes.user}</span></span>
+                  <span className="message-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.user)} className="message-user">{mes.user}</span></span>
                 </p>
               </div>
             </div>
@@ -183,7 +258,7 @@ export default () => {
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
                   {mes.message}
-                  <span className="message-date"><time>{mes.time}</time> par <span onClick={playerProfil} className="message-user">{mes.user}</span></span>
+                  <span className="message-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.user)} className="message-user">{mes.user}</span></span>
                 </p>
               </div>
             </div>
@@ -196,7 +271,20 @@ export default () => {
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
                   {mes.message}
-                  <span className="message-date"><time>{mes.time}</time> par <span onClick={playerProfil} className="message-user">{mes.user}</span></span>
+                  <span className="message-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.user)} className="message-user">{mes.user}</span></span>
+                </p>
+              </div>
+            </div>
+          ))
+        }
+        {
+          Array.isArray(currentChan) && privateMessages.length > 0 && (currentChan[1] === privateMessages[0].to || currentChan[1] === privateMessages[0].from) && privateMessages.map((mes) => (
+            <div key={mes.id} className={ClassNames("message", { me: mes.from === userData.username })}>
+              <div className="message-body">
+                <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
+                <p className="message-text">
+                  {mes.text}
+                  <span className="message-date"><time>{mes.date}</time> par <span onClick={() => handleClickOnUser(mes.fromSocketId, mes.from)} className="message-user">{mes.from}</span></span>
                 </p>
               </div>
             </div>
@@ -242,7 +330,7 @@ export default () => {
       </div>
       {
         currentChan === "Général" && usersConnectedGeneral.length && usersConnectedGeneral.map((user) => (
-          <div key={user.username} className="chatroom-users-user">
+          <div onClick={() => handleClickOnUser(user.globalSocketId, user.username)} key={user.username} className="chatroom-users-user">
             <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
             <div className="chatroom-users-user-online" />
             <h2 className="chatroom-users-user-username"> {user.username} </h2>
@@ -251,7 +339,7 @@ export default () => {
       }
       {
         currentChan === "Steam" && usersConnectedSteam.length && usersConnectedSteam.map((user) => (
-          <div key={user.username} className="chatroom-users-user">
+          <div onClick={() => handleClickOnUser(user.globalSocketId, user.username)} key={user.username} className="chatroom-users-user">
             <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
             <div className="chatroom-users-user-online" />
             <h2 className="chatroom-users-user-username"> {user.username} </h2>
@@ -260,7 +348,7 @@ export default () => {
       }
       {
         currentChan === "Autre" && usersConnectedOther.length && usersConnectedOther.map((user) => (
-          <div key={user.username} className="chatroom-users-user">
+          <div onClick={() => handleClickOnUser(user.globalSocketId, user.username)} key={user.username} className="chatroom-users-user">
             <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
             <div className="chatroom-users-user-online" />
             <h2 className="chatroom-users-user-username"> {user.username} </h2>

@@ -14,21 +14,32 @@ import {
   GET_OTHER_MESSAGES,
   UPDATE_USERLIST_GENERAL,
   UPDATE_USERLIST_STEAM,
-  UPDATE_USERLIST_OTHER
+  UPDATE_USERLIST_OTHER,
+  NEW_PRIVATE_MESSAGE,
+  SEND_PRIVATE_MESSAGE
 } from "./actions";
 
 const initialState = {
-  isConnectedToGeneral: false,
   messages: [],
   steamMessages: [],
   otherMessages: [],
   usersConnectedGeneral: [],
   usersConnectedOther: [],
-  usersConnectedSteam: []
+  usersConnectedSteam: [],
+  privateMessages: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SEND_PRIVATE_MESSAGE: {
+      return state;
+    }
+    case NEW_PRIVATE_MESSAGE: {
+      return {
+        ...state,
+        privateMessages: [...state.privateMessages, action.message]
+      };
+    }
     case CONNECT_TO_CHAT_GENERAL: {
       return {
         ...state,

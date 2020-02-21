@@ -14,6 +14,23 @@ export const GET_OTHER_MESSAGES = "action-chat/GET_OTHER_MESSAGES";
 export const UPDATE_USERLIST_GENERAL = "action-chat/UPDATE_USERLIST_GENERAL";
 export const UPDATE_USERLIST_STEAM = "action-chat/UPDATE_USERLIST_STEAM";
 export const UPDATE_USERLIST_OTHER = "action-chat/UPDATE_USERLIST_OTHER";
+export const SEND_PRIVATE_MESSAGE = "action-chat/SEND_PRIVATE_MESSAGE";
+export const NEW_PRIVATE_MESSAGE = "action-chat/NEW_PRIVATE_MESSAGE";
+export const CONNECT_TO_PRIVATE_CHAT = "action-chat/CONNECT_TO_PRIVATE_CHAT";
+
+export const sendPrivateMessage = (message) => ({
+  type: SEND_PRIVATE_MESSAGE,
+  message
+});
+
+export const connectToPrivateChat = () => ({
+  type: CONNECT_TO_PRIVATE_CHAT,
+});
+
+export const newPrivateMessage = (message) => ({
+  type: NEW_PRIVATE_MESSAGE,
+  message
+});
 
 export const updateGeneralList = (list) => ({
   type: UPDATE_USERLIST_GENERAL,

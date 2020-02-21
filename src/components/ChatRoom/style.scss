@@ -43,6 +43,7 @@
             padding: 1em;
             display: flex;
             flex-direction: column;
+            overflow: auto;
 
             li {
                 width: 150px;
@@ -166,6 +167,7 @@
         width: 15%;
         display: flex;
         flex-direction: column;
+        overflow: auto;
 
         &-header {
             margin: 0 auto;
@@ -227,6 +229,7 @@
     flex-direction: column;
     margin: 2em 0;
     align-self: flex-end;
+    max-width: 50%;
 
     &-body {
         display: flex;

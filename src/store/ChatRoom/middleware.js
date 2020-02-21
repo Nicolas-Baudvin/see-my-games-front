@@ -20,17 +20,36 @@ import {
   updateGeneralList,
   updateOtherList,
   updateSteamList,
-  UPDATE_USERLIST_OTHER
+  UPDATE_USERLIST_OTHER,
+  SEND_PRIVATE_MESSAGE,
+  NEW_PRIVATE_MESSAGE,
+  CONNECT_TO_PRIVATE_CHAT,
+  newPrivateMessage
 } from './actions';
 import { success, fail } from "../Popup/actions";
 
 let general;
 let other;
 let steam;
+let io;
 export default (store) => (next) => (action) => {
   const state = store.getState();
 
   switch (action.type) {
+    case SEND_PRIVATE_MESSAGE: {
+      console.log(io.io);
+      io.emit('private', action.message);
+      next(action);
+      break;
+    }
+    case CONNECT_TO_PRIVATE_CHAT: {
+      io = socketIoClient(process.env.SOCKET_URL_PRIVATE);
+      io.on("private", (message) => {
+        store.dispatch(newPrivateMessage(message));
+        next(action);
+      });
+      break;
+    }
     /**
      * Connection au channel Général du chat
      */
@@ -55,7 +74,6 @@ export default (store) => (next) => (action) => {
       });
 
       general.on("welcome_message", (message) => {
-        console.log(message);
         store.dispatch(success(message));
         store.dispatch(getMessages());
         next(action);
@@ -67,7 +85,6 @@ export default (store) => (next) => (action) => {
       });
 
       general.on("update_userlist", (userlist) => {
-        console.log("general", userlist);
         store.dispatch(updateGeneralList(userlist));
         next(action);
       });
@@ -97,7 +114,6 @@ export default (store) => (next) => (action) => {
       });
 
       steam.on("welcome_message", (message) => {
-        console.log(message);
         store.dispatch(success(message));
         store.dispatch(getMessagesFromSteam());
         next(action);
@@ -109,7 +125,6 @@ export default (store) => (next) => (action) => {
       });
 
       steam.on("update_userlist", (userlist) => {
-        console.log("steam", userlist);
         store.dispatch(updateSteamList(userlist));
         next(action);
       });
@@ -139,7 +154,6 @@ export default (store) => (next) => (action) => {
       });
 
       other.on("welcome_message", (message) => {
-        console.log(message);
         store.dispatch(success(message));
         store.dispatch(getMessagesFromOther());
         next(action);
@@ -151,14 +165,12 @@ export default (store) => (next) => (action) => {
       });
 
       other.on("update_userlist", (userlist) => {
-        console.log(userlist);
         store.dispatch(updateOtherList(userlist));
         next(action);
       });
       break;
     }
     case UPDATE_USERLIST_OTHER: {
-        console.log("other", action)
       next(action);
       break;
     }
