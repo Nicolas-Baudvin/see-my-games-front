@@ -55,14 +55,15 @@
   - [x] Categories
   - [x] Configurations
   - [x] Description complète du jeu
+- [ ] Page de Chat
+  - [x] Affichage des utilisateurs connectés
+  - [x] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
+  - [x] Possibilité d'écrire un message privé
+  - [x] Mise à disposition de plusieurs Channels
+  - [x] Emoticones
+  - [ ] Notifications de nouveaux messages
 - [ ] Page Articles
 - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
-- [ ] Page de Chat
-  - [ ] Affichage des utilisateurs connectés
-  - [ ] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
-  - [ ] Possibilité d'écrire un message privé
-  - [ ] Mise à disposition de plusieurs Channels
-  - [ ] Emoticones
 - [ ] Oublie de mot de passe
 
 ----- V2 -----
