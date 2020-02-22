@@ -11,11 +11,9 @@ import { fail } from "src/store/Popup/actions";
 import Discussion from './chat/discussion';
 import Channel from './channel';
 import UsersOnline from './users';
+import { changeCurrentChan } from '../../store/ChatRoom/actions';
 
 export default () => {
-  const [nav, setNav] = useState(chatChannels);
-  const [currentChan, setCurrentChan] = useState('Général');
-  const dispatch = useDispatch();
   const {
     messages,
     steamMessages,
@@ -23,9 +21,20 @@ export default () => {
     usersConnectedSteam,
     usersConnectedOther,
     usersConnectedGeneral,
-    privateMessages
-  } = useSelector((state) => state.chat);
-  const { userData } = useSelector((state) => state.user);
+    privateMessages,
+    currentChan
+  } = useSelector((globalState) => globalState.chat);
+  const initialState = {
+    nav: chatChannels,
+    currentChan,
+    count: 0,
+    search: '',
+  };
+
+  const [state, setState] = useState(initialState);
+  const dispatch = useDispatch();
+
+  const { userData } = useSelector((globalState) => globalState.user);
   // console.log(privateMessages);
 
   /**
@@ -39,23 +48,47 @@ export default () => {
     if (userData.username === username) {
       return dispatch(fail("Vous ne pouvez pas vous envoyer un message à vous même..."));
     }
-    for (let i = 0; i < nav.length; i++) {
-      if (nav[i].title === username) {
+    for (let i = 0; i < state.nav.length; i++) {
+      if (state.nav[i].title === username) {
         return dispatch(fail("Vous avez déjà ouvert une conversation avec cet utilisateur"));
       }
     }
     const newNavEntry = { title: username, isSelected: false, socketId };
-    const newNav = nav;
+    const newNav = state.nav;
     newNav.push(newNavEntry);
-    return setNav([...newNav]);
+    return setState({ ...state, nav: newNav });
   };
 
   /**
-   * @description Rajoute un channel dès qu'on reçoit un nouveau message privé
+   * @description Change le channel courant
+   * @param {string} chanName Nom du channel
+   */
+  const changeChan = (chanName) => {
+    const newNav = state.nav.map((chan) => {
+      if (chan.title === chanName) {
+        chan.isSelected = true;
+        if (chan.socketId) {
+          dispatch(changeCurrentChan([chan.socketId, chanName]));
+        }
+        else {
+          dispatch(changeCurrentChan(chanName));
+        }
+      }
+      else {
+        chan.isSelected = false;
+      }
+      return chan;
+    });
+    setState({ ...state, nav: [...newNav] });
+  };
+
+  /**
+   * @description Rajoute un channel dès qu'on reçoit un nouveau message privé avec le nom de l'expéditeur
    */
   useEffect(() => {
     if (privateMessages.length > 0) {
       const lastPrivateMessage = privateMessages[privateMessages.length - 1];
+      setState({ ...state, count: state.count++ });
 
       if (lastPrivateMessage.from !== userData.username) {
         const newNavEntry = {
@@ -63,10 +96,10 @@ export default () => {
           isSelected: false,
           socketId: lastPrivateMessage.fromSocketId
         };
-        const newNav = nav;
+        const newNav = state.nav;
 
         newNav.push(newNavEntry);
-        setNav([...newNav]);
+        setState({ ...state, nav: newNav });
       }
     }
   }, [privateMessages]);
@@ -74,11 +107,11 @@ export default () => {
 
   return (<div className="chatroom">
     <Channel
-      nav={nav}
-      setNav={setNav}
-      setCurrentChan={setCurrentChan}
       currentChan={currentChan}
       chatChannels={chatChannels}
+      state={state}
+      changeChan={changeChan}
+      setState={setState}
     />
 
     <Discussion
@@ -89,6 +122,7 @@ export default () => {
       privateMessages={privateMessages}
       userData={userData}
       handleClickOnUser={handleClickOnUser}
+      state={state}
     />
 
     <UsersOnline

@@ -16,7 +16,8 @@ import {
   UPDATE_USERLIST_STEAM,
   UPDATE_USERLIST_OTHER,
   NEW_PRIVATE_MESSAGE,
-  SEND_PRIVATE_MESSAGE
+  SEND_PRIVATE_MESSAGE,
+  CHANGE_CHAN
 } from "./actions";
 
 const initialState = {
@@ -26,11 +27,18 @@ const initialState = {
   usersConnectedGeneral: [],
   usersConnectedOther: [],
   usersConnectedSteam: [],
-  privateMessages: []
+  privateMessages: [],
+  currentChan: 'Général'
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case CHANGE_CHAN: {
+      return {
+        ...state,
+        currentChan: action.chanName
+      };
+    }
     case SEND_PRIVATE_MESSAGE: {
       return state;
     }

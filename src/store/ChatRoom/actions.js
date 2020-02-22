@@ -17,6 +17,12 @@ export const UPDATE_USERLIST_OTHER = "action-chat/UPDATE_USERLIST_OTHER";
 export const SEND_PRIVATE_MESSAGE = "action-chat/SEND_PRIVATE_MESSAGE";
 export const NEW_PRIVATE_MESSAGE = "action-chat/NEW_PRIVATE_MESSAGE";
 export const CONNECT_TO_PRIVATE_CHAT = "action-chat/CONNECT_TO_PRIVATE_CHAT";
+export const CHANGE_CHAN = "action-chat/CHANGE_CHAN";
+
+export const changeCurrentChan = (chanName) => ({
+  type: CHANGE_CHAN,
+  chanName
+});
 
 export const sendPrivateMessage = (message) => ({
   type: SEND_PRIVATE_MESSAGE,

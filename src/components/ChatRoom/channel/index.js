@@ -6,28 +6,14 @@ import {
 } from '../../../store/ChatRoom/actions';
 
 export default ({
-  nav, setNav, setCurrentChan, currentChan, chatChannels
+  chatChannels,
+  state,
+  changeChan,
+  setState,
+  currentChan
 }) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
-  const changeChan = (chanName) => (e) => {
-    const newNav = nav.map((chan) => {
-      if (chan.title === chanName) {
-        chan.isSelected = true;
-        if (chan.socketId) {
-          setCurrentChan([chan.socketId, chanName]);
-        }
-        else {
-          setCurrentChan(chanName);
-        }
-      }
-      else {
-        chan.isSelected = false;
-      }
-      return chan;
-    });
-    setNav(newNav);
-  };
 
   /**
    * @description Se connecte au channel courant
@@ -54,16 +40,16 @@ export default ({
   }, [currentChan]);
 
   const handleSearchInputChange = (e) => {
-    const text = e.target.value
+    const text = e.target.value;
     setSearch(text);
-    const newNav = nav.filter((item) => {
+    const newNav = state.nav.filter((item) => {
       if (item.title.includes(text)) {
         return item;
       }
     });
-    setNav(newNav);
+    setState({ ...state, nav: newNav });
     if (text.length === 0) {
-      setNav(chatChannels);
+      setState({ ...state, nav: chatChannels });
     }
   };
 
@@ -78,10 +64,10 @@ export default ({
         <h2 className="chatroom-channels-menu-title">Les Chaînes</h2>
         <ul className="chatroom-channels-frstMenu">
           {
-            nav.map((chan) => (
+            state.nav.map((chan) => (
               <li
                 key={chan.title}
-                onClick={changeChan(chan.title)}
+                onClick={() => changeChan(chan.title)}
               >
                 <Checkbox checked={chan.isSelected} />
                 {chan.title}

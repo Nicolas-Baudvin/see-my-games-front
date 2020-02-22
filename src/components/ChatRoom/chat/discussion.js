@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Emoji } from 'emoji-mart';
 import ClassNames from 'classnames';
-import { chatChannels } from 'src/data/navs';
-import { useDispatch } from 'react-redux';
-
-import { fail } from "src/store/Popup/actions";
 import ChatTextArea from './textarea';
 
 export default ({
-  currentChan,
+  state,
   messages,
   steamMessages,
   userData,
   otherMessages,
   privateMessages,
-  handleClickOnUser
+  handleClickOnUser,
+  currentChan
 }) => {
-
+  console.log(messages)
   return (
     <div className="chatroom-chat">
       <div className="chatroom-chat-header">
