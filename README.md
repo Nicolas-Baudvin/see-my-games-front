@@ -62,6 +62,7 @@
   - [x] Mise à disposition de plusieurs Channels
   - [x] Emoticones
   - [ ] Notifications de nouveaux messages
+  - [ ] Pouvoir envoyer les informations d'un jeu possédé
 - [ ] Page Articles
 - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Oublie de mot de passe
