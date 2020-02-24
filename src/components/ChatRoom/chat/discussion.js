@@ -33,7 +33,7 @@ export default ({
                 </div>
               </div>;
             }
-            return <div key={mes._id} className={ClassNames("message", { me: mes.from === userData.username })}>
+            return <div key={mes._id} className={ClassNames("message", { me: mes.user === userData.username })}>
               <div className="message-body">
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
