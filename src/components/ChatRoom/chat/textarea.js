@@ -7,7 +7,8 @@ import { Picker, Emoji, emojiIndex } from 'emoji-mart';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   sendMessage, sendMessageOther, sendMessageSteam, sendPrivateMessage
-} from '../../../store/ChatRoom/actions';
+} from 'src/store/ChatRoom/actions';
+import { fail } from 'src/store/Popup/actions';
 
 /**
  * Components
@@ -21,18 +22,24 @@ export default ({ currentChan }) => {
     menuVisible: false,
     modalVisible: false,
     text: '',
-    gameSorted: []
+    gameSorted: [],
+    canWrite: true,
   };
 
   const dispatch = useDispatch();
   const [state, setState] = useState(initialState);
   const [msgArray, setMsgArray] = useState([]);
   const [searchEmojis, setSearchEmojis] = useState('');
+  const [canWrite, setCanWrite] = useState(true);
   const { userData } = useSelector((GlobalState) => GlobalState.user);
   /**
    * @description Envoie le message du textArea dans le channel courant
    */
   const handleSubmitMessage = () => {
+    if (!canWrite) {
+      return dispatch(fail("Vous devez attendre 5 secondes avant de pouvoir réécrire un message."));
+    }
+    setCanWrite(false);
     switch (currentChan) {
       case "Général": {
         if (state.text) {
@@ -66,7 +73,10 @@ export default ({ currentChan }) => {
         break;
       }
     }
-    setState({ ...state, text: '' });
+    setTimeout(() => {
+      setCanWrite(true);
+    }, 5000);
+    return setState({ ...state, text: '' });
   };
 
   /**

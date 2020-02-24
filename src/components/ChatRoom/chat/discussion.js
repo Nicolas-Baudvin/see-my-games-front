@@ -92,7 +92,7 @@ export default ({
                   <span className="message-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.user)} className="message-user">{mes.user}</span></span>
                 </p>
               </div>
-            </div>
+            </div>;
           })
         }
         {
