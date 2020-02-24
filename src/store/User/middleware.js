@@ -136,7 +136,7 @@ export default (store) => (next) => (action) => {
       break;
     }
     case LOGIN: {
-      console.log(process.env);
+      console.log(process.env.SOCKET_URL_GENERAL);
       axios({
         method: 'POST',
         url: `${process.env.API_URL}/auth/login/`,
