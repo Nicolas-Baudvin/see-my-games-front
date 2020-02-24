@@ -59,7 +59,7 @@ export default ({ state, setState }) => {
 
         {
           state.gamesSorted && state.gamesSorted.map((game) => (
-            <div onClick={handleGameClick(game)} className="chat-menu-games">
+            <div key={game.appid} onClick={handleGameClick(game)} className="chat-menu-games">
               <div className="chat-menu-games-content">
                 <img src={game.header_img} alt={`jeu ${game.name}`} />
                 <h2> {game.name} </h2>
