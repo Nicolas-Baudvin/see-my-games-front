@@ -127,14 +127,14 @@ module.exports = {
     inline: true, // Rechargement du navigateur en cas de changement
     open: true, // on ouvre le navigateur
     historyApiFallback: true,
-    // public: 'https://www.seemygames.fr',
+    public: 'https://www.seemygames.fr',
     host: host,
-    port: port
-    // allowedHosts: [
-    //   '.amazonaws.com',
-    //   'www.seemygames.fr',
-    //   'seemygames.fr'
-    // ]
+    port: port,
+    allowedHosts: [
+      '.amazonaws.com',
+      'www.seemygames.fr',
+      'seemygames.fr'
+    ]
   },
   plugins: [
     // Permet de prendre le index.html de src comme base pour le fichier de dist/
