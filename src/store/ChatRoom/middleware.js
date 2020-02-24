@@ -88,6 +88,7 @@ export default (store) => (next) => (action) => {
         steam.disconnect();
       }
       general = socketIoClient(process.env.SOCKET_URL_GENERAL);
+      console.log(general);
       general.emit(
         "new_user",
         {
