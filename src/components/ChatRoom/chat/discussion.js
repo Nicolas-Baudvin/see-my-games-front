@@ -46,7 +46,6 @@ export default ({
         }
         {
           currentChan === "Steam" && steamMessages && steamMessages.map((mes) => {
-            console.log(mes);
             if (mes.game) {
               return <div key={mes_id} className={ClassNames("message", { me: mes.user === userData.username })}>
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />

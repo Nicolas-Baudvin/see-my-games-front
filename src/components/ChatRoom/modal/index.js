@@ -28,7 +28,6 @@ export default ({ state, setState }) => {
   };
 
   const handleGameClick = (game) => () => {
-    console.log(game);
     dispatch(sendGameToChat(game));
   };
 

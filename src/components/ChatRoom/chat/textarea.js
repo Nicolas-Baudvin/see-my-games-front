@@ -84,10 +84,8 @@ export default ({ currentChan }) => {
    * @param {string} menuName Nom du menu
    */
   const handleClickMenuItem = (menuName) => (e) => {
-    console.log(menuName);
     switch (menuName) {
       case "share": {
-        console.log(state);
         setState({ ...state, modalVisible: true });
         break;
       }

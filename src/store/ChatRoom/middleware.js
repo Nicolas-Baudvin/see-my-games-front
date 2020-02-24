@@ -64,7 +64,6 @@ export default (store) => (next) => (action) => {
       break;
     }
     case SEND_PRIVATE_MESSAGE: {
-      console.log(io.io);
       io.emit('private', action.message);
       next(action);
       break;
@@ -88,7 +87,6 @@ export default (store) => (next) => (action) => {
         steam.disconnect();
       }
       general = socketIoClient(process.env.SOCKET_URL_GENERAL);
-      console.log(general);
       general.emit(
         "new_user",
         {
