@@ -17,7 +17,9 @@ import {
   UPDATE_USERLIST_OTHER,
   NEW_PRIVATE_MESSAGE,
   SEND_PRIVATE_MESSAGE,
-  CHANGE_CHAN
+  CHANGE_CHAN,
+  SEND_GAME_TO_CHAT,
+  NEW_GAME_RECEIVED
 } from "./actions";
 
 const initialState = {
@@ -33,6 +35,36 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case NEW_GAME_RECEIVED: {
+      switch (state.currentChan) {
+        case "Général": {
+          return {
+            ...state,
+            messages: [...state.messages, action.data]
+          };
+        }
+        case "Steam": {
+          return {
+            ...state,
+            steamMessages: [...state.steamMessages, action.data],
+          };
+        }
+        case "Autre": {
+          return {
+            ...state,
+            otherMessages: [...state.otherMessages, action.data]
+          };
+        }
+        default: {
+          return state;
+        }
+      }
+    }
+    case SEND_GAME_TO_CHAT: {
+      return {
+        ...state,
+      };
+    }
     case CHANGE_CHAN: {
       return {
         ...state,

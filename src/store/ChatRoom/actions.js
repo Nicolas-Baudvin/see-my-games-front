@@ -18,6 +18,18 @@ export const SEND_PRIVATE_MESSAGE = "action-chat/SEND_PRIVATE_MESSAGE";
 export const NEW_PRIVATE_MESSAGE = "action-chat/NEW_PRIVATE_MESSAGE";
 export const CONNECT_TO_PRIVATE_CHAT = "action-chat/CONNECT_TO_PRIVATE_CHAT";
 export const CHANGE_CHAN = "action-chat/CHANGE_CHAN";
+export const SEND_GAME_TO_CHAT = "action-chat/SEND_GAME_TO_CHAT";
+export const NEW_GAME_RECEIVED = "action-chat/NEW_GAME_RECEIVED";
+
+export const newGameReceived = (data) => ({
+  type: NEW_GAME_RECEIVED,
+  data
+});
+
+export const sendGameToChat = (game) => ({
+  type: SEND_GAME_TO_CHAT,
+  game
+});
 
 export const changeCurrentChan = (chanName) => ({
   type: CHANGE_CHAN,

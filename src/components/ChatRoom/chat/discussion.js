@@ -4,7 +4,6 @@ import ClassNames from 'classnames';
 import ChatTextArea from './textarea';
 
 export default ({
-  state,
   messages,
   steamMessages,
   userData,
@@ -13,7 +12,6 @@ export default ({
   handleClickOnUser,
   currentChan
 }) => {
-  console.log(messages)
   return (
     <div className="chatroom-chat">
       <div className="chatroom-chat-header">
@@ -22,8 +20,20 @@ export default ({
       <div className="chatroom-chat-container">
         {/* TODO: discussion ici */}
         {
-          currentChan === "Général" && messages && messages.map((mes) => (
-            <div key={mes._id} className={ClassNames("message", { me: mes.user === userData.username })}>
+          currentChan === "Général" && messages && messages.map((mes) => {
+            if (mes.game) {
+              return <div key={mes._id} className={ClassNames("message", { me: mes.from === userData.username })}>
+                <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
+                <div className="message-steamgame">
+                  <div className="message-steamgame-game">
+                    <img src={mes.game.header_img} alt={` jeu ${mes.game.name}`} />
+                    <h2> {mes.game.name} </h2>
+                  </div>
+                  <span className="message-steamgame-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.from)} className="message-user">{mes.from}</span></span>
+                </div>
+              </div>;
+            }
+            return <div key={mes._id} className={ClassNames("message", { me: mes.from === userData.username })}>
               <div className="message-body">
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
@@ -31,12 +41,25 @@ export default ({
                   <span className="message-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.user)} className="message-user">{mes.user}</span></span>
                 </p>
               </div>
-            </div>
-          ))
+            </div>;
+          })
         }
         {
-          currentChan === "Steam" && steamMessages && steamMessages.map((mes) => (
-            <div key={mes._id} className={ClassNames("message", { me: mes.user === userData.username })}>
+          currentChan === "Steam" && steamMessages && steamMessages.map((mes) => {
+            console.log(mes);
+            if (mes.game) {
+              return <div key={mes_id} className={ClassNames("message", { me: mes.user === userData.username })}>
+                <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
+                <div className="message-steamgame">
+                  <div className="message-steamgame-game">
+                    <img src={mes.game.header_img} alt={` jeu ${mes.game.name}`} />
+                    <h2> {mes.game.name} </h2>
+                  </div>
+                  <span className="message-steamgame-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.from)} className="message-user">{mes.from}</span></span>
+                </div>
+              </div>;
+            }
+            return <div key={mes._id} className={ClassNames("message", { me: mes.user === userData.username })}>
               <div className="message-body">
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
@@ -44,12 +67,24 @@ export default ({
                   <span className="message-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.user)} className="message-user">{mes.user}</span></span>
                 </p>
               </div>
-            </div>
-          ))
+            </div>;
+          })
         }
         {
-          currentChan === "Autre" && otherMessages && otherMessages.map((mes) => (
-            <div key={mes._id} className={ClassNames("message", { me: mes.user === userData.username })}>
+          currentChan === "Autre" && otherMessages && otherMessages.map((mes) => {
+            if (mes.game) {
+              return <div key={mes._id} className={ClassNames("message", { me: mes.from === userData.username })}>
+                <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
+                <div className="message-steamgame">
+                  <div className="message-steamgame-game">
+                    <img src={mes.game.header_img} alt={` jeu ${mes.game.name}`} />
+                    <h2> {mes.game.name} </h2>
+                  </div>
+                  <span className="message-steamgame-date"><time>{mes.time}</time> par <span onClick={() => handleClickOnUser(mes.socketId, mes.from)} className="message-user">{mes.from}</span></span>
+                </div>
+              </div>;
+            }
+            return <div key={mes._id} className={ClassNames("message", { me: mes.user === userData.username })}>
               <div className="message-body">
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />
                 <p className="message-text">
@@ -58,7 +93,7 @@ export default ({
                 </p>
               </div>
             </div>
-          ))
+          })
         }
         {
           Array.isArray(currentChan) && privateMessages.length > 0 && (currentChan[1] === privateMessages[0].to || currentChan[1] === privateMessages[0].from) && privateMessages.map((mes) => (

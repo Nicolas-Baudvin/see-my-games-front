@@ -22,9 +22,10 @@ import {
   updateSteamList,
   UPDATE_USERLIST_OTHER,
   SEND_PRIVATE_MESSAGE,
-  NEW_PRIVATE_MESSAGE,
   CONNECT_TO_PRIVATE_CHAT,
-  newPrivateMessage
+  newPrivateMessage,
+  SEND_GAME_TO_CHAT,
+  newGameReceived
 } from './actions';
 import { success, fail } from "../Popup/actions";
 
@@ -36,6 +37,32 @@ export default (store) => (next) => (action) => {
   const state = store.getState();
 
   switch (action.type) {
+    case SEND_GAME_TO_CHAT: {
+      switch (state.chat.currentChan) {
+        case "Général": {
+          general.emit("exchange_steamgame", {
+            game: action.game,
+            from: state.user.userData.username,
+            avatar: state.user.userData.steam_avatar,
+            chan: state.chat.currentChan
+          });
+          break;
+        }
+        case "Steam": {
+          steam.emit("exchange_steamgame", { game: action.game, from: state.user.userData.username });
+          break;
+        }
+        case "Autre": {
+          other.emit("exchange_steamgame", { game: action.game, from: state.user.userData.username });
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+      next(action);
+      break;
+    }
     case SEND_PRIVATE_MESSAGE: {
       console.log(io.io);
       io.emit('private', action.message);
@@ -88,6 +115,11 @@ export default (store) => (next) => (action) => {
         store.dispatch(updateGeneralList(userlist));
         next(action);
       });
+
+      general.on("exchange_steamgame", (data) => {
+        store.dispatch(newGameReceived(data));
+        next(action);
+      });
       break;
     }
     /**
@@ -128,6 +160,11 @@ export default (store) => (next) => (action) => {
         store.dispatch(updateSteamList(userlist));
         next(action);
       });
+
+      steam.on("exchange_steamgame", (data) => {
+        store.dispatch(newGameReceived(data));
+        next(action);
+      });
       break;
     }
     /**
@@ -166,6 +203,11 @@ export default (store) => (next) => (action) => {
 
       other.on("update_userlist", (userlist) => {
         store.dispatch(updateOtherList(userlist));
+        next(action);
+      });
+
+      other.on("exchange_steamgame", (data) => {
+        store.dispatch(newGameReceived(data));
         next(action);
       });
       break;
