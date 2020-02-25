@@ -20,7 +20,7 @@ export default ({
       {
         currentChan === "Général" && usersConnectedGeneral.length && usersConnectedGeneral.map((user) => (
           <div onClick={() => handleClickOnUser(user.globalSocketId, user.username)} key={user.username} className="chatroom-users-user">
-            <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
+            <img className="chatroom-users-user-avatar" src={user.avatar ? user.avatar : "http://localhost:3000/src/assets/default-avatar.png"} alt="avatar" />
             <div className="chatroom-users-user-online" />
             <h2 className="chatroom-users-user-username"> {user.username} </h2>
           </div>
@@ -29,7 +29,7 @@ export default ({
       {
         currentChan === "Steam" && usersConnectedSteam.length && usersConnectedSteam.map((user) => (
           <div onClick={() => handleClickOnUser(user.globalSocketId, user.username)} key={user.username} className="chatroom-users-user">
-            <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
+            <img className="chatroom-users-user-avatar" src={user.avatar ? user.avatar : "http://localhost:3000/src/assets/default-avatar.png"} alt="avatar" />
             <div className="chatroom-users-user-online" />
             <h2 className="chatroom-users-user-username"> {user.username} </h2>
           </div>
@@ -38,7 +38,7 @@ export default ({
       {
         currentChan === "Autre" && usersConnectedOther.length && usersConnectedOther.map((user) => (
           <div onClick={() => handleClickOnUser(user.globalSocketId, user.username)} key={user.username} className="chatroom-users-user">
-            <img className="chatroom-users-user-avatar" src={user.avatar} alt="avatar" />
+            <img className="chatroom-users-user-avatar" src={user.avatar ? user.avatar : "http://localhost:3000/src/assets/default-avatar.png"} alt="avatar" />
             <div className="chatroom-users-user-online" />
             <h2 className="chatroom-users-user-username"> {user.username} </h2>
           </div>
