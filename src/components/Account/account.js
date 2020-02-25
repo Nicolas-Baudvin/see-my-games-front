@@ -10,7 +10,6 @@ import { linkSteamAccount, importGames, updateProfil } from '../../store/User/ac
 const Account = () => {
   const dispatch = useDispatch();
   const { userData, isConnectedToSteam, usernameChanged } = useSelector((state) => state.user);
-  const fileInput = React.createRef();
   const [open, setOpen] = useState(false);
   const [usernameValue, setUsername] = useState(userData.username);
   const handleFormSubmit = (e) => {
@@ -33,9 +32,6 @@ const Account = () => {
   const gamesImport = () => {
     dispatch(importGames());
   };
-
-  // const handleFileChange = (e) => {
-  // };
 
   useEffect(() => {
     window.addEventListener('message', (event) => {

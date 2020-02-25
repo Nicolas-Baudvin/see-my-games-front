@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Icon, Button } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import ClassNames from 'classnames';
 import { accountMenu } from 'src/data/navs';
 import './account.scss';
+
+/**
+ * Components
+ */
 import Account from './account';
 import Password from './changePass';
 import Email from './changeEmail';
 import Delete from './delete';
 import MyArticles from './myArticles';
 import Privacy from './privacy';
+import { newAvatar } from '../../store/User/actions';
 
 export default () => {
   const { userData } = useSelector((state) => state.user);
   const [nav, setNav] = useState(accountMenu);
   const [view, setView] = useState('account');
+  const fileInput = React.createRef();
+  const dispatch = useDispatch();
 
   const changeView = (viewName) => (e) => {
     if (view !== viewName) {
@@ -32,18 +39,30 @@ export default () => {
     }
   };
 
+  const handleFileChange = (e) => {
+    console.log(fileInput.current.files[0]);
+    const formData = new FormData();
+    formData.append('avatar', fileInput.current.files[0]);
+    dispatch(newAvatar(formData));
+  };
   return (
     <div className="account">
 
       <div className="account-block">
 
         <div className="account-avatar">
-          <img className="account-avatar-img" src={userData.steam_avatarfull ? userData.steam_avatarfull : "/src/assets/default-avatar.png"} alt="Votre avatar" />
+          <img
+            className="account-avatar-img"
+            src={userData.steam_avatarfull ? userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, userData.avatar.data.data))}`}
+            alt="Votre avatar"
+          />
           <div className="account-avatar-edit">
-            <label className="account-editLabel" htmlFor="edit">
+            <label className="account-editLabel" htmlFor="avatar">
               <Icon className="account-avatar-icon" name="photo" size="big" />
             </label>
-            <input className="edit-avatar" type="file" name="edit" id="edit"/>
+            <form>
+              <input encType="multipart/form-data" ref={fileInput} onChange={handleFileChange} className="edit-avatar" type="file" name="avatar" id="avatar" />
+            </form>
           </div>
           <h2 className="account-avatar-title">Bonjour, {userData.username}</h2>
         </div>
