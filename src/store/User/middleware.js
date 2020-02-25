@@ -9,14 +9,41 @@ import {
   UPDATE_EMAIL,
   DELETE_ACCOUNT,
   UPDATE_PASSWORD,
-  disconnect
+  disconnect,
+  NEW_AVATAR
 } from './actions';
 import { success, fail } from '../Popup/actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
-
   switch (action.type) {
+    case NEW_AVATAR: {
+      const token = localStorage.getItem('secure_token');
+      const { avatar } = action;
+      console.log(avatar);
+      axios({
+        method: 'post',
+        url: `${process.env.API_URL}/auth/new-avatar/`,
+        data: avatar,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((resp) => {
+          console.log(resp.data);
+          const { user } = resp.data;
+          localStorage.setItem('user_data', JSON.stringify(user));
+          action.user = user;
+          next(action);
+        })
+        .catch((err) => {
+          console.log(err);
+          action.error = err.response.data.message;
+          store.dispatch(fail("L'upload de votre image n'a pas pu être effectué. Réessayez ou contacter l'administrateur. (ne fonctionne uniquement pour les images png, jpg, gif"))
+          next(action);
+        });
+      break;
+    }
     case UPDATE_PASSWORD: {
       const { password, confPassword } = action;
       const { userData } = state.user;
@@ -31,7 +58,7 @@ export default (store) => (next) => (action) => {
           userId: userData._id
         },
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
           Accept: 'application/json',
           Authorization: `Bearer ${token}`
         }

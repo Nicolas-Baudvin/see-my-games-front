@@ -8,7 +8,8 @@ import {
   UPDATE_PASSWORD,
   DELETE_ACCOUNT,
   UPDATE_EMAIL,
-  UPDATE_PROFIL
+  UPDATE_PROFIL,
+  NEW_AVATAR
 } from "./actions";
 
 const userData = JSON.parse(localStorage.getItem('user_data')) || localStorage.getItem('user_data');
@@ -29,6 +30,12 @@ const initalState = {
 
 export default (state = initalState, action) => {
   switch (action.type) {
+    case NEW_AVATAR: {
+      return {
+        ...state,
+        userData: action.user
+      };
+    }
     case UPDATE_PASSWORD: {
       if (action.error) {
         return {
@@ -69,7 +76,7 @@ export default (state = initalState, action) => {
     }
     case UPDATE_PROFIL: {
       if (action.error) {
-        return { 
+        return {
           ...state,
           updateProfilError: action.error
         };

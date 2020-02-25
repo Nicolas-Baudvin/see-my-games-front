@@ -8,6 +8,12 @@ export const UPDATE_PROFIL = "action-user/UPDATE_PROFIL";
 export const UPDATE_PASSWORD = "action-user/UPDATE_PASSWORD";
 export const UPDATE_EMAIL = "action-user/UPDATE_EMAIL";
 export const DELETE_ACCOUNT = "action-user/DELETE_ACCOUNT";
+export const NEW_AVATAR = "action-user/NEW_AVATAR";
+
+export const newAvatar = (avatar) => ({
+  type: NEW_AVATAR,
+  avatar
+});
 
 export const login = (username, password) => ({
   type: LOGIN,

@@ -43,17 +43,27 @@ export default (store) => (next) => (action) => {
           general.emit("exchange_steamgame", {
             game: action.game,
             from: state.user.userData.username,
-            avatar: state.user.userData.steam_avatar,
+            avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
             chan: state.chat.currentChan
           });
           break;
         }
         case "Steam": {
-          steam.emit("exchange_steamgame", { game: action.game, from: state.user.userData.username });
+          steam.emit("exchange_steamgame", {
+            game: action.game,
+            from: state.user.userData.username,
+            avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
+            chan: state.chat.currentChan
+          });
           break;
         }
         case "Autre": {
-          other.emit("exchange_steamgame", { game: action.game, from: state.user.userData.username });
+          other.emit("exchange_steamgame", {
+            game: action.game,
+            from: state.user.userData.username,
+            avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
+            chan: state.chat.currentChan
+          });
           break;
         }
         default: {
@@ -91,7 +101,7 @@ export default (store) => (next) => (action) => {
         "new_user",
         {
           username: state.user.userData.username,
-          avatar: state.user.userData.steam_avatar,
+          avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
         }
       );
       general.on("exchange_message", (message) => {
@@ -136,7 +146,7 @@ export default (store) => (next) => (action) => {
         "new_user",
         {
           username: state.user.userData.username,
-          avatar: state.user.userData.steam_avatar,
+          avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
         }
       );
       steam.on("exchange_message", (message) => {
@@ -181,7 +191,7 @@ export default (store) => (next) => (action) => {
         "new_user",
         {
           username: state.user.userData.username,
-          avatar: state.user.userData.steam_avatar,
+          avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
         }
       );
       other.on("exchange_message", (message) => {
@@ -242,7 +252,7 @@ export default (store) => (next) => (action) => {
       general.emit("exchange_message", {
         message: action.message,
         user: state.user.userData.username,
-        avatar: state.user.userData.steam_avatar,
+        avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
         chan: "Général"
       });
       next(action);
@@ -252,7 +262,7 @@ export default (store) => (next) => (action) => {
       steam.emit("exchange_message", {
         message: action.message,
         user: state.user.userData.username,
-        avatar: state.user.userData.steam_avatar,
+        avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
         chan: "Steam"
       });
       next(action);
@@ -262,7 +272,7 @@ export default (store) => (next) => (action) => {
       other.emit("exchange_message", {
         message: action.message,
         user: state.user.userData.username,
-        avatar: state.user.userData.steam_avatar,
+        avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
         chan: "Autre"
       });
       break;
