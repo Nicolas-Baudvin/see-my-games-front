@@ -1,0 +1,21 @@
+{
+    "plugins": [
+      "mocha"
+    ],
+    "extends": [
+      "plugin:mocha/recommended"
+    ],
+    "env": {
+      "mocha": true
+    },
+    "rules": {
+      "prefer-arrow-callback": "off",
+      "func-names": ["error", "never"],
+      "space-before-function-paren": ["error", {
+          "anonymous": "never",
+          "named": "never",
+          "asyncArrow": "always"
+      }],
+      "mocha/no-skipped-tests": "off"
+    }
+  }
