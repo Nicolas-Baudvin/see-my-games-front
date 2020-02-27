@@ -13,7 +13,6 @@ const Popup = ({
   const handleClickBtn = () => {
     dispatch(closePopup());
   };
-
   return (
     <div className={ClassNames('popup', { hidden: !visible })}>
       {
@@ -30,7 +29,7 @@ const Popup = ({
       }
       <div className="popup-action">
         <Button icon labelPosition="left" color="green" className="popup-action-btn" onClick={handleClickBtn}>
-          <Icon name='checkmark' />
+          <Icon name="checkmark" />
           Ok
         </Button>
       </div>

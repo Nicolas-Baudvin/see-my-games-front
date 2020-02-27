@@ -9,7 +9,7 @@ import './login.scss';
 import { login } from '../../store/User/actions';
 
 
-const Login = ({ visible }) => {
+export const Login = ({ visible }) => {
   const dispatch = useDispatch();
   const [usernameValue, setUsername] = useState('');
   const [passValue, setPass] = useState('');

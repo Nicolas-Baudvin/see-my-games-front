@@ -12,17 +12,17 @@ import {
   NEW_AVATAR
 } from "./actions";
 
-const userData = JSON.parse(localStorage.getItem('user_data')) || localStorage.getItem('user_data');
-const token = localStorage.getItem('secure_token');
+export const userData = JSON.parse(localStorage.getItem('user_data')) || localStorage.getItem('user_data');
+export const token = localStorage.getItem('secure_token');
 
 const initalState = {
   signupError: '',
   signupMessage: '',
-  isConnected: userData && token ? true : false,
+  isConnected: !!(userData && token),
   isConnectedToSteam: userData ? userData.hasOwnProperty("steam_id") : false,
   loginError: '',
   loginMessage: '',
-  userData: userData ? userData : '',
+  userData: userData || '',
   usernameChanged: '',
   emailPassSent: '',
   emailSent: '',
@@ -119,7 +119,7 @@ export default (state = initalState, action) => {
         ...state,
         userData: action.userData,
         isConnected: true,
-        isConnectedToSteam: action.userData.hasOwnProperty("steam_id")
+        isConnectedToSteam: "steam_id" in action.userData
       };
     }
     case SIGNUP: {
