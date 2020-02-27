@@ -1,6 +1,6 @@
-import { JSDOM } from 'jsdom';
+const { JSDOM } = require("jsdom");
 
-const { window } = new JSDOM('<!doctype html><html><body></body></html>');
+const { window } = new JSDOM('<!doctype html><html><body><div id="root"></div></body></html>', { url: "http://localhost/", pretendToBeVisual: true });
 function copyProps(src, target) {
   const props = Object.getOwnPropertyNames(src)
     .filter((prop) => typeof target[prop] === 'undefined')
