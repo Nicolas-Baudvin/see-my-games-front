@@ -24,6 +24,7 @@ import ChatRoom from '../ChatRoom';
 // Données
 // Styles et assets
 import './app.scss';
+import 'semantic-ui-css/semantic.min.css';
 
 /**
  * Code
