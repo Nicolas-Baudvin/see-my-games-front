@@ -55,14 +55,14 @@
   - [x] Categories
   - [x] Configurations
   - [x] Description complète du jeu
-- [ ] Page de Chat
+- [x] Page de Chat
   - [x] Affichage des utilisateurs connectés
   - [x] Chaque message est délivré avec la date de l'envoie et le pseudo de l'utilisateur
   - [x] Possibilité d'écrire un message privé
   - [x] Mise à disposition de plusieurs Channels
   - [x] Emoticones
+  - [x] Pouvoir envoyer les informations d'un jeu possédé
   - [ ] Notifications de nouveaux messages
-  - [ ] Pouvoir envoyer les informations d'un jeu possédé
 - [ ] Page Articles
 - [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Oublie de mot de passe
@@ -78,5 +78,5 @@
 ### ISSUES
 
  - [x] Titre de modal connexion et inscription imparfaitement placé selon breakpoint. => fixed
- - [x] Le popup de succès / échec ne s'affiche plus :/
- - [ ] Breakpoint mobile de la page d'accueil qui merdouille
+ - [x] Le popup de succès / échec ne s'affiche plus :/ => fixed
+ - [x] Breakpoint mobile de la page d'accueil qui merdouille => fixed
