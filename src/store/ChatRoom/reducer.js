@@ -104,21 +104,18 @@ export default (state = initialState, action) => {
       };
     }
     case NEW_MESSAGE_GENERAL: {
-      console.log("nouveau message reçu dans général chat");
       return {
         ...state,
         messages: [...state.messages, action.message]
       };
     }
     case NEW_MESSAGE_STEAM: {
-      console.log("nouveau message reçu dans steam chat");
       return {
         ...state,
         steamMessages: [...state.steamMessages, action.message]
       };
     }
     case NEW_MESSAGE_OTHER: {
-      console.log("nouveau message reçu dans autre chat");
       return {
         ...state,
         otherMessages: [...state.otherMessages, action.message]
@@ -158,21 +155,18 @@ export default (state = initialState, action) => {
       };
     }
     case UPDATE_USERLIST_GENERAL: {
-      console.log(action.list);
       return {
         ...state,
         usersConnectedGeneral: action.list
       };
     }
     case UPDATE_USERLIST_STEAM: {
-      console.log(action.list);
       return {
         ...state,
         usersConnectedSteam: action.list
       };
     }
     case UPDATE_USERLIST_OTHER: {
-      console.log(action.list);
       return {
         ...state,
         usersConnectedOther: action.list
