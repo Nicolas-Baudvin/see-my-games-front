@@ -53,7 +53,14 @@ export default () => {
         <div className="account-avatar">
           <img
             className="account-avatar-img"
-            src={userData.steam_avatarfull ? userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, userData.avatar.data.data))}`}
+            src={
+              // eslint-disable-next-line no-nested-ternary
+              userData.steam_avatarfull
+                ? userData.steam_avatarfull
+                : (userData.avatar.data
+                  ? `data:image/png;base64,${btoa(String.fromCharCode.apply(null, userData.avatar.data.data))}`
+                  : "https://www.seemygames.fr/src/assets/default-avatar.png")
+            }
             alt="Votre avatar"
           />
           <div className="account-avatar-edit">
