@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {
   Button, Modal, Image, Input, Form
 } from 'semantic-ui-react';
 import './signup.scss';
 import { signUp } from 'src/store/User/actions';
 
-const Signup = ({ visible }) => {
+const Signup = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [usernameValue, setUsername] = useState('');
@@ -64,9 +63,9 @@ const Signup = ({ visible }) => {
   };
 
   return (
-    <Modal className="modal" open={visible} dimmer="blurring" className="modal">
+    <div className="modal">
 
-      <Modal.Content image className="modal-left">
+      <div image className="modal-left">
         <Image
           className="modal-left-img"
           src="/src/assets/connexion-inscription-background.jpeg"
@@ -75,8 +74,8 @@ const Signup = ({ visible }) => {
         <p className="modal-left-text">Gérez votre propre bibliothèque</p>
         <p className="modal-left-text">Importez vos jeux steam</p>
         <p className="modal-left-text"> Ou ajoutez les à la mains</p>
-      </Modal.Content>
-      <Modal.Content image className="modal-right">
+      </div>
+      <div image className="modal-right">
         <img alt="logo du site see my games" src="/src/assets/logo-smg.png" className="modal-right-logo" />
         <h1 className="modal-right-title">See My Games</h1>
         <small className="modal-right-small">Créer un compte</small>
@@ -183,14 +182,10 @@ const Signup = ({ visible }) => {
           <Link className="back-link" to="/"><Button className="modal-right-button--back" size="huge" type="submit">Retour</Button></Link>
 
         </Form>
-      </Modal.Content>
+      </div>
 
-    </Modal>
+    </div>
   );
-};
-
-Signup.propTypes = {
-  visible: PropTypes.bool.isRequired,
 };
 
 export default Signup;

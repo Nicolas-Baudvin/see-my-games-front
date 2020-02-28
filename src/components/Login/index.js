@@ -20,9 +20,9 @@ export const Login = ({ visible }) => {
   };
 
   return (
-    <Modal open={visible} dimmer="blurring" className="modal">
+    <div open={visible} dimmer="blurring" className="modal">
 
-      <Modal.Content image className="modal-left">
+      <div className="modal-left">
         <Image
           className="modal-left-img"
           src="/src/assets/connexion-inscription-background.jpeg"
@@ -31,8 +31,8 @@ export const Login = ({ visible }) => {
         <p className="modal-left-text">Gérez votre propre bibliothèque</p>
         <p className="modal-left-text">Importez vos jeux steam</p>
         <p className="modal-left-text"> Ou ajoutez les à la mains</p>
-      </Modal.Content>
-      <Modal.Content image className="modal-right">
+      </div>
+      <div className="modal-right">
         <img alt="logo du site see my games" src="/src/assets/logo-smg.png" className="modal-right-logo" />
         <h1 className="modal-right-title">See My Games</h1>
         <small className="modal-right-small">Se connecter</small>
@@ -96,9 +96,9 @@ export const Login = ({ visible }) => {
           <Link className="back-link" to="/"><Button className="modal-right-button--back" size="huge" type="submit">Retour</Button></Link>
 
         </Form>
-      </Modal.Content>
+      </div>
 
-    </Modal>
+    </div>
   );
 };
 

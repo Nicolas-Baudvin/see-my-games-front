@@ -2,12 +2,6 @@
     display: flex !important;
 }
 
-.ui.modal>.image.content {
-    flex-direction: column;
-    display: flex;
-    padding: 0;
-}
-
 .input-group {
     align-self: center;
     width: 100%;
@@ -27,24 +21,23 @@
     }
 }
 
-.ui.modal.transition.visible.active.modal {
-    height: max-content !important;
-    display: flex !important;
-    flex-direction: row !important;
-    
-}
-.ui.modal > .image.content {
-    flex-direction: column !important;
-}
-
 
 .modal {
 
-    height: max-content !important;
-    flex-direction: column !important;
+    height: max-content ;
+    flex-direction: row ;
+    display: flex;
+    align-items: center;
+    margin: 3em auto;
 
     &-right {
         padding: 1em !important;
+        background-color: white;
+        height: 750px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         &-button {
             width: 100%;
@@ -155,6 +148,11 @@
     }
 
     &-left {
+        width: 50%;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        position: relative;
 
         &-img {
             height: 750px; // à modifier
@@ -167,9 +165,10 @@
             font-weight: bold;
             font-size: 1.6em;
             position: absolute;
+            top: 2em;
             color: white;
-            align-self: center;
-            margin-top: 2em;
+            text-align: center;
+            width: 100%;
         }
 
         &-text {
@@ -196,34 +195,52 @@
     }
 }
 
-@media only screen and (max-width: 1920px) and (min-width: 1080px) {}
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {
+    .modal {
+        flex-direction: row;
+    }
+}
 
 @media only screen and (max-width: 1366px) and (min-width: 768px) {
     .modal {
+        flex-direction: row;
         &-left {
             &-title {
                 font-size: 1.5em;
             }
+        }
+        &-right {
         }
     }
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
     .modal {
+        flex-direction: column;
         &-left {
+            width: 100%;
             &-title {
-                font-size: 1.3em;
+                font-size: 1em;
             }
         }
+        &-right {
+            width: 100%;
+        }
     }
+
 }
 
 @media only screen and (max-width: 767px) {
     .modal {
+        flex-direction: column;
         &-left {
+            width: 100%;
             &-title {
                 font-size: 1em;
             }
+        }
+        &-right {
+            width: 100%;
         }
     }
 }
