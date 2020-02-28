@@ -63,8 +63,8 @@
   - [x] Emoticones
   - [x] Pouvoir envoyer les informations d'un jeu possédé
   - [ ] Notifications de nouveaux messages
+- [x] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Page Articles
-- [ ] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Oublie de mot de passe
 
 ----- V2 -----
