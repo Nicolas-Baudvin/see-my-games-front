@@ -81,12 +81,6 @@ export default ({
           {/* TODO: Discussion/Channels récents */}
         </ul>
       </div>
-
-      <div className="chatroom-channels-disconnectBtn">
-        <Icon name="log out" size="big" color="teal" />
-        <span>Déconnexion du chat</span>
-      </div>
-
     </div>
   );
 };

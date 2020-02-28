@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TextArea, Form, Button, Icon, Menu
 } from 'semantic-ui-react';
@@ -31,6 +31,7 @@ export default ({ currentChan }) => {
   const [msgArray, setMsgArray] = useState([]);
   const [searchEmojis, setSearchEmojis] = useState('');
   const [canWrite, setCanWrite] = useState(true);
+  const [size, setSize] = useState('big');
   const { userData } = useSelector((GlobalState) => GlobalState.user);
   /**
    * @description Envoie le message du textArea dans le channel courant
@@ -126,10 +127,22 @@ export default ({ currentChan }) => {
     setState({ ...state, text: state.text + emoji.native });
   };
 
+  // useEffect(() => {
+  //   const width = window.screen.width;
+  //   console.log(width < 1366 && width > 1024, size);
+  //   if (width < 1024) {
+  //     setSize("small");
+  //   }
+  //   else if (width > 1366 && width < 1024) {
+  //     setSize("tiny");
+  //   }
+  //   else setSize("big");
+  // });
+
   return (
     <div className="chatroom-chat-textarea">
       <Button onClick={() => setState({ ...state, menuVisible: !state.menuVisible })} className="chatroom-chat-textarea-addfile" icon>
-        <Icon name="paperclip" size="big" />
+        <Icon name="paperclip" size={size} />
       </Button>
       <Menu className={ClassNames("chatroom-chat-textarea-menu", { menuVisible: state.menuVisible })}>
         <Menu.Item onClick={handleClickMenuItem("share")} className="chatroom-chat-textarea-menu__item">

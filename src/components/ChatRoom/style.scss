@@ -441,3 +441,138 @@
         padding: .5em;
     }
 }
+
+
+@media only screen and (max-width: 1920px) and (min-width: 1080px) {
+    .chat-menu {
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (max-width: 1366px) and (min-width: 1025px) {
+    .chatroom {
+        flex-direction: column;
+
+        &-channels {
+            width: 100%;
+        }
+
+        &-chat {
+            width: 100%;
+        }
+
+        &-users {
+            width: 100%;
+        }
+    }
+
+    .chat-menu {
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+    .chatroom {
+        flex-direction: column;
+
+        &-channels {
+            width: 100%;
+        }
+
+        &-chat {
+            width: 100%;
+        }
+
+        &-users {
+            width: 100%;
+        }
+    }
+
+    .chat-menu {
+        flex-direction: column !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .chatroom {
+        flex-direction: column;
+
+        &-channels {
+            width: 100%;
+        }
+
+        &-chat {
+            width: 100%;
+
+            &-textarea {
+                align-self: center;
+                flex-direction: column;
+
+                &-addfile {
+                    align-self: center;
+                    margin: 1em 0 !important;
+
+                    .paperclip.big.icon {
+                        color: white !important;
+                        align-self: center;
+                    }
+                }
+
+                .ui.form {
+                    flex-direction: column;
+                    align-items: center !important;
+                    width: 100%;
+
+                    .ui.button {
+                        margin: 1em !important;
+
+                    }
+                }
+
+                &-openemoji {
+                    bottom: 2.5em;
+                    right: 1em;
+                    top: unset;
+                }
+
+                &-menu {
+                    top: -3em;
+                    bottom: unset;
+                }
+            }
+        }
+
+        &-users {
+            width: 100%;
+        }
+    }
+
+    .chat {
+        &-menu {
+            display: flex;
+            flex-direction: column !important;
+
+            &-games {
+                &-content {
+                    width: 300px;
+                    height: 150px;
+
+                    h2 {
+                        padding: .3em;
+                        font-size: 1.1em;
+                        background-color: rgba(0, 0, 0, .2);
+                    }
+
+                    img {
+                        object-fit: contain;
+                        object-position: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .chat-menu {
+        flex-direction: column !important;
+    }
+}
