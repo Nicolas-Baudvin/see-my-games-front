@@ -35,6 +35,8 @@
         width: 82%;
         align-items: center;
         margin-top: 5em;
+        max-height: 1000px;
+        overflow: auto;
 
         &-game {
             position: relative;

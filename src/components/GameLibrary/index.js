@@ -90,13 +90,14 @@ const GameLibrary = () => {
                 animateIn="fadeIn"
                 className="games-steam-game-link"
                 key={game._id}
+                scrollableParentSelector=".games-steam"
               >
                 <div className="games-nosteam-menu">
                   <Icon ref={updateTrigger} onClick={() => showMenu(game._id)} className="games-nosteam-menu-icons" name="edit" size="big" />
                   <Icon onClick={() => dispatch(deleteGame(game._id))} className="games-nosteam-menu-icons" name="trash" size="big" />
                 </div>
                 <UpdateModal triggerRef={updateTrigger} visible={show} currentGame={game} currentGameId={currentGameId} />
-                <Link className="games-steam-game-link" to="/mes-jeux/"> {/* TODO: page différente pour jeu ajouté à la main */}
+                <Link className="games-steam-game-link" to="/mes-jeux/">
                   <div className="games-steam-game">
                     <img className="games-steam-game-img" src={game.header_img} alt={`jeu ${game.name}`} />
                     <h2 className="games-steam-game-title"> {game.name} </h2>
@@ -111,6 +112,7 @@ const GameLibrary = () => {
                 animateIn="fadeIn"
                 className="games-steam-game-link"
                 key={game._id}
+                scrollableParentSelector=".games-steam"
               >
                 <Link className="games-steam-game-link" to={`/mes-jeux/${game.appid}?isSteam=${game.platform === "steam"}`}>
                   <div className="games-steam-game">
