@@ -276,6 +276,7 @@ export default (store) => (next) => (action) => {
     }
     case IMPORT_GAMES: {
       const { userData } = state.user;
+      const token = localStorage.getItem('secure_token');
 
       axios({
         method: "get",
@@ -283,7 +284,7 @@ export default (store) => (next) => (action) => {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          Authorization: `Bearer ${userData.token}`
+          Authorization: `Bearer ${token}`
         }
       }).then((res) => {
         localStorage.setItem('user_data', JSON.stringify(res.data.user));

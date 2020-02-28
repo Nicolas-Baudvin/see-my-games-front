@@ -125,9 +125,15 @@ export default (store) => (next) => (action) => {
       break;
     }
     case DISPLAY_RECENT_GAMES: {
+      const token = localStorage.getItem('secure_token');
       axios({
         method: 'get',
-        url: `${process.env.API_URL}/steam/recent-games/${userData.steam_id}`
+        url: `${process.env.API_URL}/steam/recent-games/${userData.steam_id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
       })
         .then((res) => {
           action.games = res.data.games;
