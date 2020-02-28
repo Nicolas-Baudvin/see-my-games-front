@@ -29,11 +29,19 @@
 
 .ui.modal.transition.visible.active.modal {
     height: max-content !important;
+    display: flex !important;
+    flex-direction: row !important;
+    
 }
+.ui.modal > .image.content {
+    flex-direction: column !important;
+}
+
 
 .modal {
 
     height: max-content !important;
+    flex-direction: column !important;
 
     &-right {
         padding: 1em !important;
@@ -149,7 +157,7 @@
     &-left {
 
         &-img {
-            height: 740px; // à modifier
+            height: 750px; // à modifier
             object-fit: cover;
             object-position: center;
         }
