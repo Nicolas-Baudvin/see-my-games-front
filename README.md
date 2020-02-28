@@ -78,4 +78,5 @@
 ### ISSUES
 
  - [x] Titre de modal connexion et inscription imparfaitement placé selon breakpoint. => fixed
+ - [x] Le popup de succès / échec ne s'affiche plus :/
  - [ ] Breakpoint mobile de la page d'accueil qui merdouille
