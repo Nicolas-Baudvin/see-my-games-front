@@ -65,7 +65,7 @@ const Signup = () => {
   return (
     <div className="modal">
 
-      <div image className="modal-left">
+      <div className="modal-left">
         <Image
           className="modal-left-img"
           src="/src/assets/connexion-inscription-background.jpeg"
@@ -75,7 +75,7 @@ const Signup = () => {
         <p className="modal-left-text">Importez vos jeux steam</p>
         <p className="modal-left-text"> Ou ajoutez les à la mains</p>
       </div>
-      <div image className="modal-right">
+      <div className="modal-right">
         <img alt="logo du site see my games" src="/src/assets/logo-smg.png" className="modal-right-logo" />
         <h1 className="modal-right-title">See My Games</h1>
         <small className="modal-right-small">Créer un compte</small>
