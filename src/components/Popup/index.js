@@ -14,21 +14,21 @@ const Popup = ({
     dispatch(closePopup());
   };
   return (
-    <div className={ClassNames('popup', { hidden: !visible })}>
+    <div className={ClassNames('popupWindow', { hidden: !visible })}>
       {
-        isSuccess && <div className="popup-header-success">
-          <h1 className="popup-mainTitle">Succès !</h1>
-          <h2 className="popup-title">{message}</h2>
+        isSuccess && <div className="popupWindow-header-success">
+          <h1 className="popupWindow-mainTitle">Succès !</h1>
+          <h2 className="popupWindow-title">{message}</h2>
         </div>
       }
       {
         !isSuccess && <div className="popup-header-fail">
-          <h1 className="popup-mainTitle">Echec !</h1>
-          <h2 className="popup-title">{message}</h2>
+          <h1 className="popupWindow-mainTitle">Echec !</h1>
+          <h2 className="popupWindow-title">{message}</h2>
         </div>
       }
-      <div className="popup-action">
-        <Button icon labelPosition="left" color="green" className="popup-action-btn" onClick={handleClickBtn}>
+      <div className="popupWindow-action">
+        <Button icon labelPosition="left" color="green" className="popupWindow-action-btn" onClick={handleClickBtn}>
           <Icon name="checkmark" />
           Ok
         </Button>
