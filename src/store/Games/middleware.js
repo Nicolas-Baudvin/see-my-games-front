@@ -146,9 +146,15 @@ export default (store) => (next) => (action) => {
     }
     case DISPLAY_GAMEINFO: {
       const { appid } = action;
+      const token = localStorage.getItem('secure_token');
       axios({
         method: "get",
-        url: `${process.env.API_URL}/steam/game/${appid}`
+        url: `${process.env.API_URL}/steam/game/${appid}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
       })
         .then((res) => {
           action.game = res.data.game.data;
