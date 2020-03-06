@@ -90,6 +90,7 @@ export default (store) => (next) => (action) => {
      * Connection au channel Général du chat
      */
     case CONNECT_TO_CHAT_GENERAL: {
+      console.log(state.user.userData.avatar);
       if (other) {
         other.disconnect();
       }
@@ -101,7 +102,11 @@ export default (store) => (next) => (action) => {
         "new_user",
         {
           username: state.user.userData.username,
-          avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
+          avatar: state.user.userData.steam_avatarfull
+            ? state.user.userData.steam_avatarfull
+            : state.user.userData.avatar.length
+              ? (`data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`)
+              : "http://localhost:3000/src/assets/default-avatar.png",
         }
       );
       general.on("exchange_message", (message) => {
@@ -146,7 +151,11 @@ export default (store) => (next) => (action) => {
         "new_user",
         {
           username: state.user.userData.username,
-          avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
+          avatar: state.user.userData.steam_avatarfull
+            ? state.user.userData.steam_avatarfull
+            : state.user.userData.avatar.length
+              ? (`data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`)
+              : "http://localhost:3000/src/assets/default-avatar.png",
         }
       );
       steam.on("exchange_message", (message) => {
@@ -191,7 +200,11 @@ export default (store) => (next) => (action) => {
         "new_user",
         {
           username: state.user.userData.username,
-          avatar: state.user.userData.steam_avatarfull ? state.user.userData.steam_avatarfull : `data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`,
+          avatar: state.user.userData.steam_avatarfull
+            ? state.user.userData.steam_avatarfull
+            : state.user.userData.avatar.length
+              ? (`data:image/png;base64,${btoa(String.fromCharCode.apply(null, state.user.userData.avatar.data.data))}`)
+              : "http://localhost:3000/src/assets/default-avatar.png",
         }
       );
       other.on("exchange_message", (message) => {
