@@ -77,6 +77,6 @@
 
 ### ISSUES
 
- - [x] Titre de modal connexion et inscription imparfaitement placé selon breakpoint. => fixed
- - [x] Le popup de succès / échec ne s'affiche plus :/ => fixed
- - [x] Breakpoint mobile de la page d'accueil qui merdouille => fixed
+- [x] Titre de modal connexion et inscription imparfaitement placé selon breakpoint. => fixed
+- [x] Le popup de succès / échec ne s'affiche plus :/ => fixed
+- [x] Breakpoint mobile de la page d'accueil qui merdouille => fixed
