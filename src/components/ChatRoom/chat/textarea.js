@@ -127,18 +127,6 @@ export default ({ currentChan }) => {
     setState({ ...state, text: state.text + emoji.native });
   };
 
-  // useEffect(() => {
-  //   const width = window.screen.width;
-  //   console.log(width < 1366 && width > 1024, size);
-  //   if (width < 1024) {
-  //     setSize("small");
-  //   }
-  //   else if (width > 1366 && width < 1024) {
-  //     setSize("tiny");
-  //   }
-  //   else setSize("big");
-  // });
-
   return (
     <div className="chatroom-chat-textarea">
       <Button onClick={() => setState({ ...state, menuVisible: !state.menuVisible })} className="chatroom-chat-textarea-addfile" icon>

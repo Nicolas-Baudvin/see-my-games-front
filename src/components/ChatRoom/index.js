@@ -44,7 +44,6 @@ export default () => {
    * @returns dispatch || void
    */
   const handleClickOnUser = (socketId, username) => {
-    console.log(socketId);
     if (userData.username === username) {
       return dispatch(fail("Vous ne pouvez pas vous envoyer un message à vous même..."));
     }
@@ -90,7 +89,14 @@ export default () => {
       const lastPrivateMessage = privateMessages[privateMessages.length - 1];
       setState({ ...state, count: state.count++ });
 
-      if (lastPrivateMessage.from !== userData.username) {
+      let isChanExist = false;
+      state.nav.forEach((chan) => {
+        if (chan.title === lastPrivateMessage.from) {
+          isChanExist = true;
+        }
+      });
+
+      if (lastPrivateMessage.from !== userData.username && !isChanExist) {
         const newNavEntry = {
           title: lastPrivateMessage.from,
           isSelected: false,

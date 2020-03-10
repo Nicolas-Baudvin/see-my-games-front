@@ -95,7 +95,7 @@ export default ({
           })
         }
         {
-          Array.isArray(currentChan) && privateMessages.length > 0 && (currentChan[1] === privateMessages[0].to || currentChan[1] === privateMessages[0].from) && privateMessages.map((mes) => (
+          Array.isArray(currentChan) && privateMessages.length > 0 && (currentChan[1] === privateMessages[privateMessages.length - 1].to || currentChan[1] === privateMessages[privateMessages.length - 1].from) && privateMessages.map((mes) => (
             <div key={mes.id} className={ClassNames("message", { me: mes.from === userData.username })}>
               <div className="message-body">
                 <img className="message-img" src={mes.avatar ? mes.avatar : "../src/assets/default-avatar.png"} alt="avatar" />

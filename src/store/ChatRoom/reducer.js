@@ -72,7 +72,10 @@ export default (state = initialState, action) => {
       };
     }
     case SEND_PRIVATE_MESSAGE: {
-      return state;
+      return {
+        ...state,
+        privateMessages: [...state.privateMessages, action.message]
+      };
     }
     case NEW_PRIVATE_MESSAGE: {
       return {
