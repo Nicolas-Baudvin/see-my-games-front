@@ -1,4 +1,5 @@
 import mocklocalstorage from 'mock-local-storage';
+import { expect } from 'chai';
 import reducer, { userData, token } from "../src/store/User/reducer";
 import middleware from "../src/store/User/middleware";
 import * as actions from '../src/store/User/actions';
