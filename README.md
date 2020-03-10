@@ -66,6 +66,7 @@
 - [x] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
 - [ ] Page Articles
 - [ ] Oublie de mot de passe
+- [ ] Afficher un message d'aide lorsque l'utilisateur arrive sur sa bibliothèque vide
 
 ----- V2 -----
 
