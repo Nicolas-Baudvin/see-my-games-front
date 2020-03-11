@@ -1,4 +1,4 @@
-export default store => next => action => {
+export default (store) => (next) => (action) => {
 
-  next(action);
+  next(action)
 };

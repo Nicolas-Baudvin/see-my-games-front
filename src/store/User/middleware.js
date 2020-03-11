@@ -10,17 +10,40 @@ import {
   DELETE_ACCOUNT,
   UPDATE_PASSWORD,
   disconnect,
-  NEW_AVATAR
+  NEW_AVATAR,
+  CHECKING_SESSION
 } from './actions';
 import { success, fail } from '../Popup/actions';
 
 export default (store) => (next) => (action) => {
   const state = store.getState();
   switch (action.type) {
+    case CHECKING_SESSION: {
+      const token = localStorage.getItem("secure_token");
+      axios({
+        method: "get",
+        url: `${process.env.API_URL}/auth/session-checker/${state.user.userData._id}`,
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then((res) => {
+          // session ok
+          next(action);
+        })
+        .catch((err) => {
+          store.dispatch(disconnect());
+          store.dispatch(fail("Votre session a expiré, veuillez vous reconnecter"));
+          next(action);
+        });
+      next(action);
+      break;
+    }
     case NEW_AVATAR: {
       const token = localStorage.getItem('secure_token');
       const { avatar } = action;
-      console.log(avatar);
       axios({
         method: 'post',
         url: `${process.env.API_URL}/auth/new-avatar/`,
@@ -30,14 +53,12 @@ export default (store) => (next) => (action) => {
         }
       })
         .then((resp) => {
-          console.log(resp.data);
           const { user } = resp.data;
           localStorage.setItem('user_data', JSON.stringify(user));
           action.user = user;
           next(action);
         })
         .catch((err) => {
-          console.log(err);
           action.error = err.response.data.message;
           store.dispatch(fail("L'upload de votre image n'a pas pu être effectué. Réessayez ou contacter l'administrateur. (ne fonctionne uniquement pour les images png, jpg, gif"))
           next(action);

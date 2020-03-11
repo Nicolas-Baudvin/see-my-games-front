@@ -1,11 +1,11 @@
 /**
  * Imports de dépendances
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router, Switch, Route, Redirect
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 /**
  * Imports locaux
@@ -25,13 +25,28 @@ import ChatRoom from '../ChatRoom';
 // Styles et assets
 import './app.scss';
 import 'semantic-ui-css/semantic.min.css';
+import { checkSession } from '../../store/User/actions';
 
 /**
  * Code
  */
 const App = () => {
+  const dispatch = useDispatch();
   const { isConnected } = useSelector((state) => state.user);
   const { message, isSuccess, visible } = useSelector((state) => state.popup);
+
+  useEffect(() => {
+    console.log(isConnected);
+    if (isConnected) {
+      // eslint-disable-next-line prefer-arrow-callback
+      setTimeout(function checking() {
+        dispatch(checkSession());
+        if (isConnected) {
+          setTimeout(checking, 5000);
+        }
+      }, 5000);
+    }
+  }, [isConnected]);
 
   return <Router>
     <div id="app">

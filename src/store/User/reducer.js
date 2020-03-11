@@ -103,7 +103,7 @@ export default (state = initalState, action) => {
       localStorage.clear();
       return {
         ...state,
-        isConnected: '',
+        isConnected: false,
         isConnectedToSteam: '',
         userData: '',
       };

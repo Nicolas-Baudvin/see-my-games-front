@@ -9,6 +9,11 @@ export const UPDATE_PASSWORD = "action-user/UPDATE_PASSWORD";
 export const UPDATE_EMAIL = "action-user/UPDATE_EMAIL";
 export const DELETE_ACCOUNT = "action-user/DELETE_ACCOUNT";
 export const NEW_AVATAR = "action-user/NEW_AVATAR";
+export const CHECKING_SESSION = "action-user/CHECKING_SESSION";
+
+export const checkSession = () => ({
+  type: CHECKING_SESSION
+});
 
 export const newAvatar = (avatar) => ({
   type: NEW_AVATAR,
