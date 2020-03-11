@@ -1,7 +1,7 @@
 /**
  * Imports de dépendances
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   BrowserRouter as Router, Switch, Route, Redirect
 } from 'react-router-dom';
@@ -34,17 +34,24 @@ const App = () => {
   const dispatch = useDispatch();
   const { isConnected } = useSelector((state) => state.user);
   const { message, isSuccess, visible } = useSelector((state) => state.popup);
+  const connectedref = useRef(isConnected);
 
   useEffect(() => {
-    console.log(isConnected);
-    if (isConnected) {
-      // eslint-disable-next-line prefer-arrow-callback
-      setTimeout(function checking() {
+    connectedref.current = isConnected;
+    let timer = null;
+
+    const checking = () => {
+      if (connectedref.current) {
         dispatch(checkSession());
-        if (isConnected) {
-          setTimeout(checking, 5000);
-        }
-      }, 5000);
+        timer = setTimeout(checking, 5000);
+      }
+      else {
+        clearTimeout(timer);
+      }
+    };
+
+    if (isConnected) {
+      checking();
     }
   }, [isConnected]);
 
