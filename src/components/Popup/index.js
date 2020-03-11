@@ -22,7 +22,7 @@ const Popup = ({
         </div>
       }
       {
-        !isSuccess && <div className="popup-header-fail">
+        !isSuccess && <div className="popupWindow-header-fail">
           <h1 className="popupWindow-mainTitle">Echec !</h1>
           <h2 className="popupWindow-title">{message}</h2>
         </div>
