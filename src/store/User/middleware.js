@@ -31,14 +31,16 @@ export default (store) => (next) => (action) => {
       })
         .then((res) => {
           // session ok
+          console.log("session ok")
           next(action);
         })
         .catch((err) => {
+          console.log(err)
+          console.log(state.user.isConnected);
           store.dispatch(disconnect());
           store.dispatch(fail("Votre session a expiré, veuillez vous reconnecter"));
-          next(action);
+          action.err = true;
         });
-      next(action);
       break;
     }
     case NEW_AVATAR: {

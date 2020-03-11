@@ -9,7 +9,8 @@ import {
   DELETE_ACCOUNT,
   UPDATE_EMAIL,
   UPDATE_PROFIL,
-  NEW_AVATAR
+  NEW_AVATAR,
+  CHECKING_SESSION
 } from "./actions";
 
 export const userData = JSON.parse(localStorage.getItem('user_data')) || localStorage.getItem('user_data');
@@ -36,6 +37,15 @@ export default (state = initalState, action) => {
         userData: action.user
       };
     }
+    case CHECKING_SESSION: {
+      if (action.err) {
+        return {
+          ...state,
+          isConnected: false
+        };
+      }
+      return state;
+    }
     case UPDATE_PASSWORD: {
       if (action.error) {
         return {
@@ -57,8 +67,8 @@ export default (state = initalState, action) => {
       }
       return {
         ...state,
-        isConnected: '',
-        isConnectedToSteam: '',
+        isConnected: false,
+        isConnectedToSteam: false,
         userData: '',
       };
     }
@@ -104,7 +114,7 @@ export default (state = initalState, action) => {
       return {
         ...state,
         isConnected: false,
-        isConnectedToSteam: '',
+        isConnectedToSteam: false,
         userData: '',
       };
     }
