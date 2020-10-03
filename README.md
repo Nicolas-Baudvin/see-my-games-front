@@ -64,21 +64,9 @@
   - [x] Pouvoir envoyer les informations d'un jeu possédé
   - [ ] Notifications de nouveaux messages
 - [x] Permettre la modification de l'avatar et d'enregistrer son choix sur le serveur
-- [ ] Page Articles
-- [ ] Oublie de mot de passe
-- [ ] Afficher un message d'aide lorsque l'utilisateur arrive sur sa bibliothèque vide
-
------ V2 -----
-
-- [ ] Amélirorer l'UX
-- [ ] Système de liste de souhait (wishlist)
-- [ ] Système de liste d'amis (notamment pour le chat)
-- [ ] Donner son avis sur un jeu
-- [ ] Forum
 
 ### ISSUES
 
 - [x] Titre de modal connexion et inscription imparfaitement placé selon breakpoint. => fixed
 - [x] Le popup de succès / échec ne s'affiche plus :/ => fixed
 - [x] Breakpoint mobile de la page d'accueil qui merdouille => fixed
-- [ ] Popup Succès pas responsive
