@@ -43,7 +43,7 @@
     "node-sass": "*",
     "null-loader": "^3.0.0",
     "optimize-css-assets-webpack-plugin": "*",
-    "postcss": "^7.0.27",
+    "postcss": "^7.0.36",
     "postcss-loader": "*",
     "sass-loader": "*",
     "sinon-chai": "^3.5.0",
